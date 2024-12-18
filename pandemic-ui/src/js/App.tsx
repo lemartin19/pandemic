@@ -1,6 +1,10 @@
+import { FC } from 'react';
 import '../css/App.css';
 
-function App() {
+/**
+ * Main application component
+ */
+const App: FC = () => {
   return (
     <div className="App">
       <header className="App-header">
