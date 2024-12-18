@@ -1,2 +1,3 @@
 # pandemic
-Pandemic boardgame on React.
+
+Pandemic boardgame for the web.
