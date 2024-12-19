@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { DifficultySelect } from './DifficultySelect';
 import userEvent from '@testing-library/user-event';

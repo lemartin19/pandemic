@@ -2,6 +2,7 @@ const globals = require('globals');
 const js = require('@eslint/js');
 const prettier = require('eslint-config-prettier');
 const typescript = require('@typescript-eslint/parser');
+const reactPlugin = require('eslint-plugin-react');
 
 module.exports = [
   // Base ESLint recommended rules
@@ -13,6 +14,9 @@ module.exports = [
   // Custom configuration for UI
   {
     files: ['pandemic-ui/**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      react: reactPlugin,
+    },
     languageOptions: {
       parser: typescript,
       parserOptions: {
@@ -26,11 +30,17 @@ module.exports = [
         JSX: true,
       },
     },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
     rules: {
       // Error prevention
       'no-console': 'error',
       'no-debugger': 'error',
       'no-unused-vars': ['error', { argsIgnorePattern: '^__' }],
+      'react/display-name': 'error',
 
       // Best practices
       eqeqeq: ['error', 'always'],
@@ -40,6 +50,8 @@ module.exports = [
 
       // Style (not covered by Prettier)
       'no-multiple-empty-lines': ['error', { max: 1 }],
+
+      ...reactPlugin.configs.recommended.rules,
     },
   },
 

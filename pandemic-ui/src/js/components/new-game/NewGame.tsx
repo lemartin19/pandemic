@@ -41,7 +41,6 @@ export function NewGame() {
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     // TODO: Add logic to start the game with the selected settings
-    console.log('Starting game with settings:', gameSettings);
   }
 
   return (

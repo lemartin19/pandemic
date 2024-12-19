@@ -7,8 +7,8 @@ export function Home() {
         pandemic.
       </p>
       <p>
-        This is an experimental project - to learn more about it's development or report any issues,
-        see <a href="https://github.com/lemartin19/pandemic">the GitHub repository</a>.
+        This is an experimental project - to learn more about it&lsquo;s development or report any
+        issues, see <a href="https://github.com/lemartin19/pandemic">the GitHub repository</a>.
       </p>
     </div>
   );

@@ -5,7 +5,7 @@ export function DifficultySelect({
   onChange,
 }: {
   value: string;
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (__event: ChangeEvent<HTMLSelectElement>) => void;
 }) {
   return (
     <div className="form-group">

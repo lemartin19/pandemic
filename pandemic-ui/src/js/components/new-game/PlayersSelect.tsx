@@ -5,7 +5,7 @@ export function PlayersSelect({
   onChange,
 }: {
   value: number;
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (__event: ChangeEvent<HTMLSelectElement>) => void;
 }) {
   return (
     <div className="form-group">
