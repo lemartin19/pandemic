@@ -1,12 +1,17 @@
 /**
  * Represents the available disease colors
  */
-export enum Color {
-  BLUE = 'blue',
-  YELLOW = 'yellow',
-  BLACK = 'black',
-  RED = 'red',
-}
+export const COLORS = {
+  BLUE: 'blue',
+  YELLOW: 'yellow',
+  BLACK: 'black',
+  RED: 'red',
+} as const;
+
+/**
+ * Create a type from the object values
+ */
+export type Color = (typeof COLORS)[keyof typeof COLORS];
 
 /**
  * Represents a disease in the game

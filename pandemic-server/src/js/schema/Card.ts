@@ -6,19 +6,20 @@ import { Color, Disease } from './Disease';
 /**
  * Base card interface
  */
-export interface Card {
-  equals(card: Card): boolean;
+export abstract class Card {
+  public abstract equals(__card: Card): boolean;
 }
 
 /**
  * Represents an event card
  */
-export class EventCard implements Card {
+export class EventCard extends Card {
   public readonly name: string;
   public readonly description: string;
   public readonly action: Action;
 
   constructor(name: string, description: string, action: Action) {
+    super();
     this.name = name;
     this.description = description;
     this.action = action;
@@ -32,8 +33,10 @@ export class EventCard implements Card {
 /**
  * Represents an epidemic card
  */
-export class EpidemicCard implements Card {
-  constructor() {}
+export class EpidemicCard extends Card {
+  constructor() {
+    super();
+  }
 
   public equals(card: Card): boolean {
     return card instanceof EpidemicCard;
@@ -43,11 +46,12 @@ export class EpidemicCard implements Card {
 /**
  * Represents a city card
  */
-export class CityCard implements Card {
+export class CityCard extends Card {
   private location: Location;
   private color: Color;
 
   constructor(location: Location, color: Color) {
+    super();
     this.location = location;
     this.color = color;
   }

@@ -1,5 +1,5 @@
 import { Location } from './Location';
-import { Color, Disease } from './Disease';
+import { Color, COLORS, Disease } from './Disease';
 import { Outbreak } from './Action';
 
 /**
@@ -15,10 +15,10 @@ export class City {
     location: Location,
     connections: Array<City>,
     infections: Record<Color, number> = {
-      [Color.BLUE]: 0,
-      [Color.YELLOW]: 0,
-      [Color.BLACK]: 0,
-      [Color.RED]: 0,
+      [COLORS.BLUE]: 0,
+      [COLORS.YELLOW]: 0,
+      [COLORS.BLACK]: 0,
+      [COLORS.RED]: 0,
     },
     researchStation: boolean = false
   ) {

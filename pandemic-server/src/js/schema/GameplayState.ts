@@ -3,15 +3,16 @@ import { Card } from './Card';
 import { Game } from './Game';
 import { Player } from './Player';
 
-export interface GameplayState {
-  execute(game: Game): void;
+export abstract class GameplayState {
+  public abstract execute(__game: Game): void;
 }
 
-export class PlayerAction implements GameplayState {
+export class PlayerAction extends GameplayState {
   private player: Player;
   private action?: Action;
 
   constructor(player: Player, action?: Action) {
+    super();
     this.player = player;
     this.action = action;
   }
@@ -37,17 +38,18 @@ export class PlayerAction implements GameplayState {
   }
 }
 
-export class PlayerDraw implements GameplayState {
+export class PlayerDraw extends GameplayState {
   private player: Player;
   private count: number;
 
   constructor(player: Player, count: number) {
+    super();
     this.player = player;
     this.count = count;
   }
 
   public execute(game: Game) {
-    let drawAction: Draw = new Draw(this.player);
+    const drawAction: Draw = new Draw(this.player);
     for (let i = 1; i < this.count; i++) {
       drawAction.doAfter(new Draw(this.player));
     }
@@ -55,11 +57,12 @@ export class PlayerDraw implements GameplayState {
   }
 }
 
-export class PlayerDiscard implements GameplayState {
+export class PlayerDiscard extends GameplayState {
   private player: Player;
   private card?: Card;
 
   constructor(player: Player, card?: Card) {
+    super();
     this.player = player;
     this.card = card;
   }
@@ -74,19 +77,19 @@ export class PlayerDiscard implements GameplayState {
   }
 }
 
-export class Increase implements GameplayState {
+export class Increase extends GameplayState {
   public execute(game: Game) {
     game.intensify();
   }
 }
 
-export class Intensify implements GameplayState {
+export class Intensify extends GameplayState {
   public execute(game: Game) {
     game.intensify();
   }
 }
 
-export class Infect implements GameplayState {
+export class Infect extends GameplayState {
   public execute(game: Game) {
     game.infect();
   }
