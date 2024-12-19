@@ -1,0 +1,33 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+.nav-title {
+  margin: 0;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Ensure focus indicators are visible for accessibility */
+.nav-link:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
