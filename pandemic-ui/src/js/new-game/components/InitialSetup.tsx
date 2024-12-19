@@ -23,7 +23,7 @@ function transformValueBasedKey<Key extends keyof InitialSettings>(
   throw new Error(`Unknown key: ${key}`);
 }
 
-export function InitialSetup({ onSubmit }: { onSubmit: (settings: InitialSettings) => void }) {
+export function InitialSetup({ onSubmit }: { onSubmit: (__settings: InitialSettings) => void }) {
   const [gameSettings, setGameSettings] = useState<InitialSettings>({
     numberOfPlayers: 2,
     difficulty: 'medium',
@@ -49,8 +49,8 @@ export function InitialSetup({ onSubmit }: { onSubmit: (settings: InitialSetting
       <PlayersSelect value={gameSettings.numberOfPlayers} onChange={handleInputChange} />
       <DifficultySelect value={gameSettings.difficulty} onChange={handleInputChange} />
 
-      <button type="submit" className="start-button">
-        Start Game
+      <button type="submit" className="setup-players-button">
+        Setup Players
       </button>
     </form>
   );

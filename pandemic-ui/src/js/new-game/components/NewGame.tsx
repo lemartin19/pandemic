@@ -7,6 +7,7 @@ import { Player } from '../../types/Player';
 import { createInitialDeck } from '../utils/createInitialDeck';
 import { createInitialPlayers } from '../utils/createInitialPlayers';
 import { InitialSetup } from './InitialSetup';
+import { PlayerSetup } from './PlayerSetup';
 
 interface GameSettings {
   players: Player[];
@@ -19,7 +20,7 @@ export function NewGame() {
     playerDeck: [],
   });
 
-  function handleSubmit(settings: {
+  function handleInitialSetup(settings: {
     numberOfPlayers: number;
     difficulty: 'easy' | 'medium' | 'hard';
   }): void {
@@ -31,11 +32,22 @@ export function NewGame() {
     });
   }
 
+  function handlePlayerSetup(players: Player[]): void {
+    setGameSettings((prevSettings) => ({
+      ...prevSettings,
+      players,
+    }));
+  }
+
   return (
     <div className="new-game-container">
       <h2>Start a new game</h2>
       <Routes>
-        <Route path="/" element={<InitialSetup onSubmit={handleSubmit} />} />
+        <Route path="/" element={<InitialSetup onSubmit={handleInitialSetup} />} />
+        <Route
+          path="/player-setup"
+          element={<PlayerSetup initialValue={gameSettings.players} onSubmit={handlePlayerSetup} />}
+        />
       </Routes>
     </div>
   );

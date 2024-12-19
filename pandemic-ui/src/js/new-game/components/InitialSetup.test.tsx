@@ -14,15 +14,10 @@ describe('InitialSetup', () => {
     expect(screen.getByLabelText(/difficulty/i)).toBeInTheDocument();
   });
 
-  test('renders the start button', () => {
-    renderInitialSetup();
-    expect(screen.getByRole('button', { name: /start game/i })).toBeInTheDocument();
-  });
-
-  test('calls onSubmit when the start button is clicked', async () => {
+  test('calls onSubmit when the setup players button is clicked', async () => {
     const onSubmit = jest.fn();
     renderInitialSetup({ onSubmit });
-    await userEvent.click(screen.getByRole('button', { name: /start game/i }));
+    await userEvent.click(screen.getByRole('button', { name: /setup players/i }));
     expect(onSubmit).toHaveBeenCalled();
   });
 });
