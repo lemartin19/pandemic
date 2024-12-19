@@ -8,12 +8,10 @@ const App: FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Pandemic
-        </p>
+        <p>Pandemic</p>
       </header>
     </div>
   );
-}
+};
 
 export default App;
