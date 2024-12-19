@@ -1,16 +1,16 @@
 import '../../css/App.css';
 
 import { FC } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Game } from './Game';
 import { Home } from './Home';
 import { Navigation } from './Navigation';
-import { NewGame } from './NewGame';
+import { NewGame } from './new-game/NewGame';
 import { Rules } from './Rules';
 
 const App: FC = () => {
   return (
-    <BrowserRouter>
+    <>
       <Navigation />
       <div className="App">
         <main className="App-main">
@@ -22,7 +22,7 @@ const App: FC = () => {
           </Routes>
         </main>
       </div>
-    </BrowserRouter>
+    </>
   );
 };
 

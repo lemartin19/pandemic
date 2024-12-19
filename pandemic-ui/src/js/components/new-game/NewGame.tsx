@@ -1,5 +1,7 @@
-import '../../css/NewGame.css';
+import '../../../css/NewGame.css';
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { PlayersSelect } from './PlayersSelect';
+import { DifficultySelect } from './DifficultySelect';
 
 type Difficulty = 'easy' | 'medium' | 'hard';
 
@@ -46,33 +48,8 @@ export function NewGame() {
     <div className="new-game-container">
       <h2>Start a new game</h2>
       <form className="new-game-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="numberOfPlayers">Number of Players</label>
-          <select
-            id="numberOfPlayers"
-            name="numberOfPlayers"
-            value={gameSettings.numberOfPlayers}
-            onChange={handleInputChange}
-          >
-            <option value={2}>2 Players</option>
-            <option value={3}>3 Players</option>
-            <option value={4}>4 Players</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="difficulty">Difficulty</label>
-          <select
-            id="difficulty"
-            name="difficulty"
-            value={gameSettings.difficulty}
-            onChange={handleInputChange}
-          >
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-        </div>
+        <PlayersSelect value={gameSettings.numberOfPlayers} onChange={handleInputChange} />
+        <DifficultySelect value={gameSettings.difficulty} onChange={handleInputChange} />
 
         <button type="submit" className="start-button">
           Start Game
