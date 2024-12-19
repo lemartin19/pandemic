@@ -1,5 +1,5 @@
-import { EpidemicCard } from '../../../types/Card';
-import { Deck } from '../../../types/Deck';
+import { EpidemicCard } from '../../types/Card';
+import { Deck } from '../../types/Deck';
 import { BASIC_CITIES } from './basicCards';
 
 function getEpidemicCardsForDifficulty(difficulty: 'easy' | 'medium' | 'hard'): number {

@@ -1,14 +1,13 @@
-import '../../css/App.css';
+import '../../../css/App.css';
 
-import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Game } from './Game';
 import { Home } from './Home';
 import { Navigation } from './Navigation';
-import { NewGame } from './new-game/NewGame';
+import { NewGame } from '../../new-game/components/NewGame';
 import { Rules } from './Rules';
 
-const App: FC = () => {
+export function App() {
   return (
     <>
       <Navigation />
@@ -24,6 +23,5 @@ const App: FC = () => {
       </div>
     </>
   );
-};
-
-export default App;
+}
+App.displayName = 'App';

@@ -1,4 +1,4 @@
-import { Player } from '../../../types/Player';
+import { Player } from '../../types/Player';
 
 export function createInitialPlayers(numberOfPlayers: number): Player[] {
   return Array.from({ length: numberOfPlayers }, (__, index) => ({

@@ -1,5 +1,4 @@
-import { FormEvent, useState } from 'react';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { DifficultySelect } from './DifficultySelect';
 import { PlayersSelect } from './PlayersSelect';
 

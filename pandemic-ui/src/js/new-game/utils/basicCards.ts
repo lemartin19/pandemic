@@ -1,5 +1,5 @@
-import { CityCard } from '../../../types/Card';
-import { Color } from '../../../types/Disease';
+import { CityCard } from '../../types/Card';
+import { Color } from '../../types/Disease';
 
 function makeCityCard(city: string, color: Color): CityCard {
   return {

@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { Route, Router, Routes } from 'react-router-dom';
 import '../../../css/NewGame.css';
+
+import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { Deck } from '../../types/Deck';
 import { Player } from '../../types/Player';
+import { createInitialDeck } from '../utils/createInitialDeck';
+import { createInitialPlayers } from '../utils/createInitialPlayers';
 import { InitialSetup } from './InitialSetup';
-import { createInitialPlayers } from './utils/createInitialPlayers';
-import { createInitialDeck } from './utils/createInitialDeck';
 
 interface GameSettings {
   players: Player[];
