@@ -58,7 +58,7 @@ export function createInitialInfections(
   const infectionDiscard = [];
 
   for (let i = 3; i >= 1; i--) {
-    const nextInfections = infectionDeck.splice(0, 2);
+    const nextInfections = infectionDeck.splice(0, 3);
     nextInfections.forEach((card) => {
       infectCity(card, infections, i);
     });
