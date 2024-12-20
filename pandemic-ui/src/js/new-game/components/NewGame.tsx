@@ -3,8 +3,12 @@ import '../../../css/NewGame.css';
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Deck } from '../../types/Deck';
+import { Infections, InfectionSaturation } from '../../types/Infections';
+import { Map } from '../../types/Map';
 import { Player } from '../../types/Player';
 import { createInitialDecks } from '../utils/createInitialDecks';
+import { createInitialInfections } from '../utils/createInitialInfections';
+import { createInitialMap } from '../utils/createInitialMap';
 import { createInitialPlayers } from '../utils/createInitialPlayers';
 import { InitialSetup } from './InitialSetup';
 import { PlayerSetup } from './PlayerSetup';
@@ -13,14 +17,29 @@ interface GameSettings {
   players: Player[];
   drawPile: Deck;
   infectionDeck: Deck;
+  map: Map;
+  infections: Infections;
+  infectionDiscard: Deck;
+  infectionSaturation: InfectionSaturation;
 }
 
+const initialGameSettings: GameSettings = {
+  players: [],
+  drawPile: [],
+  infectionDeck: [],
+  map: [],
+  infections: {},
+  infectionDiscard: [],
+  infectionSaturation: {
+    red: 0,
+    blue: 0,
+    yellow: 0,
+    black: 0,
+  },
+};
+
 export function NewGame() {
-  const [gameSettings, setGameSettings] = useState<GameSettings>({
-    players: [],
-    drawPile: [],
-    infectionDeck: [],
-  });
+  const [gameSettings, setGameSettings] = useState<GameSettings>(initialGameSettings);
 
   function handleInitialSetup(settings: {
     numberOfPlayers: number;
@@ -29,13 +48,22 @@ export function NewGame() {
     const initialPlayers = createInitialPlayers(settings.numberOfPlayers);
     const { players, drawPile, infectionDeck } = createInitialDecks(
       settings.difficulty,
-      'normal',
+      'basic',
       initialPlayers
+    );
+    const map = createInitialMap('basic');
+    const { infections, infectionDiscard, infectionSaturation } = createInitialInfections(
+      map,
+      infectionDeck
     );
     setGameSettings({
       players,
       drawPile,
       infectionDeck,
+      map,
+      infections,
+      infectionDiscard,
+      infectionSaturation,
     });
   }
 

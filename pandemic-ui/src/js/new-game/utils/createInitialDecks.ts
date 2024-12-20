@@ -1,7 +1,7 @@
-import { EpidemicCard } from '../../types/Card';
+import { Card, CityCard, EpidemicCard } from '../../types/Card';
 import { Deck } from '../../types/Deck';
 import { Player } from '../../types/Player';
-import { BASIC_CITIES } from '../constants/basicCards';
+import { BASIC_CITIES, BASIC_EVENT_CARDS } from '../constants/basicCards';
 
 /**
  * Gets the number of epidemic cards for a given difficulty
@@ -63,7 +63,7 @@ function createPlayersWithHands(players: Player[], deck: Deck): Player[] {
  * @mutates array to shuffle it
  * @returns The shuffled array
  */
-function shuffle(array: Deck): Deck {
+function shuffle<T extends Card>(array: Deck<T>): Deck<T> {
   return array.sort(() => Math.random() - 0.5);
 }
 
@@ -72,9 +72,9 @@ function shuffle(array: Deck): Deck {
  * @param type - The type of the deck
  * @returns The initial deck
  */
-function createInitialDrawDeckForType(__type: 'normal'): Deck {
-  const normalDeck = [...BASIC_CITIES];
-  return shuffle(normalDeck);
+function createInitialDrawDeckForType(__type: 'basic'): Deck {
+  const basicDeck = [...BASIC_CITIES, ...BASIC_EVENT_CARDS];
+  return shuffle(basicDeck);
 }
 
 /**
@@ -82,9 +82,9 @@ function createInitialDrawDeckForType(__type: 'normal'): Deck {
  * @param type - The type of the deck
  * @returns The initial infection deck
  */
-function createInitialInfectionDeckForType(__type: 'normal'): Deck {
-  const normalDeck = [...BASIC_CITIES];
-  return shuffle(normalDeck);
+function createInitialInfectionDeckForType(__type: 'basic'): Deck<CityCard> {
+  const basicDeck = [...BASIC_CITIES];
+  return shuffle(basicDeck);
 }
 
 function createEpidemicCard(): EpidemicCard {
@@ -122,9 +122,9 @@ function insertEpidemicCards(deck: Deck, epidemicCards: number): Deck {
  */
 export function createInitialDecks(
   difficulty: 'easy' | 'medium' | 'hard',
-  type: 'normal',
+  type: 'basic',
   players: Player[]
-): { players: Player[]; drawPile: Deck; infectionDeck: Deck } {
+): { players: Player[]; drawPile: Deck; infectionDeck: Deck<CityCard> } {
   const epidemicCards = getEpidemicCardsForDifficulty(difficulty);
   const drawPile = createInitialDrawDeckForType(type);
   const playersWithHands = createPlayersWithHands(players, drawPile);

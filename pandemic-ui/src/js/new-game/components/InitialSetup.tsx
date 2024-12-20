@@ -7,7 +7,7 @@ type Difficulty = 'easy' | 'medium' | 'hard';
 interface InitialSettings {
   numberOfPlayers: number;
   difficulty: Difficulty;
-  version: 'normal';
+  version: 'basic';
 }
 
 function transformValueBasedKey<Key extends keyof InitialSettings>(
@@ -27,7 +27,7 @@ export function InitialSetup({ onSubmit }: { onSubmit: (__settings: InitialSetti
   const [gameSettings, setGameSettings] = useState<InitialSettings>({
     numberOfPlayers: 2,
     difficulty: 'medium',
-    version: 'normal',
+    version: 'basic',
   });
 
   function handleInputChange(event: ChangeEvent<HTMLSelectElement>): void {
