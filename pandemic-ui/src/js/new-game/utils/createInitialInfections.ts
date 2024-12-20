@@ -45,8 +45,8 @@ export function createInitialInfections(
   infectionSaturation: InfectionSaturation;
   infectionDiscard: Deck<CityCard>;
 } {
-  const infections: Infections = Object.keys(cities).reduce<Infections>((acc, city) => {
-    acc[city] = {
+  const infections: Infections = cities.reduce<Infections>((acc, city) => {
+    acc[city.name] = {
       red: 0,
       blue: 0,
       yellow: 0,
