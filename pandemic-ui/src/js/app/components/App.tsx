@@ -1,15 +1,16 @@
 import '../../../css/App.css';
 
 import { Route, Routes } from 'react-router-dom';
+import { NewGame } from '../../new-game/components/NewGame';
+import { Provider } from '../store/Provider';
 import { Game } from './Game';
 import { Home } from './Home';
 import { Navigation } from './Navigation';
-import { NewGame } from '../../new-game/components/NewGame';
 import { Rules } from './Rules';
 
 export function App() {
   return (
-    <>
+    <Provider>
       <Navigation />
       <div className="App">
         <main className="App-main">
@@ -21,7 +22,7 @@ export function App() {
           </Routes>
         </main>
       </div>
-    </>
+    </Provider>
   );
 }
 App.displayName = 'App';

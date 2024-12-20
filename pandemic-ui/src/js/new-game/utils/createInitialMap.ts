@@ -1,6 +1,9 @@
-import { Map } from '../../types/Map';
+import { Map, ResearchStations } from '../../types/Map';
 import { BASIC_CITIES } from '../constants/basicCities';
 
-export function createInitialMap(__type: 'basic'): Map {
-  return [...BASIC_CITIES];
+export function createInitialMap(__type: 'basic'): {
+  map: Map;
+  researchStations: ResearchStations;
+} {
+  return { map: [...BASIC_CITIES], researchStations: ['Atlanta'] };
 }

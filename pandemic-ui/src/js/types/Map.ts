@@ -9,3 +9,5 @@ export type City = {
 };
 
 export type Map = Array<City>;
+
+export type ResearchStations = Array<Location>;

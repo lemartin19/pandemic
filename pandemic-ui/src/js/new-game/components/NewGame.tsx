@@ -1,11 +1,7 @@
 import '../../../css/NewGame.css';
 
-import { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { Deck } from '../../types/Deck';
-import { Infections, InfectionSaturation } from '../../types/Infections';
-import { Map } from '../../types/Map';
-import { Player } from '../../types/Player';
+import { useNavigate } from 'react-router-dom';
+import { useInitGame } from '../hooks/useInitGame';
 import { createInitialDecks } from '../utils/createInitialDecks';
 import { createInitialInfections } from '../utils/createInitialInfections';
 import { createInitialMap } from '../utils/createInitialMap';
@@ -13,33 +9,9 @@ import { createInitialPlayers } from '../utils/createInitialPlayers';
 import { InitialSetup } from './InitialSetup';
 import { PlayerSetup } from './PlayerSetup';
 
-interface GameSettings {
-  players: Player[];
-  drawPile: Deck;
-  infectionDeck: Deck;
-  map: Map;
-  infections: Infections;
-  infectionDiscard: Deck;
-  infectionSaturation: InfectionSaturation;
-}
-
-const initialGameSettings: GameSettings = {
-  players: [],
-  drawPile: [],
-  infectionDeck: [],
-  map: [],
-  infections: {},
-  infectionDiscard: [],
-  infectionSaturation: {
-    red: 0,
-    blue: 0,
-    yellow: 0,
-    black: 0,
-  },
-};
-
 export function NewGame() {
-  const [gameSettings, setGameSettings] = useState<GameSettings>(initialGameSettings);
+  const navigate = useNavigate();
+  const { initGame, gameSettings, setGameSettings } = useInitGame();
 
   function handleInitialSetup(settings: {
     numberOfPlayers: number;
@@ -51,11 +23,12 @@ export function NewGame() {
       'basic',
       initialPlayers
     );
-    const map = createInitialMap('basic');
+    const { map, researchStations } = createInitialMap('basic');
     const { infections, infectionDiscard, infectionSaturation } = createInitialInfections(
       map,
       infectionDeck
     );
+
     setGameSettings({
       players,
       drawPile,
@@ -64,6 +37,7 @@ export function NewGame() {
       infections,
       infectionDiscard,
       infectionSaturation,
+      researchStations,
     });
   }
 
@@ -72,22 +46,20 @@ export function NewGame() {
       ...player,
       hand: [],
     }));
-    setGameSettings((prevSettings) => ({
-      ...prevSettings,
-      players,
-    }));
+
+    initGame({ players });
+    navigate('/game');
   }
+  const isDefiningPlayers = gameSettings.players.length === 0;
 
   return (
     <div className="new-game-container">
       <h2>Start a new game</h2>
-      <Routes>
-        <Route path="/" element={<InitialSetup onSubmit={handleInitialSetup} />} />
-        <Route
-          path="/player-setup"
-          element={<PlayerSetup initialValue={gameSettings.players} onSubmit={handlePlayerSetup} />}
-        />
-      </Routes>
+      {isDefiningPlayers ? (
+        <InitialSetup onSubmit={handleInitialSetup} />
+      ) : (
+        <PlayerSetup initialValue={gameSettings.players} onSubmit={handlePlayerSetup} />
+      )}
     </div>
   );
 }
