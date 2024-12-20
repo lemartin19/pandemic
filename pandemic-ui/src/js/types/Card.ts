@@ -16,6 +16,8 @@ export interface CityCard {
 
 export interface EventCard {
   type: 'event';
+  name: string;
+  description: string;
 }
 
 export type Card = EpidemicCard | InfectionCard | CityCard | EventCard;

@@ -4,35 +4,46 @@ import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Deck } from '../../types/Deck';
 import { Player } from '../../types/Player';
-import { createInitialDeck } from '../utils/createInitialDeck';
+import { createInitialDecks } from '../utils/createInitialDecks';
 import { createInitialPlayers } from '../utils/createInitialPlayers';
 import { InitialSetup } from './InitialSetup';
 import { PlayerSetup } from './PlayerSetup';
 
 interface GameSettings {
   players: Player[];
-  playerDeck: Deck;
+  drawPile: Deck;
+  infectionDeck: Deck;
 }
 
 export function NewGame() {
   const [gameSettings, setGameSettings] = useState<GameSettings>({
     players: [],
-    playerDeck: [],
+    drawPile: [],
+    infectionDeck: [],
   });
 
   function handleInitialSetup(settings: {
     numberOfPlayers: number;
     difficulty: 'easy' | 'medium' | 'hard';
   }): void {
-    const players = createInitialPlayers(settings.numberOfPlayers);
-    const playerDeck = createInitialDeck(settings.difficulty, 'normal');
+    const initialPlayers = createInitialPlayers(settings.numberOfPlayers);
+    const { players, drawPile, infectionDeck } = createInitialDecks(
+      settings.difficulty,
+      'normal',
+      initialPlayers
+    );
     setGameSettings({
       players,
-      playerDeck,
+      drawPile,
+      infectionDeck,
     });
   }
 
-  function handlePlayerSetup(players: Player[]): void {
+  function handlePlayerSetup(playerSettings: { name: string; color: string }[]): void {
+    const players = playerSettings.map((player) => ({
+      ...player,
+      hand: [],
+    }));
     setGameSettings((prevSettings) => ({
       ...prevSettings,
       players,

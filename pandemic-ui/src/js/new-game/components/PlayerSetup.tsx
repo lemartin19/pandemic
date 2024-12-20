@@ -1,10 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { Player } from '../../types/Player';
 import { PlayerInput } from './PlayerInput';
 
-export type PlayerSettings = Array<{
-  name: string;
-  color: string;
-}>;
+export type PlayerSettings = Array<Pick<Player, 'name' | 'color'>>;
 
 export function PlayerSetup({
   initialValue,
