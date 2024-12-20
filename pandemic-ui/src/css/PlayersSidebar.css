@@ -1,8 +1,9 @@
 .players-sidebar {
   display: flex;
   flex-direction: column;
-  position: fixed;
-  right: 0;
+  align-self: flex-end;
+  justify-content: center;
+  height: 100%;
 }
 
 .player-controls {

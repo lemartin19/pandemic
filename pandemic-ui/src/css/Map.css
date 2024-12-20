@@ -1,0 +1,34 @@
+.Map {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Map-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2/1;
+  background-image: url('../../public/map.png');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.City {
+  position: absolute;
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  text-wrap: nowrap;
+  text-align: center;
+}
+
+.City-label {
+  transform: translateX(-50%);
+  font-size: 8px;
+  margin-top: 2em;
+  white-space: nowrap;
+}

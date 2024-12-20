@@ -9,11 +9,11 @@ import {
 
 const CONNECTIONS: Record<Location, Location[]> = {
   'San Francisco': ['Chicago', 'Los Angeles', 'Tokyo', 'Manila'],
-  Chicago: ['San Francisco', 'Atlanta', 'Montreal/Toronto'],
+  Chicago: ['San Francisco', 'Atlanta', 'Montreal'],
   Atlanta: ['Chicago', 'Washington', 'Miami'],
-  Washington: ['Atlanta', 'New York', 'Montreal/Toronto', 'Miami'],
-  'New York': ['Montreal/Toronto', 'London', 'Madrid', 'Washington'],
-  'Montreal/Toronto': ['Chicago', 'New York', 'Washington'],
+  Washington: ['Atlanta', 'New York', 'Montreal', 'Miami'],
+  'New York': ['Montreal', 'London', 'Madrid', 'Washington'],
+  Montreal: ['Chicago', 'New York', 'Washington'],
   London: ['New York', 'Madrid', 'Paris', 'Essen'],
   Madrid: ['New York', 'London', 'Paris', 'São Paulo', 'Algiers'],
   Paris: ['London', 'Madrid', 'Milan', 'Essen', 'Algiers'],

@@ -1,7 +1,7 @@
 export const BASIC_NORTH_AMERICA_EUROPE_CITIES = [
   'San Francisco',
   'Chicago',
-  'Toronto',
+  'Montreal',
   'New York',
   'Atlanta',
   'Washington',
