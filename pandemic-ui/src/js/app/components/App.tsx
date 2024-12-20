@@ -18,7 +18,7 @@ export function App() {
             <Route path="/" element={<Home />} />
             <Route path="/new-game" element={<NewGame />} />
             <Route path="/rules" element={<Rules />} />
-            <Route path="/game/:id" element={<Game />} />
+            <Route path="/game" element={<Game />} />
           </Routes>
         </main>
       </div>
