@@ -11,7 +11,7 @@
   color: #333;
 }
 
-.new-game-form {
+.new-game-form, .player-setup-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -35,7 +35,7 @@
   font-size: 1rem;
 }
 
-.start-button {
+.setup-players-button, .start-button {
   padding: 0.75rem 1.5rem;
   background-color: #4caf50;
   color: white;

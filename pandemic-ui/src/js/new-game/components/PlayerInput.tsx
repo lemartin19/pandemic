@@ -1,11 +1,9 @@
 import { ChangeEvent } from 'react';
 
 export function PlayerInput({
-  id,
   player,
   onChange,
 }: {
-  id: string;
   player: {
     name: string;
     color: string;
@@ -13,10 +11,10 @@ export function PlayerInput({
   onChange: (__event: ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
-    <div>
-      <label htmlFor={id}>{id}</label>
-      <input type="text" id={id} value={player.name} onChange={onChange} />
-      <input type="color" id={id} value={player.color} onChange={onChange} />
+    <div className="form-group">
+      <label htmlFor={player.name}>{player.name}</label>
+      <input type="text" id={player.name} name="name" value={player.name} onChange={onChange} />
+      <input type="color" id={player.name} name="color" value={player.color} onChange={onChange} />
     </div>
   );
 }

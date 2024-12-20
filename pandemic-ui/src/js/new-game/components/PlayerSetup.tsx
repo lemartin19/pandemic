@@ -36,7 +36,6 @@ export function PlayerSetup({
       {playerSettings.map((player, index) => (
         <PlayerInput
           key={index}
-          id={`Player ${index}`}
           player={player}
           onChange={(newPlayer) => handleInputChange(index, newPlayer)}
         />
