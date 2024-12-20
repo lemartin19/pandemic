@@ -1,0 +1,15 @@
+.players-sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 0;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  width: 10rem;
+  border-radius: 0.5rem;
+}

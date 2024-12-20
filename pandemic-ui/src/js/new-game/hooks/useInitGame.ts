@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDecksDispatch } from '../../app/store/Decks';
+import { useGamePlayQueueDispatch } from '../../app/store/GamePlayQueue';
 import { useInfectionsDispatch } from '../../app/store/Infections';
 import { useMapDispatch } from '../../app/store/Map';
 import { usePlayerDispatch } from '../../app/store/Players';
@@ -42,6 +43,7 @@ export function useInitGame() {
   const infectionsDispatch = useInfectionsDispatch();
   const decksDispatch = useDecksDispatch();
   const mapDispatch = useMapDispatch();
+  const gamePlayDispatch = useGamePlayQueueDispatch();
 
   function initGame(settingOverrides: Partial<GameSettings>) {
     const finalGameSettings = {
@@ -69,6 +71,10 @@ export function useInitGame() {
     mapDispatch({
       type: 'initMap',
       payload: { map: finalGameSettings.map, researchStations: finalGameSettings.researchStations },
+    });
+    gamePlayDispatch({
+      type: 'startPlayerTurn',
+      payload: { playerName: finalGameSettings.players[0].name },
     });
   }
 

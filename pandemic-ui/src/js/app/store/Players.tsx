@@ -3,7 +3,6 @@ import { Player } from '../../types/Player';
 
 type PlayerState = {
   players: Player[];
-  currentPlayer: Player['name'];
 };
 
 type InitPlayersAction = {
@@ -11,18 +10,12 @@ type InitPlayersAction = {
   payload: Player[];
 };
 
-type NextPlayerAction = {
-  type: 'nextPlayer';
-};
-
-type PlayerActions = InitPlayersAction | NextPlayerAction;
+type PlayerActions = InitPlayersAction;
 
 function reducer(state: PlayerState, action: PlayerActions): PlayerState {
   switch (action.type) {
     case 'initPlayers':
-      return { players: action.payload, currentPlayer: action.payload[0].name };
-    case 'nextPlayer':
-      return { ...state, currentPlayer: state.players[0].name };
+      return { players: action.payload };
     default:
       return state;
   }
@@ -30,7 +23,6 @@ function reducer(state: PlayerState, action: PlayerActions): PlayerState {
 
 const emptyState: PlayerState = {
   players: [],
-  currentPlayer: '',
 };
 const PlayerStateContext = createContext<PlayerState>(emptyState);
 
