@@ -19,17 +19,30 @@
 
 .City {
   position: absolute;
-  height: 1em;
-  width: 1em;
+  height: 2em;
+  width: 2em;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   text-wrap: nowrap;
   text-align: center;
+  opacity: 0.5;
+  font-size: 8px;
+}
+
+.City:hover {
+  opacity: 1;
 }
 
 .City-label {
   transform: translateX(-50%);
-  font-size: 8px;
   margin-top: 2em;
   white-space: nowrap;
+  text-align: center;
+}
+
+.City-infections {
+  left: 50%;
+  transform: translateX(-50%);
+  height: 1em;
+  width: 1em;
 }

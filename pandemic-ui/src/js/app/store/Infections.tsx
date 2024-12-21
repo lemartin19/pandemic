@@ -1,6 +1,7 @@
 import { createContext, Dispatch, PropsWithChildren, useContext, useReducer } from 'react';
 import { InfectionSaturation } from '../../types/Infections';
 import { Infections } from '../../types/Infections';
+import { Location } from '../../types/Map';
 
 type InfectionsState = {
   infections: Infections;
