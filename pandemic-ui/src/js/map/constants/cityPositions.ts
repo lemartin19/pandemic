@@ -14,9 +14,9 @@ export const CITY_POSITIONS: Record<
   Miami: { x: 29, y: 46, labelPosition: 'bottom' },
 
   // Europe
-  London: { x: 49.5, y: 29, labelPosition: 'left' },
+  London: { x: 49.5, y: 29, labelPosition: 'top' },
   Madrid: { x: 48.5, y: 37, labelPosition: 'left' },
-  Paris: { x: 50, y: 32, labelPosition: 'bottom' },
+  Paris: { x: 50, y: 32, labelPosition: 'left' },
   Milan: { x: 52, y: 33.5, labelPosition: 'right' },
   'St Petersburg': { x: 57.5, y: 22, labelPosition: 'top' },
   Essen: { x: 52, y: 28, labelPosition: 'right' },
@@ -39,7 +39,7 @@ export const CITY_POSITIONS: Record<
   // Middle East & Central Asia
   Moscow: { x: 59, y: 26, labelPosition: 'right' },
   Istanbul: { x: 57, y: 38, labelPosition: 'top' },
-  Baghdad: { x: 60, y: 42, labelPosition: 'bottom' },
+  Baghdad: { x: 60, y: 42, labelPosition: 'top' },
   Tehran: { x: 63, y: 40, labelPosition: 'right' },
   Riyadh: { x: 61, y: 48, labelPosition: 'bottom' },
   Karachi: { x: 66, y: 47, labelPosition: 'left' },
