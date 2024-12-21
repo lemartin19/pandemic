@@ -7,7 +7,7 @@ import {
   BASIC_SOUTH_EAST_ASIA_AUSTRALIA_CITIES,
 } from './locations';
 
-const CONNECTIONS: Record<Location, Location[]> = {
+export const CONNECTIONS: Record<Location, Location[]> = {
   'San Francisco': ['Chicago', 'Los Angeles', 'Tokyo', 'Manila'],
   Chicago: ['San Francisco', 'Atlanta', 'Montreal'],
   Atlanta: ['Chicago', 'Washington', 'Miami'],
@@ -15,7 +15,7 @@ const CONNECTIONS: Record<Location, Location[]> = {
   'New York': ['Montreal', 'London', 'Madrid', 'Washington'],
   Montreal: ['Chicago', 'New York', 'Washington'],
   London: ['New York', 'Madrid', 'Paris', 'Essen'],
-  Madrid: ['New York', 'London', 'Paris', 'São Paulo', 'Algiers'],
+  Madrid: ['New York', 'London', 'Paris', 'Sao Paulo', 'Algiers'],
   Paris: ['London', 'Madrid', 'Milan', 'Essen', 'Algiers'],
   Essen: ['London', 'Paris', 'Milan', 'St Petersburg'],
   Milan: ['Paris', 'Essen', 'Istanbul'],
@@ -23,12 +23,12 @@ const CONNECTIONS: Record<Location, Location[]> = {
   'Los Angeles': ['San Francisco', 'Mexico City', 'Sydney', 'Chicago'],
   'Mexico City': ['Los Angeles', 'Miami', 'Bogota', 'Lima'],
   Miami: ['Atlanta', 'Washington', 'Mexico City', 'Bogota'],
-  Bogota: ['Miami', 'Mexico City', 'Lima', 'São Paulo', 'Buenos Aires'],
+  Bogota: ['Miami', 'Mexico City', 'Lima', 'Sao Paulo', 'Buenos Aires'],
   Lima: ['Mexico City', 'Bogota', 'Santiago'],
   Santiago: ['Lima'],
-  'São Paulo': ['Madrid', 'Lagos', 'Bogota', 'Buenos Aires'],
-  'Buenos Aires': ['Bogota', 'São Paulo'],
-  Lagos: ['São Paulo', 'Khartoum', 'Kinshasa'],
+  'Sao Paulo': ['Madrid', 'Lagos', 'Bogota', 'Buenos Aires'],
+  'Buenos Aires': ['Bogota', 'Sao Paulo'],
+  Lagos: ['Sao Paulo', 'Khartoum', 'Kinshasa'],
   Kinshasa: ['Lagos', 'Khartoum', 'Johannesburg'],
   Johannesburg: ['Kinshasa', 'Khartoum'],
   Khartoum: ['Cairo', 'Lagos', 'Kinshasa', 'Johannesburg'],

@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { useInfectionsInCity } from '../../app/store/Infections';
 import { useHasResearchStation } from '../../app/store/Map';
 import { City as CityType } from '../../types/Map';
 import { CITY_POSITIONS } from '../constants/cityPositions';
+import { Connections } from './Connections';
 
 export function City({ city }: { city: CityType }) {
+  const [isHovered, setIsHovered] = useState(false);
   const hasResearchStation = useHasResearchStation(city.name);
   const infections = useInfectionsInCity(city.name);
   const cityPosition = CITY_POSITIONS[city.name as keyof typeof CITY_POSITIONS];
@@ -22,27 +25,32 @@ export function City({ city }: { city: CityType }) {
       };
 
   return (
-    <div
-      className="City"
-      style={{
-        left: `${cityPosition.x}%`,
-        top: `${cityPosition.y}%`,
-        ...cityStyling,
-      }}
-    >
-      <div className={`City-label ${cityPosition.labelPosition}`}>
-        <div>{city.name}</div>
-        <div>
-          {Object.entries(infections).map(([color, count]) =>
-            count ? (
-              <span key={color} className="City-infections" style={{ backgroundColor: color }}>
-                {count}
-              </span>
-            ) : null
-          )}
+    <>
+      <div
+        className="City"
+        style={{
+          left: `${cityPosition.x}%`,
+          top: `${cityPosition.y}%`,
+          ...cityStyling,
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className={`City-label ${cityPosition.labelPosition}`}>
+          <div>{city.name}</div>
+          <div>
+            {Object.entries(infections).map(([color, count]) =>
+              count ? (
+                <span key={color} className="City-infections" style={{ backgroundColor: color }}>
+                  {count}
+                </span>
+              ) : null
+            )}
+          </div>
         </div>
       </div>
-    </div>
+      <Connections city={city} highlight={isHovered} />
+    </>
   );
 }
 City.displayName = 'City';

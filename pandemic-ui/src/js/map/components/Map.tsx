@@ -3,6 +3,7 @@ import '../../../css/Map.css';
 import { useMapState } from '../../app/store/Map';
 import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
 import { City } from './City';
+import { Connections } from './Connections';
 
 export function Map() {
   const currentPlayer = useCurrentPlayer();
