@@ -34,15 +34,33 @@
 }
 
 .City-label {
-  transform: translateX(-50%);
-  margin-top: 2em;
   white-space: nowrap;
   text-align: center;
+  position: absolute;
+}
+
+.bottom {
+  top: 125%
+}
+
+.top {
+  bottom: 125%;
+}
+
+.left {
+  right: 125%
+}
+
+.right {
+  left: 125%;
 }
 
 .City-infections {
-  left: 50%;
-  transform: translateX(-50%);
-  height: 1em;
-  width: 1em;
+  line-height:3em;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+[style*="background-color: yellow"] {
+  color: black;
 }

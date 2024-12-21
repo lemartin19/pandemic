@@ -22,19 +22,23 @@ export function City({ city }: { city: CityType }) {
     <div
       className="City"
       style={{
-        left: `${cityPosition[0]}%`,
-        top: `${cityPosition[1]}%`,
+        left: `${cityPosition.x}%`,
+        top: `${cityPosition.y}%`,
         backgroundColor: city.color,
       }}
     >
-      <div className="City-label">{city.name}</div>
-      {Object.entries(infections).map(([color, count]) =>
-        count ? (
-          <div key={color} className="City-infection" style={{ backgroundColor: color }}>
-            {count}
-          </div>
-        ) : null
-      )}
+      <div className={`City-label ${cityPosition.labelPosition}`}>
+        <div>{city.name}</div>
+        <div>
+          {Object.entries(infections).map(([color, count]) =>
+            count ? (
+              <span key={color} className="City-infections" style={{ backgroundColor: color }}>
+                {count}
+              </span>
+            ) : null
+          )}
+        </div>
+      </div>
     </div>
   );
 }
