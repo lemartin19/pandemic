@@ -1,6 +1,7 @@
 import { createContext, Dispatch, PropsWithChildren, useContext, useReducer } from 'react';
 import { InfectionSaturation } from '../../types/Infections';
 import { Infections } from '../../types/Infections';
+import { Location } from '../../types/Map';
 
 type InfectionsState = {
   infections: Infections;
@@ -53,4 +54,13 @@ export function useInfectionsState() {
 
 export function useInfectionsDispatch() {
   return useContext(InfectionsDispatchContext);
+}
+
+export function useInfectionsInCity(city: Location) {
+  const { infections } = useInfectionsState();
+  const infection = infections[city];
+  if (!infection) {
+    throw new Error(`Infection not found for ${city}`);
+  }
+  return infection;
 }

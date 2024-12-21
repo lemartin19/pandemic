@@ -1,5 +1,5 @@
 import { createContext, Dispatch, PropsWithChildren, useContext, useReducer } from 'react';
-import { Map, ResearchStations } from '../../types/Map';
+import { Location, Map, ResearchStations } from '../../types/Map';
 
 type MapState = {
   map: Map;
@@ -46,4 +46,9 @@ export function useMapState() {
 
 export function useMapDispatch() {
   return useContext(MapDispatchContext);
+}
+
+export function useHasResearchStation(city: Location) {
+  const { researchStations } = useMapState();
+  return researchStations.includes(city);
 }
