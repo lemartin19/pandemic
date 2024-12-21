@@ -1,5 +1,6 @@
 import { createContext, Dispatch, PropsWithChildren, useContext, useReducer } from 'react';
 import { Player } from '../../types/Player';
+import { Location } from '../../types/Map';
 
 type PlayerState = {
   players: Player[];
@@ -43,4 +44,9 @@ export function usePlayerState() {
 
 export function usePlayerDispatch() {
   return useContext(PlayerDispatchContext);
+}
+
+export function usePlayersInCity(location: Location) {
+  const { players } = usePlayerState();
+  return players.filter((player) => player.currentLocation === location);
 }

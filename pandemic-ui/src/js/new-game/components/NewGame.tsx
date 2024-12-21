@@ -45,6 +45,7 @@ export function NewGame() {
     const players = playerSettings.map((player) => ({
       ...player,
       hand: [],
+      currentLocation: 'Atlanta',
     }));
 
     initGame({ players });

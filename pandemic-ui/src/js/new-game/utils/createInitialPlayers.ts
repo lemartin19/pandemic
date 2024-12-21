@@ -5,5 +5,6 @@ export function createInitialPlayers(numberOfPlayers: number): Player[] {
     name: `Player ${index + 1}`,
     color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
     hand: [],
+    currentLocation: 'Atlanta',
   }));
 }
