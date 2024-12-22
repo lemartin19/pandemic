@@ -42,9 +42,10 @@ export function NewGame() {
   }
 
   function handlePlayerSetup(playerSettings: { name: string; color: string }[]): void {
-    const players = playerSettings.map((player) => ({
+    const players = gameSettings.players.map((player, idx) => ({
       ...player,
-      hand: [],
+      name: playerSettings[idx].name,
+      color: playerSettings[idx].color,
       currentLocation: 'Atlanta',
     }));
 
