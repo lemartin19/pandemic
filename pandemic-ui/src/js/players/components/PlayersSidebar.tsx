@@ -2,7 +2,7 @@ import '../../../css/PlayersSidebar.css';
 
 import { usePlayerState } from '../../app/store/Players';
 import { PlayerControls } from './PlayerControls';
-import { PlayerEvents } from './PlayerEvents';
+import { PlayerHand } from './PlayerHand';
 
 export function PlayersSidebar() {
   const { players } = usePlayerState();
@@ -10,7 +10,7 @@ export function PlayersSidebar() {
     <div className="players-sidebar">
       {players.map((player) => (
         <PlayerControls key={player.name} player={player}>
-          <PlayerEvents player={player} />
+          <PlayerHand hand={player.hand} />
         </PlayerControls>
       ))}
     </div>

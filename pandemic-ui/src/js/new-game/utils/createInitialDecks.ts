@@ -1,4 +1,4 @@
-import { Card, CityCard, EpidemicCard } from '../../types/Card';
+import { Card, CityCard, EpidemicCard, EventCard } from '../../types/Card';
 import { Deck } from '../../types/Deck';
 import { Player } from '../../types/Player';
 import { BASIC_CITIES, BASIC_EVENT_CARDS } from '../constants/basicCards';
@@ -44,7 +44,7 @@ const getInitialPlayerHandSize = (players: Player[]): number => {
  * @mutates deck to remove cards that are added to the players' hands
  * @returns The players with hands
  */
-function createPlayersWithHands(players: Player[], deck: Deck): Player[] {
+function createPlayersWithHands(players: Player[], deck: Deck<CityCard | EventCard>): Player[] {
   for (const player of players) {
     for (let i = 0; i < getInitialPlayerHandSize(players); i++) {
       const newCard = deck.pop();
@@ -72,7 +72,7 @@ function shuffle<T extends Card>(array: Deck<T>): Deck<T> {
  * @param type - The type of the deck
  * @returns The initial deck
  */
-function createInitialDrawDeckForType(__type: 'basic'): Deck {
+function createInitialDrawDeckForType(__type: 'basic'): Deck<CityCard | EventCard> {
   const basicDeck = [...BASIC_CITIES, ...BASIC_EVENT_CARDS];
   return shuffle(basicDeck);
 }

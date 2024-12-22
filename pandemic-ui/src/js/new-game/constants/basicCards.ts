@@ -31,7 +31,7 @@ const BASIC_RED_CITIES: CityCard[] = BASIC_SOUTH_EAST_ASIA_AUSTRALIA_CITIES.map(
   makeCityCard(city, 'red')
 );
 
-export const BASIC_CITIES = [
+export const BASIC_CITIES: CityCard[] = [
   ...BASIC_BLUE_CITIES,
   ...BASIC_YELLOW_CITIES,
   ...BASIC_BLACK_CITIES,
@@ -43,27 +43,61 @@ export const BASIC_EVENT_CARDS: EventCard[] = [
     type: 'event',
     name: 'Airlift',
     description: 'Move any player to any city for free at any time.',
+    allowedIn: [
+      'waitingForPlayerAction',
+      'waitingForPlayerDraw',
+      'infectCities',
+      'intensifyEpidemic',
+      'increaseInfectionRate',
+      'startEpidemic',
+    ] as const,
   },
   {
     type: 'event',
     name: 'Forecast',
     description:
       'Draw 6 cards from the infection deck, reorder them and replace them on top of the infection deck.',
+    // TODO: when is this allowed
+    allowedIn: [
+      'waitingForPlayerAction',
+      'waitingForPlayerDraw',
+      'infectCities',
+      'intensifyEpidemic',
+      'increaseInfectionRate',
+      'startEpidemic',
+    ] as const,
   },
   {
     type: 'event',
     name: 'Government Grant',
     description: 'Build a research station in any city for free.',
+    allowedIn: [
+      'waitingForPlayerAction',
+      'waitingForPlayerDraw',
+      'infectCities',
+      'intensifyEpidemic',
+      'increaseInfectionRate',
+      'startEpidemic',
+    ] as const,
   },
   {
     type: 'event',
     name: 'Resilient Population',
     description:
       'Remove any city from the infection deck discard pile from the game. Must be played between the Increase and Intensify steps of the game.',
+    allowedIn: ['intensifyEpidemic'] as const,
   },
   {
     type: 'event',
     name: 'One Quiet Night',
     description: 'Skip the next infection step.',
+    allowedIn: [
+      'waitingForPlayerAction',
+      'waitingForPlayerDraw',
+      'infectCities',
+      'intensifyEpidemic',
+      'increaseInfectionRate',
+      'startEpidemic',
+    ] as const,
   },
 ];
