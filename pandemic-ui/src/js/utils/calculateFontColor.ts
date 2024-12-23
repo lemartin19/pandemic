@@ -4,5 +4,5 @@ export function calculateFontColor(playerColor: string) {
   const g = parseInt(hex?.[2] ?? '0', 16);
   const b = parseInt(hex?.[3] ?? '0', 16);
   const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-  return brightness < 128 ? 'black' : 'white';
+  return brightness > 9 ? 'black' : 'white';
 }
