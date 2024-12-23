@@ -1,4 +1,5 @@
 import { useCurrentGameplayState } from '../../app/store/GamePlayQueue';
+import { Button } from '../../components/Button';
 import { CityCard, EventCard, isEventCard } from '../../types/Card';
 import { Deck } from '../../types/Deck';
 
@@ -22,7 +23,11 @@ export function PlayerHand({ hand }: { hand: Deck<CityCard | EventCard> }) {
       {hand.map((card) => (
         <Card key={card.name} card={card} />
       ))}
-      {canInterrupt && <button className="PlayerHand-interrupt">Use Event Card</button>}
+      {canInterrupt && (
+        <Button variant="secondary" size="small">
+          Use Event Card
+        </Button>
+      )}
     </div>
   );
 }

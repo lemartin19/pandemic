@@ -1,4 +1,7 @@
 import { useCurrentGameplayState } from '../../app/store/GamePlayQueue';
+import { usePlayerState } from '../../app/store/Players';
+import { Button } from '../../components/Button';
+import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
 import { GamePlay } from '../../types/GamePlay';
 
 function getTextForGameplayState(gameplayState: GamePlay) {
@@ -22,13 +25,19 @@ function getTextForGameplayState(gameplayState: GamePlay) {
   }
 }
 
+function usePlayerButtonStyle() {
+  const player = useCurrentPlayer();
+  const playerColor = player?.color;
+  return playerColor && { variant: 'player' as const, playerColor };
+}
+
 export function DoTurnButton({ onClick }: { onClick: () => void }) {
   const gameplayState = useCurrentGameplayState();
-
+  const playerButtonStyle = usePlayerButtonStyle();
   return gameplayState ? (
-    <button className="DoTurnButton" onClick={onClick}>
+    <Button className="DoTurnButton" onClick={onClick} {...playerButtonStyle}>
       {getTextForGameplayState(gameplayState)}
-    </button>
+    </Button>
   ) : null;
 }
 DoTurnButton.displayName = 'DoTurnButton';

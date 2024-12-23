@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { Player } from '../../types/Player';
 import { PlayerInput } from './PlayerInput';
+import { Button } from '../../components/Button';
 
 export type PlayerSettings = Array<Pick<Player, 'name' | 'color'>>;
 
@@ -41,9 +42,9 @@ export function PlayerSetup({
         />
       ))}
 
-      <button type="submit" className="start-button">
+      <Button type="submit" className="start-button">
         Start Game
-      </button>
+      </Button>
     </form>
   );
 }

@@ -35,24 +35,3 @@
   border-radius: 4px;
   font-size: 1rem;
 }
-
-.setup-players-button,
-.start-button {
-  padding: 0.75rem 1.5rem;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.start-button:hover {
-  background-color: #45a049;
-}
-
-.start-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}

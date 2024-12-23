@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { DifficultySelect } from './DifficultySelect';
 import { PlayersSelect } from './PlayersSelect';
+import { Button } from '../../components/Button';
 
 type Difficulty = 'easy' | 'medium' | 'hard';
 
@@ -48,10 +49,7 @@ export function InitialSetup({ onSubmit }: { onSubmit: (__settings: InitialSetti
     <form className="new-game-form" onSubmit={handleSubmit}>
       <PlayersSelect value={gameSettings.numberOfPlayers} onChange={handleInputChange} />
       <DifficultySelect value={gameSettings.difficulty} onChange={handleInputChange} />
-
-      <button type="submit" className="setup-players-button">
-        Setup Players
-      </button>
+      <Button type="submit">Setup Players</Button>
     </form>
   );
 }
