@@ -46,7 +46,7 @@ export function InitialSetup({ onSubmit }: { onSubmit: (__settings: InitialSetti
   }
 
   return (
-    <form className="new-game-form" onSubmit={handleSubmit}>
+    <form className="InitialSetup" onSubmit={handleSubmit}>
       <PlayersSelect value={gameSettings.numberOfPlayers} onChange={handleInputChange} />
       <DifficultySelect value={gameSettings.difficulty} onChange={handleInputChange} />
       <Button type="submit">Setup Players</Button>

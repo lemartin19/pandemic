@@ -33,7 +33,7 @@ export function PlayerSetup({
   }
 
   return (
-    <form className="player-setup-form" onSubmit={handleSubmit}>
+    <form className="PlayerSetup" onSubmit={handleSubmit}>
       {playerSettings.map((player, index) => (
         <PlayerInput
           key={index}

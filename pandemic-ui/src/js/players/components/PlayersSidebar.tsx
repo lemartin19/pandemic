@@ -7,7 +7,7 @@ import { PlayerHand } from './PlayerHand';
 export function PlayersSidebar() {
   const { players } = usePlayerState();
   return (
-    <div className="players-sidebar">
+    <div className="PlayersSidebar">
       {players.map((player) => (
         <PlayerControls key={player.name} player={player}>
           <PlayerHand hand={player.hand} />

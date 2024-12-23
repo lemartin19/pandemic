@@ -1,4 +1,4 @@
-.players-sidebar {
+.PlayersSidebar {
   display: flex;
   flex-direction: column;
   align-self: flex-end;
@@ -6,7 +6,7 @@
   height: 100%;
 }
 
-.player-controls {
+.PlayerControls {
   display: flex;
   flex-direction: column;
   align-items: center;

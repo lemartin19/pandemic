@@ -7,28 +7,28 @@ nav {
   width: 100%;
 }
 
-.nav-title {
+.Navigation-title {
   margin: 0;
 }
 
-.nav-list {
+.Navigation-list {
   display: flex;
   list-style: none;
   gap: 2rem;
 }
 
-.nav-link {
+.Navigation-link {
   color: white;
   text-decoration: none;
   padding: 0.5rem 1rem;
 }
 
-.nav-link:hover {
+.Navigation-link:hover {
   text-decoration: underline;
 }
 
 /* Ensure focus indicators are visible for accessibility */
-.nav-link:focus-visible {
+.Navigation-link:focus-visible {
   outline: 2px solid white;
   outline-offset: 2px;
 }

@@ -55,7 +55,7 @@ export function NewGame() {
   const isDefiningPlayers = gameSettings.players.length === 0;
 
   return (
-    <div className="new-game-container">
+    <div className="NewGame-container">
       <h2>Start a new game</h2>
       {isDefiningPlayers ? (
         <InitialSetup onSubmit={handleInitialSetup} />

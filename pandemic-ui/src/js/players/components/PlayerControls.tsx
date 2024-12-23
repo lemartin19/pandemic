@@ -5,10 +5,10 @@ import { calculateFontColor } from '../../utils/calculateFontColor';
 export function PlayerControls({ player, children }: PropsWithChildren<{ player: Player }>) {
   return (
     <div
-      className="player-controls"
+      className="PlayerControls"
       style={{ backgroundColor: player.color, color: calculateFontColor(player.color) }}
     >
-      <div className="player-name">{player.name}</div>
+      <div className="PlayerControls-name">{player.name}</div>
       {children}
     </div>
   );
