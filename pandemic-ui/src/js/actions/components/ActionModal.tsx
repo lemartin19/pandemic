@@ -16,7 +16,7 @@ function isActionComplete(action: InProgressAction) {
     (action.type === 'fly' && action.cityCard !== undefined) ||
     (action.type === 'charter' && action.cityCard !== undefined && action.to !== undefined) ||
     (action.type === 'buildResearchStation' && action.cityCard !== undefined) ||
-    action.type === 'treatDisease' ||
+    (action.type === 'treatDisease' && action.color !== undefined) ||
     (action.type === 'shareKnowledge' &&
       action.cityCard !== undefined &&
       action.playerName !== undefined)
