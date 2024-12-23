@@ -1,14 +1,13 @@
 import '../../../css/Actions.css';
 
 import { useState } from 'react';
+import { Button } from '../../components/Button';
 import { Modal } from '../../components/Modal';
 import { Action } from '../../types/Action';
 import { useDoAction } from '../hooks/useDoAction';
-import { Button } from '../../components/Button';
-import { ActionTypeSelect } from './ActionTypeSelect';
+import { InProgressAction } from '../types/InProgressAction';
 import { ActionForm } from './ActionForm';
-
-type InProgressAction = Pick<Action, 'type'> & Partial<Action>;
+import { ActionTypeSelect } from './ActionTypeSelect';
 
 function isActionComplete(action: InProgressAction) {
   return (
@@ -36,7 +35,7 @@ export function ActionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
         type={action.type}
         onSelect={(type: Action['type']) => setAction({ type })}
       />
-      <ActionForm />
+      <ActionForm action={action} updateAction={setAction} />
       <Button disabled={!isActionComplete(action)} onClick={() => doAction(action as Action)}>
         Submit
       </Button>
