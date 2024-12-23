@@ -11,12 +11,22 @@ type InitMapAction = {
   payload: MapState;
 };
 
-type MapActions = InitMapAction;
+type BuildResearchStationAction = {
+  type: 'buildResearchStation';
+  payload: { location: Location };
+};
+
+type MapActions = InitMapAction | BuildResearchStationAction;
 
 function mapReducer(state: MapState, action: MapActions): MapState {
   switch (action.type) {
     case 'initMap':
       return action.payload;
+    case 'buildResearchStation':
+      return {
+        ...state,
+        researchStations: [...state.researchStations, action.payload.location],
+      };
     default:
       return state;
   }

@@ -1,4 +1,5 @@
 import { CityCard } from './Card';
+import { Color } from './Disease';
 import { Location } from './Map';
 
 export type DriveFerry = {
@@ -35,6 +36,7 @@ export type ShareKnowledge = {
 
 export type TreatDisease = {
   type: 'treatDisease';
+  color: Color;
 };
 
 export type Action =

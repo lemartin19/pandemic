@@ -2,6 +2,7 @@ import { createContext, Dispatch, PropsWithChildren, useContext, useReducer } fr
 import { InfectionSaturation } from '../../types/Infections';
 import { Infections } from '../../types/Infections';
 import { Location } from '../../types/Map';
+import { Color } from '../../types/Disease';
 
 type InfectionsState = {
   infections: Infections;
@@ -15,11 +16,16 @@ type InitInfectionsAction = {
   payload: InfectionsState;
 };
 
+type TreatDiseaseAction = {
+  type: 'treatDisease';
+  payload: { location: Location; color: Color; treatAll?: boolean };
+};
+
 type IncreaseInfectionRateAction = {
   type: 'increaseInfectionRate';
 };
 
-type InfectionsActions = InitInfectionsAction | IncreaseInfectionRateAction;
+type InfectionsActions = InitInfectionsAction | IncreaseInfectionRateAction | TreatDiseaseAction;
 
 function reducer(state: InfectionsState, action: InfectionsActions): InfectionsState {
   switch (action.type) {
@@ -30,6 +36,21 @@ function reducer(state: InfectionsState, action: InfectionsActions): InfectionsS
         ...state,
         infectionRates: state.infectionRates.slice(1),
       };
+    case 'treatDisease': {
+      const { location, color, treatAll } = action.payload;
+      if (!state.infections[location][color]) return state;
+
+      const newInfections = { ...state.infections };
+      const newInfectionSaturation = { ...state.infectionSaturation };
+      if (treatAll) {
+        newInfectionSaturation[color] += newInfections[location][color];
+        newInfections[location][color] = 0;
+      } else {
+        newInfectionSaturation[color] += 1;
+        newInfections[location][color] -= 1;
+      }
+      return { ...state, infections: newInfections };
+    }
     default:
       return state;
   }

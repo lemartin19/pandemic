@@ -13,30 +13,47 @@ type InitPlayersAction = {
   payload: Player[];
 };
 
+type AddToHandAction = {
+  type: 'addToHand';
+  payload: { playerName: string; cards: Deck<CityCard | EventCard> };
+};
+
 type RemoveFromHandAction = {
   type: 'removeFromHand';
   payload: { playerName: string; cards: Deck<CityCard | EventCard> };
 };
 
-type PlayerActions = InitPlayersAction | RemoveFromHandAction;
+type MovePlayerAction = {
+  type: 'movePlayer';
+  payload: { playerName: string; location: Location };
+};
+
+type PlayerActions = InitPlayersAction | AddToHandAction | RemoveFromHandAction | MovePlayerAction;
 
 function reducer(state: PlayerState, action: PlayerActions): PlayerState {
   switch (action.type) {
     case 'initPlayers':
       return { players: action.payload };
-    case 'removeFromHand':
+    case 'addToHand':
       return {
         ...state,
         players: state.players.map((player) => {
           return player.name === action.payload.playerName
             ? {
                 ...player,
-                hand: player.hand.filter(
-                  (card) => !action.payload.cards.some((c) => c.name === card.name)
-                ),
+                hand: [...player.hand, ...action.payload.cards],
               }
             : player;
         }),
+      };
+    case 'movePlayer':
+      return {
+        ...state,
+        players: state.players.map((player) =>
+          player.name === action.payload.playerName
+            ? { ...player, currentLocation: action.payload.location }
+            : player
+        ),
       };
     default:
       return state;
