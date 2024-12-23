@@ -4,3 +4,9 @@
   height: 100%;
   overflow: hidden;
 }
+
+.Game-vertical {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
