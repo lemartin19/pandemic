@@ -11,7 +11,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 2/1;
-  background-image: url('../../public/map.png');
+  background: linear-gradient(rgba(40, 44, 52, 0.6), rgba(40, 44, 52, 0.6)), url('../../public/map.png');
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -19,7 +19,6 @@
 
 .Connections {
   z-index: 0;
-  opacity: 0.5;
 }
 
 .City {

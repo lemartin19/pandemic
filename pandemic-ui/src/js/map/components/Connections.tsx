@@ -61,7 +61,13 @@ export function Connections({ city, highlight }: { city: City; highlight: boolea
   return (
     <svg
       className="Connections"
-      style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0 }}
+      style={{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        top: 0,
+        left: 0,
+      }}
       ref={(el) => {
         if (el) {
           const newSize = {
@@ -81,7 +87,7 @@ export function Connections({ city, highlight }: { city: City; highlight: boolea
               from={city.name}
               to={toCity}
               size={size}
-              color={highlight ? '#ffffff' : '#2255aa'}
+              color={highlight ? '#ffffff' : 'rgba(51, 119, 221, 0.5)'}
             />
           ))
         : null}
