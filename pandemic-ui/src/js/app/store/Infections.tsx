@@ -15,12 +15,21 @@ type InitInfectionsAction = {
   payload: InfectionsState;
 };
 
-type InfectionsActions = InitInfectionsAction;
+type IncreaseInfectionRateAction = {
+  type: 'increaseInfectionRate';
+};
+
+type InfectionsActions = InitInfectionsAction | IncreaseInfectionRateAction;
 
 function reducer(state: InfectionsState, action: InfectionsActions): InfectionsState {
   switch (action.type) {
     case 'initInfections':
       return action.payload;
+    case 'increaseInfectionRate':
+      return {
+        ...state,
+        infectionRates: state.infectionRates.slice(1),
+      };
     default:
       return state;
   }
