@@ -7,6 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger' | 'player';
   size?: 'small' | 'medium' | 'large';
   playerColor?: string;
+  disabled?: boolean;
 }
 
 export function Button({
@@ -14,6 +15,7 @@ export function Button({
   variant = 'primary',
   size = 'medium',
   className = '',
+  disabled = false,
   playerColor,
   ...props
 }: PropsWithChildren<ButtonProps>) {
@@ -22,6 +24,7 @@ export function Button({
   return (
     <button
       className={`Button Button--${usableVariant} Button--${size} ${className}`.trim()}
+      disabled={disabled}
       style={
         playerColor
           ? { backgroundColor: playerColor, color: calculateFontColor(playerColor) }

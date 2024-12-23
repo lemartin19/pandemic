@@ -1,6 +1,6 @@
 import { createContext, Dispatch, PropsWithChildren, useContext, useReducer } from 'react';
 import { Deck } from '../../types/Deck';
-import { CityCard } from '../../types/Card';
+import { CityCard, EventCard } from '../../types/Card';
 
 type DecksState = {
   drawPile: Deck;
@@ -14,12 +14,22 @@ type InitDecksAction = {
   payload: DecksState;
 };
 
-type DecksActions = InitDecksAction;
+type DiscardAction = {
+  type: 'discard';
+  payload: Deck<CityCard | EventCard>;
+};
+
+type DecksActions = InitDecksAction | DiscardAction;
 
 function decksReducer(state: DecksState, action: DecksActions): DecksState {
   switch (action.type) {
     case 'initDecks':
       return action.payload;
+    case 'discard':
+      return {
+        ...state,
+        discardPile: [...state.discardPile, ...action.payload],
+      };
     default:
       return state;
   }

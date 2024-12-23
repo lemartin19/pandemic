@@ -16,7 +16,11 @@ type EpidemicAction = {
   type: 'startEpidemic';
 };
 
-type GamePlayQueueActions = StartPlayerTurnAction | EpidemicAction;
+type NextGameplayStateAction = {
+  type: 'nextGameplayState';
+};
+
+type GamePlayQueueActions = StartPlayerTurnAction | EpidemicAction | NextGameplayStateAction;
 
 function queuePlayerTurn(queue: GamePlay[], playerName: string): GamePlay[] {
   return [
@@ -52,6 +56,10 @@ function gamePlayQueueReducer(
       return {
         queue: queueEpidemic(state.queue),
       };
+    case 'nextGameplayState':
+      return {
+        queue: state.queue.slice(1),
+      };
     default:
       return state;
   }
@@ -84,7 +92,7 @@ export function useGamePlayQueueDispatch() {
   return useContext(GamePlayQueueDispatchContext);
 }
 
-export function useCurrentGameplayState() {
+export function useCurrentGameplayState(): GamePlay | undefined {
   const { queue } = useGamePlayQueueState();
   return queue[0];
 }

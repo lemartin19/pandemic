@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  title?: string;
+  title: string;
   className?: string;
 }
 
@@ -48,10 +48,17 @@ export function Modal({
 
   return createPortal(
     <div className="Modal-overlay" onClick={onClose}>
-      <div className={`Modal ${className}`.trim()} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={`Modal ${className}`.trim()}
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-labelledby="modal-title"
+      >
         <div className="Modal-header">
-          {title && <h2 className="Modal-title">{title}</h2>}
-          <button className="Modal-close" onClick={onClose} aria-label="Close modal">
+          <h2 className="Modal-title" id="modal-title">
+            {title}
+          </h2>
+          <button className="Modal-close" onClick={onClose} aria-label="Close">
             ×
           </button>
         </div>

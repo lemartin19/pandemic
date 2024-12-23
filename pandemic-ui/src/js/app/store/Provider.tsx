@@ -7,14 +7,14 @@ import { GamePlayQueueProvider } from './GamePlayQueue';
 
 export function Provider({ children }: PropsWithChildren<{}>) {
   return (
-    <GamePlayQueueProvider>
-      <PlayerProvider>
-        <InfectionsProvider>
-          <DecksProvider>
-            <MapProvider>{children}</MapProvider>
-          </DecksProvider>
-        </InfectionsProvider>
-      </PlayerProvider>
-    </GamePlayQueueProvider>
+    <PlayerProvider>
+      <InfectionsProvider>
+        <DecksProvider>
+          <MapProvider>
+            <GamePlayQueueProvider>{children}</GamePlayQueueProvider>
+          </MapProvider>
+        </DecksProvider>
+      </InfectionsProvider>
+    </PlayerProvider>
   );
 }
