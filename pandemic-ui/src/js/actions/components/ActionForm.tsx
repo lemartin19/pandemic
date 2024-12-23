@@ -63,17 +63,18 @@ function ColorSelect({ value, onChange }: { value?: Color; onChange: (newColor: 
     .filter(([__, count]) => count > 0)
     .map(([color]) => color);
   return (
-    <>
+    <div className="ColorSelect">
       {availableColors.map((color) => (
         <Button
           key={color}
           variant={value === color ? 'primary' : 'secondary'}
+          size="small"
           onClick={() => onChange(color as Color)}
         >
           {color}
         </Button>
       ))}
-    </>
+    </div>
   );
 }
 ColorSelect.displayName = 'ColorSelect';
