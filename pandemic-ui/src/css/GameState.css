@@ -1,0 +1,29 @@
+.GameState {
+  display: flex;
+  flex-grow: 1;
+  height: 4em;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.GameState-status {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.InfectionRate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.OutbreaksLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}

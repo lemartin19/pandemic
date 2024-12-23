@@ -44,6 +44,8 @@ export function createInitialInfections(
   infections: Infections;
   infectionSaturation: InfectionSaturation;
   infectionDiscard: Deck<CityCard>;
+  infectionRates: number[];
+  outbreaksLeft: number;
 } {
   const infections: Infections = cities.reduce<Infections>((acc, city) => {
     acc[city.name] = {
@@ -69,5 +71,7 @@ export function createInitialInfections(
     infections,
     infectionDiscard,
     infectionSaturation: calculateInitialInfectionSaturation(),
+    infectionRates: [2, 2, 2, 3, 3, 4, 4],
+    outbreaksLeft: 8,
   };
 }

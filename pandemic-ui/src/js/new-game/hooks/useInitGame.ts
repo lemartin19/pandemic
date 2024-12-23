@@ -18,6 +18,8 @@ type GameSettings = {
   infections: Infections;
   infectionDiscard: Deck<CityCard>;
   infectionSaturation: InfectionSaturation;
+  infectionRates: number[];
+  outbreaksLeft: number;
   researchStations: ResearchStations;
 };
 
@@ -34,6 +36,8 @@ const initialGameSettings: GameSettings = {
     yellow: 0,
     black: 0,
   },
+  infectionRates: [],
+  outbreaksLeft: 0,
   researchStations: [],
 };
 
@@ -57,6 +61,8 @@ export function useInitGame() {
       payload: {
         infections: finalGameSettings.infections,
         infectionSaturation: finalGameSettings.infectionSaturation,
+        infectionRates: finalGameSettings.infectionRates,
+        outbreaksLeft: finalGameSettings.outbreaksLeft,
       },
     });
     decksDispatch({

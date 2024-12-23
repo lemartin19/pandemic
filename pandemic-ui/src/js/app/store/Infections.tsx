@@ -6,6 +6,8 @@ import { Location } from '../../types/Map';
 type InfectionsState = {
   infections: Infections;
   infectionSaturation: InfectionSaturation;
+  outbreaksLeft: number;
+  infectionRates: number[];
 };
 
 type InitInfectionsAction = {
@@ -32,6 +34,8 @@ const emptyState: InfectionsState = {
     black: 0,
     red: 0,
   },
+  outbreaksLeft: 0,
+  infectionRates: [],
 };
 const InfectionsStateContext = createContext<InfectionsState>(emptyState);
 

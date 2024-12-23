@@ -24,10 +24,8 @@ export function NewGame() {
       initialPlayers
     );
     const { map, researchStations } = createInitialMap('basic');
-    const { infections, infectionDiscard, infectionSaturation } = createInitialInfections(
-      map,
-      infectionDeck
-    );
+    const { infections, infectionDiscard, infectionSaturation, infectionRates, outbreaksLeft } =
+      createInitialInfections(map, infectionDeck);
 
     setGameSettings({
       players,
@@ -38,6 +36,8 @@ export function NewGame() {
       infectionDiscard,
       infectionSaturation,
       researchStations,
+      infectionRates,
+      outbreaksLeft,
     });
   }
 
