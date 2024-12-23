@@ -1,6 +1,7 @@
 import '../../css/Button.css';
 
 import { PropsWithChildren, ButtonHTMLAttributes } from 'react';
+import { calculateFontColor } from '../utils/calculateFontColor';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger' | 'player';
@@ -21,7 +22,11 @@ export function Button({
   return (
     <button
       className={`Button Button--${usableVariant} Button--${size} ${className}`.trim()}
-      style={playerColor ? { backgroundColor: playerColor } : undefined}
+      style={
+        playerColor
+          ? { backgroundColor: playerColor, color: calculateFontColor(playerColor) }
+          : undefined
+      }
       {...props}
     >
       {children}
