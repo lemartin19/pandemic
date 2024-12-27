@@ -1,5 +1,3 @@
-import '../../css/Button.css';
-
 import { PropsWithChildren } from 'react';
 import { Color } from '../../types/Disease';
 
