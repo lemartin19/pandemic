@@ -41,6 +41,7 @@ function queuePlayerTurn(queue: GamePlay[], playerName: string): GamePlay[] {
     { type: 'waitingForPlayerAction', playerName },
     { type: 'waitingForPlayerAction', playerName },
     { type: 'waitingForPlayerDraw', playerName },
+    { type: 'waitingForPlayerDraw', playerName },
     { type: 'infectCities' },
   ];
 }
