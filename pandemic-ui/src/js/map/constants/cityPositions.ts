@@ -3,15 +3,15 @@ export const CITY_POSITIONS: Record<
   { x: number; y: number; labelPosition: 'top' | 'bottom' | 'left' | 'right' }
 > = {
   // North America
-  'San Francisco': { x: 19, y: 36, labelPosition: 'right' },
-  Chicago: { x: 26, y: 35, labelPosition: 'bottom' },
+  'San Francisco': { x: 19, y: 36, labelPosition: 'left' },
+  Chicago: { x: 26, y: 35, labelPosition: 'left' },
   Montreal: { x: 30, y: 33, labelPosition: 'top' },
   'New York': { x: 31, y: 36, labelPosition: 'right' },
   Atlanta: { x: 28, y: 42, labelPosition: 'left' },
   Washington: { x: 29, y: 40, labelPosition: 'right' },
   'Los Angeles': { x: 19.5, y: 41, labelPosition: 'bottom' },
   'Mexico City': { x: 24, y: 50, labelPosition: 'bottom' },
-  Miami: { x: 29, y: 46, labelPosition: 'bottom' },
+  Miami: { x: 29, y: 46, labelPosition: 'right' },
 
   // Europe
   London: { x: 49.5, y: 29, labelPosition: 'top' },
@@ -22,14 +22,14 @@ export const CITY_POSITIONS: Record<
   Essen: { x: 52, y: 28, labelPosition: 'right' },
 
   // South America
-  Bogota: { x: 31, y: 60, labelPosition: 'bottom' },
-  Lima: { x: 30, y: 69, labelPosition: 'bottom' },
+  Bogota: { x: 31, y: 60, labelPosition: 'right' },
+  Lima: { x: 30, y: 69, labelPosition: 'left' },
   Santiago: { x: 32, y: 78, labelPosition: 'bottom' },
   'Buenos Aires': { x: 37, y: 78, labelPosition: 'bottom' },
-  'Sao Paulo': { x: 38, y: 68, labelPosition: 'bottom' },
+  'Sao Paulo': { x: 38, y: 68, labelPosition: 'right' },
 
   // Africa
-  Lagos: { x: 50, y: 59, labelPosition: 'bottom' },
+  Lagos: { x: 50, y: 59, labelPosition: 'left' },
   Kinshasa: { x: 52.5, y: 65, labelPosition: 'bottom' },
   Johannesburg: { x: 56.5, y: 81, labelPosition: 'bottom' },
   Khartoum: { x: 55, y: 52, labelPosition: 'bottom' },
@@ -40,9 +40,9 @@ export const CITY_POSITIONS: Record<
   Moscow: { x: 59, y: 26, labelPosition: 'right' },
   Istanbul: { x: 57, y: 38, labelPosition: 'top' },
   Baghdad: { x: 60, y: 42, labelPosition: 'top' },
-  Tehran: { x: 63, y: 40, labelPosition: 'right' },
+  Tehran: { x: 63, y: 40, labelPosition: 'top' },
   Riyadh: { x: 61, y: 48, labelPosition: 'bottom' },
-  Karachi: { x: 66, y: 47, labelPosition: 'left' },
+  Karachi: { x: 66, y: 47, labelPosition: 'top' },
   Delhi: { x: 69, y: 47, labelPosition: 'top' },
   Kolkata: { x: 71, y: 50, labelPosition: 'top' },
   Mumbai: { x: 68, y: 52.5, labelPosition: 'left' },
