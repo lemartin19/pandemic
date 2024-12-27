@@ -10,7 +10,12 @@ export function TakeActionButton({ playerName }: { playerName: string }) {
   const advanceGameplayState = useAdvanceGameplayState();
   return (
     <>
-      <Button className="DoTurnButton" variant="player" playerColor={player?.color}>
+      <Button
+        className="DoTurnButton"
+        variant="player"
+        playerColor={player?.color}
+        onClick={() => setIsActionModalOpen(true)}
+      >
         {playerName}: Take Action
       </Button>
       <ActionModal

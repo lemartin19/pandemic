@@ -10,7 +10,12 @@ export function DiscardCardButton({ playerName }: { playerName: string }) {
   const [isDiscardModalOpen, setIsDiscardModalOpen] = useState(false);
   return (
     <>
-      <Button className="DoTurnButton" variant="player" playerColor={player?.color}>
+      <Button
+        className="DoTurnButton"
+        variant="player"
+        playerColor={player?.color}
+        onClick={() => setIsDiscardModalOpen(true)}
+      >
         {playerName}: Discard Card
       </Button>
       <DiscardModal

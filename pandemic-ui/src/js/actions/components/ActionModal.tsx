@@ -18,6 +18,7 @@ export function ActionModal({
   const currentPlayer = useCurrentPlayer();
   const action = currentPlayer?.role.actions.find((action) => action.name === actionName);
   if (!currentPlayer) {
+    debugger;
     return null;
   }
 
