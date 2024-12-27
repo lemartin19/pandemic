@@ -1,16 +1,32 @@
 import { useState } from 'react';
-import { Modal } from '../../components/Modal';
-import { PlayerHand } from './PlayerHand';
+import { usePlayerDispatch } from '../../app/store/Players';
 import { Button } from '../../components/Button';
-import { Deck } from '../../types/Deck';
+import { Modal } from '../../components/Modal';
 import { EventCard, isEventCard } from '../../types/Card';
+import { Deck } from '../../types/Deck';
+import { PlayerHand } from './PlayerHand';
 
-export function EventCardButton({ eventCards }: { eventCards: Deck<EventCard> }) {
+export function EventCardButton({
+  playerName,
+  eventCards,
+}: {
+  playerName: string;
+  eventCards: Deck<EventCard>;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState<EventCard | null>(null);
+  const playerDispatch = usePlayerDispatch();
+
   const onClose = () => {
     setIsOpen(false);
     setSelectedCard(null);
+  };
+  const onSubmit = () => {
+    if (!selectedCard) return;
+
+    setIsOpen(false);
+    setSelectedCard(null);
+    playerDispatch({ type: 'removeFromHand', payload: { playerName, cards: [selectedCard] } });
   };
   return (
     <>
@@ -27,7 +43,7 @@ export function EventCardButton({ eventCards }: { eventCards: Deck<EventCard> })
           }}
           hand={eventCards}
         />
-        {selectedCard && <selectedCard.EventForm onSubmit={onClose} />}
+        {selectedCard && <selectedCard.EventForm onSubmit={onSubmit} />}
       </Modal>
     </>
   );
