@@ -30,3 +30,19 @@ body,
     transform: rotate(360deg);
   }
 }
+
+[style*='background-color: yellow'] {
+  color: black;
+}
+
+[style*='background-color: black'] {
+  color: white;
+}
+
+[style*='background-color: red'] {
+  color: white;
+}
+
+[style*='background-color: blue'] {
+  color: white;
+}
