@@ -63,9 +63,8 @@ function gamePlayQueueReducer(
     case 'queuePlayerTurns':
       return {
         queue: action.payload.playerNames.reduce((acc, playerName) => {
-          acc.push(...queuePlayerTurn(acc, playerName));
-          return acc;
-        }, [] as GamePlay[]),
+          return acc.concat(...queuePlayerTurn(acc, playerName));
+        }, state.queue),
       };
     case 'startEpidemic':
       return {
