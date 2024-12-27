@@ -1,4 +1,5 @@
 import '../../../css/GameState.css';
+import { GamePlayQueue } from './GamePlayQueue';
 
 import { GameStateButton } from './GameStateButton';
 import { InfectionRate } from './InfectionRate';
@@ -11,7 +12,10 @@ export function GameState() {
         <InfectionRate />
         <OutbreaksLeft />
       </div>
-      <GameStateButton />
+      <div className="GameState-queue">
+        <GameStateButton />
+        <GamePlayQueue />
+      </div>
     </div>
   );
 }

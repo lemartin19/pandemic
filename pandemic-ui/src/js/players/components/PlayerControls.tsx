@@ -17,10 +17,9 @@ export function PlayerControls({ player, children }: PropsWithChildren<{ player:
       style={{ backgroundColor: player.color, color: calculateFontColor(player.color) }}
     >
       <div className="PlayerControls-info">
-        <div className="PlayerControls-name">{player.name}</div>
-        <div className="PlayerControls-role">
+        <div className="PlayerControls-nameRole">
           <Tooltip text={player.role.description} position="left">
-            {player.role.name}
+            {player.name} ({player.role.name})
           </Tooltip>
         </div>
         <div className="PlayerControls-location">{player.currentLocation}</div>
