@@ -15,7 +15,7 @@ export function useDrawCard() {
     if (!drawCard || !currentPlayer) {
       return;
     }
-    decksDispatch({ type: 'draw' });
+    decksDispatch({ type: 'playerDraw' });
 
     if (drawCard.type === 'epidemic') {
       gameplayQueueDispatch({ type: 'startEpidemic' });

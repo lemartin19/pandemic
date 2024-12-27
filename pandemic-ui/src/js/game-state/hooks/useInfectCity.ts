@@ -25,7 +25,7 @@ export function useInfectCity() {
   }) => {
     const infectionCity = map.find((city) => cityName === city.name);
     if (!infectionCity) {
-      throw new Error(`City ${location} not found in map.`);
+      throw new Error(`City ${cityName} not found in map.`);
     }
     if (seenCities.has(cityName)) {
       return;

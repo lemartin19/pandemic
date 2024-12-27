@@ -14,7 +14,7 @@ const FLY_DESCRIPTION = 'Fly to a city by discarding its city card.';
 export const FLY: Action = {
   name: FLY_NAME,
   description: FLY_DESCRIPTION,
-  ActionForm: ({ onSubmit }) => {
+  ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {
     const [cityCard, setCityCard] = useState<CityCard | null>(null);
     const currentPlayer = useCurrentPlayer();
     const playerDispatch = usePlayerDispatch();

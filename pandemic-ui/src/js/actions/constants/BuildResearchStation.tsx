@@ -13,7 +13,7 @@ const BUILD_RESEARCH_STATION_DESCRIPTION =
 export const BUILD_RESEARCH_STATION: Action = {
   name: BUILD_RESEARCH_STATION_NAME,
   description: BUILD_RESEARCH_STATION_DESCRIPTION,
-  ActionForm: ({ onSubmit }) => {
+  ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {
     const currentPlayer = useCurrentPlayer();
     const mapDispatch = useMapDispatch();
     const playerDispatch = usePlayerDispatch();

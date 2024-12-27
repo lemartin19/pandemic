@@ -9,26 +9,27 @@ import { TakeActionButton } from './TakeActionButton';
 export function GameStateButton() {
   const gameplayState = useCurrentGameplayState();
 
-  if (!gameplayState) {
-    return null;
-  }
-  if (gameplayState.type === 'waitingForPlayerAction') {
-    return <TakeActionButton playerName={gameplayState.playerName} />;
-  }
-  if (gameplayState.type === 'waitingForPlayerDraw') {
-    return <DrawCardButton playerName={gameplayState.playerName} />;
-  }
-  if (gameplayState.type === 'waitingForPlayerDiscard') {
-    return <DiscardCardButton playerName={gameplayState.playerName} />;
-  }
-  if (gameplayState.type === 'startEpidemic') {
-    return <StartEpidemicButton />;
-  }
-  if (gameplayState.type === 'increaseInfectionRate') {
-    return <IncreaseInfectionRateButton />;
-  }
-  if (gameplayState.type === 'infectCities') {
-    return <InfectCitiesButton />;
+  switch (gameplayState?.type) {
+    case 'waitingForPlayerAction':
+      return <TakeActionButton playerName={gameplayState.playerName} />;
+
+    case 'waitingForPlayerDraw':
+      return <DrawCardButton playerName={gameplayState.playerName} />;
+
+    case 'waitingForPlayerDiscard':
+      return <DiscardCardButton playerName={gameplayState.playerName} />;
+
+    case 'startEpidemic':
+      return <StartEpidemicButton />;
+
+    case 'increaseInfectionRate':
+      return <IncreaseInfectionRateButton />;
+
+    case 'infectCities':
+      return <InfectCitiesButton />;
+
+    default:
+      return null;
   }
 }
 GameStateButton.displayName = 'GameStateButton';

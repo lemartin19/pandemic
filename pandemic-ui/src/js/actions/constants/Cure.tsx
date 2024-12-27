@@ -17,7 +17,7 @@ const CHARTER_DESCRIPTION =
 export const CHARTER: Action = {
   name: CHARTER_NAME,
   description: CHARTER_DESCRIPTION,
-  ActionForm: ({ onSubmit }) => {
+  ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {
     const [cards, setCards] = useState<CityCard[]>([]);
     const currentPlayer = useCurrentPlayer();
     const playerDispatch = usePlayerDispatch();

@@ -13,7 +13,7 @@ const TREAT_DISEASE_DESCRIPTION = 'Treat a disease in a city';
 export const TREAT_DISEASE: Action = {
   name: TREAT_DISEASE_NAME,
   description: TREAT_DISEASE_DESCRIPTION,
-  ActionForm: ({ onSubmit }) => {
+  ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {
     const [color, setColor] = useState<Color | null>(null);
     const currentPlayer = useCurrentPlayer();
     const infectionsDispatch = useInfectionsDispatch();

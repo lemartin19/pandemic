@@ -13,7 +13,7 @@ const DRIVE_FERRY_DESCRIPTION = 'Drive or ferry to an adjacent city';
 export const DRIVE_FERRY: Action = {
   name: DRIVE_FERRY_NAME,
   description: DRIVE_FERRY_DESCRIPTION,
-  ActionForm: ({ onSubmit }) => {
+  ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {
     const [location, setLocation] = useState<Location | null>(null);
     const currentPlayer = useCurrentPlayer();
     const playerDispatch = usePlayerDispatch();
