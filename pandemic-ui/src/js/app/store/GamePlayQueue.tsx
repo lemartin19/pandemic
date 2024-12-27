@@ -34,16 +34,15 @@ type GamePlayQueueActions =
   | RequirePlayerDiscardAction;
 
 function queuePlayerTurn(queue: GamePlay[], playerName: string): GamePlay[] {
-  return [
-    ...queue,
+  return queue.concat(
     { type: 'waitingForPlayerAction', playerName },
     { type: 'waitingForPlayerAction', playerName },
     { type: 'waitingForPlayerAction', playerName },
     { type: 'waitingForPlayerAction', playerName },
     { type: 'waitingForPlayerDraw', playerName },
     { type: 'waitingForPlayerDraw', playerName },
-    { type: 'infectCities' },
-  ];
+    { type: 'infectCities' }
+  );
 }
 
 function queueEpidemic(queue: GamePlay[]): GamePlay[] {
@@ -62,9 +61,10 @@ function gamePlayQueueReducer(
   switch (action.type) {
     case 'queuePlayerTurns':
       return {
-        queue: action.payload.playerNames.reduce((acc, playerName) => {
-          return acc.concat(...queuePlayerTurn(acc, playerName));
-        }, state.queue),
+        queue: action.payload.playerNames.reduce(
+          (acc, playerName) => queuePlayerTurn(acc, playerName),
+          state.queue
+        ),
       };
     case 'startEpidemic':
       return {
