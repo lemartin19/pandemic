@@ -3,6 +3,7 @@ import { DiscardCardButton } from './DiscardCardButton';
 import { DrawCardButton } from './DrawCardButton';
 import { IncreaseInfectionRateButton } from './IncreaseInfectionRateButton';
 import { InfectCitiesButton } from './InfectCitiesButton';
+import { IntensifyEpidemicButton } from './IntensifyEpidemicButton';
 import { StartEpidemicButton } from './StartEpidemicButton';
 import { TakeActionButton } from './TakeActionButton';
 
@@ -21,6 +22,9 @@ export function GameStateButton() {
 
     case 'startEpidemic':
       return <StartEpidemicButton />;
+
+    case 'intensifyEpidemic':
+      return <IntensifyEpidemicButton />;
 
     case 'increaseInfectionRate':
       return <IncreaseInfectionRateButton />;

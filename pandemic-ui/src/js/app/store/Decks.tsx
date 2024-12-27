@@ -28,7 +28,16 @@ type DiscardAction = {
   payload: Deck<CityCard | EventCard>;
 };
 
-type DecksActions = InitDecksAction | PlayerDrawAction | InfectionDrawAction | DiscardAction;
+type IntensifyAction = {
+  type: 'intensify';
+};
+
+type DecksActions =
+  | InitDecksAction
+  | PlayerDrawAction
+  | InfectionDrawAction
+  | DiscardAction
+  | IntensifyAction;
 
 function decksReducer(state: DecksState, action: DecksActions): DecksState {
   switch (action.type) {
@@ -55,6 +64,15 @@ function decksReducer(state: DecksState, action: DecksActions): DecksState {
         ...state,
         discardPile: [...state.discardPile, ...action.payload],
       };
+    case 'intensify': {
+      const newInfectionDeck = [...state.infectionDeck, ...state.infectionDiscard];
+      newInfectionDeck.sort(() => Math.random() - 0.5);
+      return {
+        ...state,
+        infectionDeck: newInfectionDeck,
+        infectionDiscard: [],
+      };
+    }
     default:
       return state;
   }

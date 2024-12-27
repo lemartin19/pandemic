@@ -14,8 +14,8 @@ export function DrawCardButton({ playerName }: { playerName: string }) {
       variant="player"
       playerColor={player?.color}
       onClick={() => {
-        drawCard();
         advanceGameplayState();
+        drawCard();
       }}
     >
       {playerName}: Draw Card
