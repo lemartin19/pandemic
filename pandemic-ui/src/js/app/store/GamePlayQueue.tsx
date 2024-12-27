@@ -1,14 +1,15 @@
 import { createContext, Dispatch, PropsWithChildren, useContext, useReducer } from 'react';
 import { GamePlay } from '../../types/GamePlay';
+import { usePlayerState } from './Players';
 
 type GamePlayQueueState = {
   queue: GamePlay[];
 };
 
 type StartPlayerTurnAction = {
-  type: 'startPlayerTurn';
+  type: 'queuePlayerTurns';
   payload: {
-    playerName: string;
+    playerNames: string[];
   };
 };
 
@@ -48,9 +49,12 @@ function gamePlayQueueReducer(
   action: GamePlayQueueActions
 ): GamePlayQueueState {
   switch (action.type) {
-    case 'startPlayerTurn':
+    case 'queuePlayerTurns':
       return {
-        queue: queuePlayerTurn(state.queue, action.payload.playerName),
+        queue: action.payload.playerNames.reduce((acc, playerName) => {
+          acc.push(...queuePlayerTurn(acc, playerName));
+          return acc;
+        }, [] as GamePlay[]),
       };
     case 'startEpidemic':
       return {

@@ -91,8 +91,8 @@ export function useInitGame() {
       payload: { map: finalGameSettings.map, researchStations: finalGameSettings.researchStations },
     });
     gamePlayDispatch({
-      type: 'startPlayerTurn',
-      payload: { playerName: finalGameSettings.players[0].name },
+      type: 'queuePlayerTurns',
+      payload: { playerNames: finalGameSettings.players.map((player) => player.name) },
     });
   }
 

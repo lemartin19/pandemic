@@ -1,16 +1,23 @@
 import '../../../css/GameState.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useCurrentGameplayState } from '../../app/store/GamePlayQueue';
+import { useDispatchNextGameplayState } from '../hooks/useDispatchNextGameplayState';
 import { DoTurnButton } from './DoTurnButton';
 import { InfectionRate } from './InfectionRate';
 import { OutbreaksLeft } from './OutbreaksLeft';
-import { useCurrentGameplayState, useGamePlayQueueDispatch } from '../../app/store/GamePlayQueue';
 import { SelectionModal } from './SelectionModal';
 
 function useClickDoTurn() {
   const currentGameplayState = useCurrentGameplayState();
-  const dispatch = useGamePlayQueueDispatch();
+  const dispatchNextGameplayState = useDispatchNextGameplayState();
   const [isSelectionModalOpen, setSelectionModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (!currentGameplayState) {
+      dispatchNextGameplayState();
+    }
+  }, [currentGameplayState]);
 
   const onClickDoTurn = () => {
     if (
@@ -19,7 +26,7 @@ function useClickDoTurn() {
     ) {
       setSelectionModalOpen(true);
     } else {
-      dispatch({ type: 'nextGameplayState' });
+      dispatchNextGameplayState();
     }
   };
 

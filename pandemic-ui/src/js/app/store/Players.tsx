@@ -1,8 +1,8 @@
 import { createContext, Dispatch, PropsWithChildren, useContext, useReducer } from 'react';
-import { Player } from '../../types/Player';
-import { Location } from '../../types/Map';
 import { CityCard, EventCard } from '../../types/Card';
 import { Deck } from '../../types/Deck';
+import { Location } from '../../types/Map';
+import { Player } from '../../types/Player';
 
 type PlayerState = {
   players: Player[];
