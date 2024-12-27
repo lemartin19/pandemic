@@ -11,9 +11,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  height: 10rem;
+  min-height: 10rem;
   width: 10rem;
   border-radius: 0.5rem;
+}
+
+.PlayerControls-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.PlayerControls-role {
+  font-size: 10px;
+}
+
+.PlayerControls-location {
+  font-size: 10px;
 }
 
 .PlayerHand {
