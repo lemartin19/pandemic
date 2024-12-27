@@ -63,6 +63,18 @@ export function useInitGame() {
         infectionSaturation: finalGameSettings.infectionSaturation,
         infectionRates: finalGameSettings.infectionRates,
         outbreaksLeft: finalGameSettings.outbreaksLeft,
+        cured: {
+          blue: false,
+          yellow: false,
+          black: false,
+          red: false,
+        },
+        eradicated: {
+          blue: false,
+          yellow: false,
+          black: false,
+          red: false,
+        },
       },
     });
     decksDispatch({

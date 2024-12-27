@@ -66,6 +66,8 @@ export function useHasResearchStation(city: Location) {
 export function useConnectedCities(location: Location) {
   const { map } = useMapState();
   const city = map.find((l) => l.name === location);
-  if (!city) return [];
+  if (!city) {
+    return [];
+  }
   return city.connectedCities;
 }

@@ -5,7 +5,7 @@ import { MapProvider } from './Map';
 import { DecksProvider } from './Decks';
 import { GamePlayQueueProvider } from './GamePlayQueue';
 
-export function Provider({ children }: PropsWithChildren<{}>) {
+export function Provider({ children }: PropsWithChildren) {
   return (
     <PlayerProvider>
       <InfectionsProvider>

@@ -2,11 +2,12 @@ const globals = require('globals');
 const js = require('@eslint/js');
 const prettier = require('eslint-config-prettier');
 const typescript = require('@typescript-eslint/parser');
+const tseslint = require('typescript-eslint');
 const reactPlugin = require('eslint-plugin-react');
 
-module.exports = [
+module.exports = tseslint.config(
   // Base ESLint recommended rules
-  js.configs.recommended,
+  tseslint.configs.recommended,
 
   // Prettier integration
   prettier,
@@ -39,7 +40,7 @@ module.exports = [
       // Error prevention
       'no-console': 'error',
       'no-debugger': 'error',
-      'no-unused-vars': ['error', { argsIgnorePattern: '^__' }],
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^__' }],
       'react/display-name': 'error',
 
       // Best practices
@@ -73,7 +74,7 @@ module.exports = [
       // Error prevention
       'no-console': 'error',
       'no-debugger': 'error',
-      'no-unused-vars': ['error', { argsIgnorePattern: '^__' }],
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^__' }],
 
       // Best practices
       eqeqeq: ['error', 'always'],
@@ -99,5 +100,5 @@ module.exports = [
         ...globals.jest,
       },
     },
-  },
-];
+  }
+);

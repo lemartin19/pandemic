@@ -9,6 +9,8 @@ type InfectionsState = {
   infectionSaturation: InfectionSaturation;
   outbreaksLeft: number;
   infectionRates: number[];
+  cured: { [key in Color]: boolean };
+  eradicated: { [key in Color]: boolean };
 };
 
 type InitInfectionsAction = {
@@ -25,7 +27,20 @@ type IncreaseInfectionRateAction = {
   type: 'increaseInfectionRate';
 };
 
-type InfectionsActions = InitInfectionsAction | IncreaseInfectionRateAction | TreatDiseaseAction;
+type CureDiseaseAction = {
+  type: 'cureDisease';
+  payload: { color: Color };
+};
+
+type InfectionsActions =
+  | InitInfectionsAction
+  | IncreaseInfectionRateAction
+  | TreatDiseaseAction
+  | CureDiseaseAction;
+
+function calculateEradicated(infections: Infections, color: Color) {
+  return Object.values(infections).every((cityInfections) => cityInfections[color] === 0);
+}
 
 function reducer(state: InfectionsState, action: InfectionsActions): InfectionsState {
   switch (action.type) {
@@ -38,7 +53,9 @@ function reducer(state: InfectionsState, action: InfectionsActions): InfectionsS
       };
     case 'treatDisease': {
       const { location, color, treatAll } = action.payload;
-      if (!state.infections[location][color]) return state;
+      if (!state.infections[location][color]) {
+        return state;
+      }
 
       const newInfections = { ...state.infections };
       const newInfectionSaturation = { ...state.infectionSaturation };
@@ -49,7 +66,17 @@ function reducer(state: InfectionsState, action: InfectionsActions): InfectionsS
         newInfectionSaturation[color] += 1;
         newInfections[location][color] -= 1;
       }
-      return { ...state, infections: newInfections };
+      const isCured = state.cured[color];
+      const isEradicated = isCured && calculateEradicated(newInfections, color);
+      const newEradicated = { ...state.eradicated, [color]: isEradicated };
+      return { ...state, infections: newInfections, eradicated: newEradicated };
+    }
+    case 'cureDisease': {
+      const { color } = action.payload;
+      const newCured = { ...state.cured, [color]: true };
+      const isEradicated = calculateEradicated(state.infections, color);
+      const newEradicated = { ...state.eradicated, [color]: isEradicated };
+      return { ...state, cured: newCured, eradicated: newEradicated };
     }
     default:
       return state;
@@ -66,6 +93,18 @@ const emptyState: InfectionsState = {
   },
   outbreaksLeft: 0,
   infectionRates: [],
+  cured: {
+    blue: false,
+    yellow: false,
+    black: false,
+    red: false,
+  },
+  eradicated: {
+    blue: false,
+    yellow: false,
+    black: false,
+    red: false,
+  },
 };
 const InfectionsStateContext = createContext<InfectionsState>(emptyState);
 

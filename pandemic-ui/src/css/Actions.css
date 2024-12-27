@@ -1,4 +1,11 @@
-.ActionTypeSelect {
+.ActionModal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.ActionModal-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;

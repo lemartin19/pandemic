@@ -2,7 +2,7 @@ import { Location } from '../../types/Map';
 import { Button } from '../../components/Button';
 
 interface LocationSelectProps {
-  value?: Location;
+  value: Location | null;
   onChange: (location: Location) => void;
   availableLocations: Location[];
   label?: string;
