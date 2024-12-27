@@ -3,6 +3,7 @@ import { useGamePlayQueueState } from '../../app/store/GamePlayQueue';
 import { usePlayer } from '../../app/store/Players';
 import { GamePlay } from '../../types/GamePlay';
 import { calculateFontColor } from '../../utils/calculateFontColor';
+import { QUEUE_PREVIEW_LENGTH } from '../constants/queuePreviewLength';
 
 function StyledPlayerColor({ children, playerName }: PropsWithChildren<{ playerName: string }>) {
   const player = usePlayer(playerName);
@@ -54,7 +55,7 @@ function GamePlayQueueItem({ gamePlay }: { gamePlay: GamePlay }) {
 
 export function GamePlayQueue() {
   const { queue } = useGamePlayQueueState();
-  const nextItems = queue.slice(1, 4);
+  const nextItems = queue.slice(1, QUEUE_PREVIEW_LENGTH + 1);
 
   return (
     <div className="GamePlayQueue">
