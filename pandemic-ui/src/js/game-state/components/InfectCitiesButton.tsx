@@ -16,9 +16,7 @@ export function InfectCitiesButton() {
       variant="player"
       playerColor={player?.color}
       onClick={() => {
-        for (let i = 0; i < infectionRate; i++) {
-          drawAndInfectCities();
-        }
+        drawAndInfectCities();
         advanceGameplayState();
       }}
     >

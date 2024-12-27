@@ -21,6 +21,7 @@ type PlayerDrawAction = {
 type InfectionDrawAction = {
   type: 'infectionDraw';
   fromBottom?: boolean;
+  count?: number;
 };
 
 type DiscardAction = {
@@ -50,14 +51,18 @@ function decksReducer(state: DecksState, action: DecksActions): DecksState {
       };
     case 'infectionDraw':
       const newInfectionDeck = [...state.infectionDeck];
-      const drawnCard = action.fromBottom ? newInfectionDeck.pop() : newInfectionDeck.shift();
-      if (!drawnCard) {
-        throw new Error('Infection deck is empty');
+      const newInfectionDiscard = [...state.infectionDiscard];
+      for (let i = 0; i < (action.count ?? 1); i++) {
+        const drawnCard = action.fromBottom ? newInfectionDeck.pop() : newInfectionDeck.shift();
+        if (!drawnCard) {
+          throw new Error('Infection deck is empty');
+        }
+        newInfectionDiscard.unshift(drawnCard);
       }
       return {
         ...state,
         infectionDeck: newInfectionDeck,
-        infectionDiscard: [drawnCard, ...state.infectionDiscard],
+        infectionDiscard: newInfectionDiscard,
       };
     case 'discard':
       return {
