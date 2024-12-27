@@ -26,7 +26,7 @@ export function PlayerControls({ player, children }: PropsWithChildren<{ player:
         <div className="PlayerControls-location">{player.currentLocation}</div>
       </div>
       {children}
-      {allowedEventCards.length && <EventCardButton eventCards={allowedEventCards} />}
+      {allowedEventCards.length ? <EventCardButton eventCards={allowedEventCards} /> : null}
     </div>
   );
 }
