@@ -10,13 +10,12 @@ import { useMapState } from '../../app/store/Map';
 import { useInfectionsDispatch } from '../../app/store/Infections';
 import { HandCureForm } from '../components/HandCureForm';
 
-const CHARTER_NAME = 'Charter';
-const CHARTER_DESCRIPTION =
-  'Charter a flight to any city by discarding the city card for your current location.';
+const CURE_NAME = 'Cure';
+const CURE_DESCRIPTION = 'Cure a disease by discarding 5 city cards of the same color.';
 
-export const CHARTER: Action = {
-  name: CHARTER_NAME,
-  description: CHARTER_DESCRIPTION,
+export const CURE: Action = {
+  name: CURE_NAME,
+  description: CURE_DESCRIPTION,
   ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {
     const [cards, setCards] = useState<CityCard[]>([]);
     const currentPlayer = useCurrentPlayer();
@@ -76,8 +75,8 @@ export const CHARTER: Action = {
     const disabled = !hasCure || !isInResearchStation;
     return (
       <DefaultActionButton
-        name={CHARTER_NAME}
-        description={CHARTER_DESCRIPTION}
+        name={CURE_NAME}
+        description={CURE_DESCRIPTION}
         isSelected={isSelected}
         onSelect={onSelect}
         disabled={disabled}
