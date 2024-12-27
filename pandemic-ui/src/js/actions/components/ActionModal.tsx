@@ -6,22 +6,26 @@ import { Action } from '../../types/Action';
 import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
 
 export function ActionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const [actionName, setActionName] = useState<Action['name']>('Drive/Ferry');
+  const [actionName, setActionName] = useState<Action['name'] | null>(null);
   const currentPlayer = useCurrentPlayer();
   const action = currentPlayer?.role.actions.find((action) => action.name === actionName);
-  if (!currentPlayer || !action) {
+  if (!currentPlayer) {
     return null;
   }
 
-  const { ActionForm } = action;
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Do an action" className="ActionModal">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={`${currentPlayer.name}: Take Action`}
+      className="ActionModal"
+    >
       <div className="ActionModal-actions">
         {currentPlayer.role.actions.map(({ name, ActionButton }) => (
           <ActionButton key={name} isSelected={name === actionName} onSelect={setActionName} />
         ))}
       </div>
-      <ActionForm />
+      {action ? <action.ActionForm /> : null}
     </Modal>
   );
 }
