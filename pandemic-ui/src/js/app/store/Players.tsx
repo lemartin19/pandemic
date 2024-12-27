@@ -46,6 +46,18 @@ function reducer(state: PlayerState, action: PlayerActions): PlayerState {
             : player;
         }),
       };
+    case 'removeFromHand':
+      return {
+        ...state,
+        players: state.players.map((player) => {
+          return player.name === action.payload.playerName
+            ? {
+                ...player,
+                hand: player.hand.filter((card) => !action.payload.cards.includes(card)),
+              }
+            : player;
+        }),
+      };
     case 'movePlayer':
       return {
         ...state,
