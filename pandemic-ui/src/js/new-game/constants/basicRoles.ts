@@ -4,6 +4,7 @@ import { CURE } from '../../actions/constants/Cure';
 import { DRIVE_FERRY } from '../../actions/constants/DriveFerry';
 import { FLY } from '../../actions/constants/Fly';
 import { SHARE_KNOWLEDGE } from '../../actions/constants/ShareKnowledge';
+import { SHUTTLE } from '../../actions/constants/Shuttle';
 import { TREAT_DISEASE } from '../../actions/constants/Treat';
 import { Role } from '../../types/Role';
 
@@ -16,6 +17,7 @@ export const BASIC_ROLES: Role[] = [
       DRIVE_FERRY,
       FLY,
       CHARTER,
+      SHUTTLE,
       BUILD_RESEARCH_STATION,
       TREAT_DISEASE,
       SHARE_KNOWLEDGE,
@@ -29,6 +31,7 @@ export const BASIC_ROLES: Role[] = [
       DRIVE_FERRY,
       FLY,
       CHARTER,
+      SHUTTLE,
       BUILD_RESEARCH_STATION,
       TREAT_DISEASE,
       SHARE_KNOWLEDGE,
@@ -43,6 +46,7 @@ export const BASIC_ROLES: Role[] = [
       DRIVE_FERRY,
       FLY,
       CHARTER,
+      SHUTTLE,
       BUILD_RESEARCH_STATION,
       TREAT_DISEASE,
       SHARE_KNOWLEDGE,
@@ -56,6 +60,7 @@ export const BASIC_ROLES: Role[] = [
       DRIVE_FERRY,
       FLY,
       CHARTER,
+      SHUTTLE,
       BUILD_RESEARCH_STATION,
       TREAT_DISEASE,
       SHARE_KNOWLEDGE,
@@ -70,6 +75,7 @@ export const BASIC_ROLES: Role[] = [
       DRIVE_FERRY,
       FLY,
       CHARTER,
+      SHUTTLE,
       BUILD_RESEARCH_STATION,
       TREAT_DISEASE,
       SHARE_KNOWLEDGE,
