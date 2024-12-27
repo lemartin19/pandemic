@@ -18,11 +18,7 @@ export function ActionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
     <Modal isOpen={isOpen} onClose={onClose} title="Do an action" className="ActionModal">
       <div className="ActionModal-actions">
         {currentPlayer.role.actions.map(({ name, ActionButton }) => (
-          <ActionButton
-            key={name}
-            isSelected={action.name === actionName}
-            onSelect={setActionName}
-          />
+          <ActionButton key={name} isSelected={name === actionName} onSelect={setActionName} />
         ))}
       </div>
       <ActionForm />
