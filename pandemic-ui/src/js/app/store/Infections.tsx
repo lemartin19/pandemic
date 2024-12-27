@@ -1,4 +1,4 @@
-import { createContext, Dispatch, PropsWithChildren, useContext, useReducer } from 'react';
+import { createContext, Dispatch, PropsWithChildren, useContext, useMemo, useReducer } from 'react';
 import { InfectionSaturation } from '../../types/Infections';
 import { Infections } from '../../types/Infections';
 import { Location } from '../../types/Map';
@@ -57,16 +57,17 @@ function reducer(state: InfectionsState, action: InfectionsActions): InfectionsS
         return state;
       }
 
-      const newInfections = { ...state.infections };
+      const newInfectionsInCity = { ...state.infections[location] };
       const newInfectionSaturation = { ...state.infectionSaturation };
       if (treatAll) {
-        newInfectionSaturation[color] += newInfections[location][color];
-        newInfections[location][color] = 0;
-      } else {
+        newInfectionSaturation[color] += newInfectionsInCity[color];
+        newInfectionsInCity[color] = 0;
+      } else if (newInfectionsInCity[color] > 0) {
         newInfectionSaturation[color] += 1;
-        newInfections[location][color] -= 1;
+        newInfectionsInCity[color] -= 1;
       }
       const isCured = state.cured[color];
+      const newInfections = { ...state.infections, [location]: newInfectionsInCity };
       const isEradicated = isCured && calculateEradicated(newInfections, color);
       const newEradicated = { ...state.eradicated, [color]: isEradicated };
       return { ...state, infections: newInfections, eradicated: newEradicated };
