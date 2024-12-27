@@ -33,7 +33,14 @@ export function ActionModal({
           <ActionButton key={name} isSelected={name === actionName} onSelect={setActionName} />
         ))}
       </div>
-      {action ? <action.ActionForm onSubmit={onSubmit} /> : null}
+      {action ? (
+        <action.ActionForm
+          onSubmit={() => {
+            onSubmit();
+            setActionName(null);
+          }}
+        />
+      ) : null}
     </Modal>
   );
 }
