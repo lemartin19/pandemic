@@ -9,7 +9,7 @@ import {
 
 export const CONNECTIONS: Record<Location, Location[]> = {
   'San Francisco': ['Chicago', 'Los Angeles', 'Tokyo', 'Manila'],
-  Chicago: ['San Francisco', 'Atlanta', 'Montreal'],
+  Chicago: ['San Francisco', 'Atlanta', 'Montreal', 'Los Angeles'],
   Atlanta: ['Chicago', 'Washington', 'Miami'],
   Washington: ['Atlanta', 'New York', 'Montreal', 'Miami'],
   'New York': ['Montreal', 'London', 'Madrid', 'Washington'],
@@ -37,7 +37,7 @@ export const CONNECTIONS: Record<Location, Location[]> = {
   Baghdad: ['Istanbul', 'Tehran', 'Karachi', 'Riyadh', 'Cairo'],
   Tehran: ['Moscow', 'Baghdad', 'Karachi', 'Delhi'],
   Algiers: ['Madrid', 'Paris', 'Istanbul', 'Cairo'],
-  Cairo: ['Algiers', 'Istanbul', 'Baghdad', 'Riyadh'],
+  Cairo: ['Algiers', 'Istanbul', 'Baghdad', 'Riyadh', 'Khartoum'],
   Riyadh: ['Cairo', 'Baghdad', 'Karachi'],
   Karachi: ['Baghdad', 'Tehran', 'Delhi', 'Mumbai', 'Riyadh'],
   Delhi: ['Tehran', 'Karachi', 'Mumbai', 'Chennai', 'Kolkata'],
@@ -50,7 +50,7 @@ export const CONNECTIONS: Record<Location, Location[]> = {
   Seoul: ['Beijing', 'Shanghai', 'Tokyo'],
   Shanghai: ['Beijing', 'Seoul', 'Tokyo', 'Taipei', 'Hong Kong'],
   Tokyo: ['Seoul', 'Shanghai', 'San Francisco', 'Osaka'],
-  Osaka: ['Tokyo', 'Taipei'],
+  Osaka: ['Tokyo', 'Taipei', 'Shanghai'],
   Taipei: ['Shanghai', 'Hong Kong', 'Manila', 'Osaka'],
   'Hong Kong': ['Shanghai', 'Taipei', 'Manila', 'Ho Chi Minh City', 'Bangkok', 'Kolkata'],
   'Ho Chi Minh City': ['Bangkok', 'Hong Kong', 'Manila', 'Jakarta'],
