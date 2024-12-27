@@ -12,11 +12,11 @@ const CHARTER_DESCRIPTION =
 export const CHARTER: Action = {
   name: CHARTER_NAME,
   description: CHARTER_DESCRIPTION,
-  ActionForm: () => {
+  ActionForm: ({ onSubmit }) => {
     const currentPlayer = useCurrentPlayer();
     const playerDispatch = usePlayerDispatch();
     const decksDispatch = useDecksDispatch();
-    const onSubmit = () => {
+    const handleSubmit = () => {
       const cityCard = currentPlayer?.hand.find(
         (card) => card.name === currentPlayer?.currentLocation
       );
@@ -36,8 +36,9 @@ export const CHARTER: Action = {
         type: 'discard',
         payload: [cityCard!],
       });
+      onSubmit();
     };
-    return <SubmitButton onClick={onSubmit} />;
+    return <SubmitButton onClick={handleSubmit} />;
   },
   ActionButton: ({
     isSelected,

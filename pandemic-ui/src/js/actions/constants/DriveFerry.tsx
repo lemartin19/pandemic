@@ -13,22 +13,21 @@ const DRIVE_FERRY_DESCRIPTION = 'Drive or ferry to an adjacent city';
 export const DRIVE_FERRY: Action = {
   name: DRIVE_FERRY_NAME,
   description: DRIVE_FERRY_DESCRIPTION,
-  ActionForm: () => {
+  ActionForm: ({ onSubmit }) => {
     const [location, setLocation] = useState<Location | null>(null);
     const currentPlayer = useCurrentPlayer();
     const playerDispatch = usePlayerDispatch();
+    const handleSubmit = () => {
+      playerDispatch({
+        type: 'movePlayer',
+        payload: { playerName: currentPlayer!.name, location: location! },
+      });
+      onSubmit();
+    };
     return (
       <>
         <AdjacentLocationForm value={location} onChange={setLocation} />
-        <SubmitButton
-          disabled={!location}
-          onClick={() =>
-            playerDispatch({
-              type: 'movePlayer',
-              payload: { playerName: currentPlayer!.name, location: location! },
-            })
-          }
-        />
+        <SubmitButton disabled={!location} onClick={handleSubmit} />
       </>
     );
   },

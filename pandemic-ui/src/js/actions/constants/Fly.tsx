@@ -14,12 +14,12 @@ const FLY_DESCRIPTION = 'Fly to a city by discarding its city card.';
 export const FLY: Action = {
   name: FLY_NAME,
   description: FLY_DESCRIPTION,
-  ActionForm: () => {
+  ActionForm: ({ onSubmit }) => {
     const [cityCard, setCityCard] = useState<CityCard | null>(null);
     const currentPlayer = useCurrentPlayer();
     const playerDispatch = usePlayerDispatch();
     const decksDispatch = useDecksDispatch();
-    const onSubmit = () => {
+    const handleSubmit = () => {
       playerDispatch({
         type: 'movePlayer',
         payload: { playerName: currentPlayer!.name, location: cityCard!.name },
@@ -32,11 +32,12 @@ export const FLY: Action = {
         type: 'discard',
         payload: [cityCard!],
       });
+      onSubmit();
     };
     return (
       <>
         <HandLocationForm value={cityCard} onChange={setCityCard} />
-        <SubmitButton disabled={!cityCard} onClick={onSubmit} />
+        <SubmitButton disabled={!cityCard} onClick={handleSubmit} />
       </>
     );
   },

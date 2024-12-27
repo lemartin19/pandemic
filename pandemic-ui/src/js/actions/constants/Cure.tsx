@@ -17,7 +17,7 @@ const CHARTER_DESCRIPTION =
 export const CHARTER: Action = {
   name: CHARTER_NAME,
   description: CHARTER_DESCRIPTION,
-  ActionForm: () => {
+  ActionForm: ({ onSubmit }) => {
     const [cards, setCards] = useState<CityCard[]>([]);
     const currentPlayer = useCurrentPlayer();
     const playerDispatch = usePlayerDispatch();
@@ -26,7 +26,7 @@ export const CHARTER: Action = {
 
     const disabled =
       cards.length !== 5 || !cards.every((card: CityCard) => cards[0].color === card.color);
-    const onSubmit = () => {
+    const handleSubmit = () => {
       playerDispatch({
         type: 'removeFromHand',
         payload: { playerName: currentPlayer!.name, cards: cards! },
@@ -39,11 +39,12 @@ export const CHARTER: Action = {
         type: 'cureDisease',
         payload: { color: cards[0].color },
       });
+      onSubmit();
     };
     return (
       <>
         <HandCureForm value={cards} onChange={setCards} />
-        <SubmitButton disabled={disabled} onClick={onSubmit} />
+        <SubmitButton disabled={disabled} onClick={handleSubmit} />
       </>
     );
   },

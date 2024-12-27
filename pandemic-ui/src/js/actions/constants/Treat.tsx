@@ -13,20 +13,21 @@ const TREAT_DISEASE_DESCRIPTION = 'Treat a disease in a city';
 export const TREAT_DISEASE: Action = {
   name: TREAT_DISEASE_NAME,
   description: TREAT_DISEASE_DESCRIPTION,
-  ActionForm: () => {
+  ActionForm: ({ onSubmit }) => {
     const [color, setColor] = useState<Color | null>(null);
     const currentPlayer = useCurrentPlayer();
     const infectionsDispatch = useInfectionsDispatch();
-    const onClick = () => {
+    const handleSubmit = () => {
       infectionsDispatch({
         type: 'treatDisease',
         payload: { location: currentPlayer!.currentLocation, color: color! },
       });
+      onSubmit();
     };
     return (
       <>
         <ColorSelect value={color} onChange={setColor} />
-        <SubmitButton disabled={!color} onClick={onClick} />
+        <SubmitButton disabled={!color} onClick={handleSubmit} />
       </>
     );
   },

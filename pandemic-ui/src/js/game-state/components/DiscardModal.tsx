@@ -21,10 +21,12 @@ export function DiscardModal({
   isOpen,
   onClose,
   playerName,
+  onSubmit,
 }: {
   isOpen: boolean;
   onClose: () => void;
   playerName: string;
+  onSubmit: () => void;
 }) {
   const [discardedCards, setDiscardedCards] = useState<Deck<CityCard | EventCard>>([]);
   const player = usePlayer(playerName);
@@ -38,7 +40,10 @@ export function DiscardModal({
       />
       <Button
         disabled={player?.hand.length - discardedCards.length > 7}
-        onClick={() => discardCards(discardedCards)}
+        onClick={() => {
+          discardCards(discardedCards);
+          onSubmit();
+        }}
       >
         Discard
       </Button>

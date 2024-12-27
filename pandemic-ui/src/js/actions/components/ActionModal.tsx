@@ -5,7 +5,15 @@ import { Modal } from '../../components/Modal';
 import { Action } from '../../types/Action';
 import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
 
-export function ActionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export function ActionModal({
+  isOpen,
+  onClose,
+  onSubmit,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  onSubmit: () => void;
+}) {
   const [actionName, setActionName] = useState<Action['name'] | null>(null);
   const currentPlayer = useCurrentPlayer();
   const action = currentPlayer?.role.actions.find((action) => action.name === actionName);
@@ -25,7 +33,7 @@ export function ActionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
           <ActionButton key={name} isSelected={name === actionName} onSelect={setActionName} />
         ))}
       </div>
-      {action ? <action.ActionForm /> : null}
+      {action ? <action.ActionForm onSubmit={onSubmit} /> : null}
     </Modal>
   );
 }

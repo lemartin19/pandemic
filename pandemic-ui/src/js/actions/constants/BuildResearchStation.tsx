@@ -13,12 +13,12 @@ const BUILD_RESEARCH_STATION_DESCRIPTION =
 export const BUILD_RESEARCH_STATION: Action = {
   name: BUILD_RESEARCH_STATION_NAME,
   description: BUILD_RESEARCH_STATION_DESCRIPTION,
-  ActionForm: () => {
+  ActionForm: ({ onSubmit }) => {
     const currentPlayer = useCurrentPlayer();
     const mapDispatch = useMapDispatch();
     const playerDispatch = usePlayerDispatch();
     const decksDispatch = useDecksDispatch();
-    const onSubmit = () => {
+    const handleSubmit = () => {
       const cityCard = currentPlayer?.hand.find(
         (card) => card.name === currentPlayer?.currentLocation
       );
@@ -38,8 +38,9 @@ export const BUILD_RESEARCH_STATION: Action = {
         type: 'discard',
         payload: [cityCard!],
       });
+      onSubmit();
     };
-    return <SubmitButton onClick={onSubmit} />;
+    return <SubmitButton onClick={handleSubmit} />;
   },
   ActionButton: ({
     isSelected,
