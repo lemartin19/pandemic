@@ -4,7 +4,7 @@ import { CityCard, EventCard } from '../../types/Card';
 
 type DecksState = {
   drawPile: Deck;
-  discardPile: Deck;
+  discardPile: Deck<CityCard | EventCard>;
   infectionDeck: Deck<CityCard>;
   infectionDiscard: Deck<CityCard>;
 };
@@ -33,12 +33,18 @@ type IntensifyAction = {
   type: 'intensify';
 };
 
+type RemoveCardFromDeckAction = {
+  type: 'removeCardFromDeck';
+  payload: { cardName: string; deck: keyof DecksState };
+};
+
 type DecksActions =
   | InitDecksAction
   | PlayerDrawAction
   | InfectionDrawAction
   | DiscardAction
-  | IntensifyAction;
+  | IntensifyAction
+  | RemoveCardFromDeckAction;
 
 function decksReducer(state: DecksState, action: DecksActions): DecksState {
   switch (action.type) {
@@ -76,6 +82,16 @@ function decksReducer(state: DecksState, action: DecksActions): DecksState {
         ...state,
         infectionDeck: newInfectionDeck,
         infectionDiscard: [],
+      };
+    }
+    case 'removeCardFromDeck': {
+      const newDeck = state[action.payload.deck].filter(
+        // @ts-expect-error
+        (card) => card.name !== action.payload.cardName
+      );
+      return {
+        ...state,
+        [action.payload.deck]: newDeck,
       };
     }
     default:

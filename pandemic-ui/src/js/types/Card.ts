@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { Color } from './Disease';
 import { GamePlay } from './GamePlay';
 
@@ -16,6 +17,7 @@ export interface EventCard {
   name: string;
   description: string;
   allowedIn: readonly GamePlay['type'][];
+  EventForm: FC<{ onSubmit: () => void }>;
 }
 
 export type Card = EpidemicCard | CityCard | EventCard;

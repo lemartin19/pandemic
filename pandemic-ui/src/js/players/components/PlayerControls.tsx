@@ -1,16 +1,17 @@
 import { PropsWithChildren } from 'react';
-import { Player } from '../../types/Player';
-import { calculateFontColor } from '../../utils/calculateFontColor';
-import { Button } from '../../components/Button';
-import { isEventCard } from '../../types/Card';
 import { useCurrentGameplayState } from '../../app/store/GamePlayQueue';
 import { Tooltip } from '../../components/Tooltip';
+import { EventCard, isEventCard } from '../../types/Card';
+import { Deck } from '../../types/Deck';
+import { Player } from '../../types/Player';
+import { calculateFontColor } from '../../utils/calculateFontColor';
+import { EventCardButton } from './EventCardButton';
 
 export function PlayerControls({ player, children }: PropsWithChildren<{ player: Player }>) {
   const gameplay = useCurrentGameplayState();
-  const canInterrupt = player.hand.some(
+  const allowedEventCards = player.hand.filter(
     (card) => gameplay && isEventCard(card) && card.allowedIn.includes(gameplay.type)
-  );
+  ) as Deck<EventCard>;
   return (
     <div
       className="PlayerControls"
@@ -25,11 +26,7 @@ export function PlayerControls({ player, children }: PropsWithChildren<{ player:
         <div className="PlayerControls-location">{player.currentLocation}</div>
       </div>
       {children}
-      {canInterrupt && (
-        <Button variant="secondary" size="small">
-          Use Event Card
-        </Button>
-      )}
+      {allowedEventCards.length && <EventCardButton eventCards={allowedEventCards} />}
     </div>
   );
 }

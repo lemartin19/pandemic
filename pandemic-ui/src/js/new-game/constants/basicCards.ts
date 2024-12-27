@@ -1,3 +1,7 @@
+import { AirliftForm } from '../../events/components/AirliftForm';
+import { GovernmentGrantForm } from '../../events/components/GovernmentGrantForm';
+import { OneQuietNightForm } from '../../events/components/OneQuietNightForm';
+import { ResilientPopulationForm } from '../../events/components/ResilientPopulationForm';
 import { CityCard, EventCard } from '../../types/Card';
 import { Color } from '../../types/Disease';
 import {
@@ -51,22 +55,24 @@ export const BASIC_EVENT_CARDS: EventCard[] = [
       'increaseInfectionRate',
       'startEpidemic',
     ] as const,
+    EventForm: AirliftForm,
   },
-  {
-    type: 'event',
-    name: 'Forecast',
-    description:
-      'Draw 6 cards from the infection deck, reorder them and replace them on top of the infection deck.',
-    // TODO: when is this allowed
-    allowedIn: [
-      'waitingForPlayerAction',
-      'waitingForPlayerDraw',
-      'infectCities',
-      'intensifyEpidemic',
-      'increaseInfectionRate',
-      'startEpidemic',
-    ] as const,
-  },
+  // {
+  //   type: 'event',
+  //   name: 'Forecast',
+  //   description:
+  //     'Draw 6 cards from the infection deck, reorder them and replace them on top of the infection deck.',
+  //   // TODO: when is this allowed
+  //   allowedIn: [
+  //     'waitingForPlayerAction',
+  //     'waitingForPlayerDraw',
+  //     'infectCities',
+  //     'intensifyEpidemic',
+  //     'increaseInfectionRate',
+  //     'startEpidemic',
+  //   ] as const,
+  //   EventForm: ForecastForm,
+  // },
   {
     type: 'event',
     name: 'Government Grant',
@@ -79,6 +85,7 @@ export const BASIC_EVENT_CARDS: EventCard[] = [
       'increaseInfectionRate',
       'startEpidemic',
     ] as const,
+    EventForm: GovernmentGrantForm,
   },
   {
     type: 'event',
@@ -86,6 +93,7 @@ export const BASIC_EVENT_CARDS: EventCard[] = [
     description:
       'Remove any city from the infection deck discard pile from the game. Must be played between the Increase and Intensify steps of the game.',
     allowedIn: ['intensifyEpidemic'] as const,
+    EventForm: ResilientPopulationForm,
   },
   {
     type: 'event',
@@ -99,5 +107,6 @@ export const BASIC_EVENT_CARDS: EventCard[] = [
       'increaseInfectionRate',
       'startEpidemic',
     ] as const,
+    EventForm: OneQuietNightForm,
   },
 ];

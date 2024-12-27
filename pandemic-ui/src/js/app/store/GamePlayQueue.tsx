@@ -27,11 +27,16 @@ type NextGameplayStateAction = {
   type: 'nextGameplayState';
 };
 
+type SkipInfectionAction = {
+  type: 'skipInfection';
+};
+
 type GamePlayQueueActions =
   | StartPlayerTurnAction
   | EpidemicAction
   | NextGameplayStateAction
-  | RequirePlayerDiscardAction;
+  | RequirePlayerDiscardAction
+  | SkipInfectionAction;
 
 function queuePlayerTurn(queue: GamePlay[], playerName: string): GamePlay[] {
   return queue.concat(
@@ -81,6 +86,13 @@ function gamePlayQueueReducer(
           ...state.queue,
         ],
       };
+    case 'skipInfection': {
+      const nextInfection = state.queue.findIndex((gamePlay) => gamePlay.type === 'infectCities');
+      if (nextInfection === -1) return state;
+      return {
+        queue: [...state.queue.slice(0, nextInfection), ...state.queue.slice(nextInfection + 1)],
+      };
+    }
     default:
       return state;
   }
