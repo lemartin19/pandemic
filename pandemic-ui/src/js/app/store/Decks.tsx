@@ -14,17 +14,42 @@ type InitDecksAction = {
   payload: DecksState;
 };
 
+type PlayerDrawAction = {
+  type: 'playerDraw';
+};
+
+type InfectionDrawAction = {
+  type: 'infectionDraw';
+  fromBottom?: boolean;
+};
+
 type DiscardAction = {
   type: 'discard';
   payload: Deck<CityCard | EventCard>;
 };
 
-type DecksActions = InitDecksAction | DiscardAction;
+type DecksActions = InitDecksAction | PlayerDrawAction | InfectionDrawAction | DiscardAction;
 
 function decksReducer(state: DecksState, action: DecksActions): DecksState {
   switch (action.type) {
     case 'initDecks':
       return action.payload;
+    case 'playerDraw':
+      return {
+        ...state,
+        drawPile: state.drawPile.slice(1),
+      };
+    case 'infectionDraw':
+      const newInfectionDeck = [...state.infectionDeck];
+      const drawnCard = action.fromBottom ? newInfectionDeck.pop() : newInfectionDeck.shift();
+      if (!drawnCard) {
+        throw new Error('Infection deck is empty');
+      }
+      return {
+        ...state,
+        infectionDeck: newInfectionDeck,
+        infectionDiscard: [drawnCard, ...state.infectionDiscard],
+      };
     case 'discard':
       return {
         ...state,

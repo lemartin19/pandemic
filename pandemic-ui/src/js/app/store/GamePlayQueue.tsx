@@ -1,6 +1,5 @@
 import { createContext, Dispatch, PropsWithChildren, useContext, useReducer } from 'react';
 import { GamePlay } from '../../types/GamePlay';
-import { usePlayerState } from './Players';
 
 type GamePlayQueueState = {
   queue: GamePlay[];
@@ -13,6 +12,13 @@ type StartPlayerTurnAction = {
   };
 };
 
+type RequirePlayerDiscardAction = {
+  type: 'requirePlayerDiscard';
+  payload: {
+    playerName: string;
+  };
+};
+
 type EpidemicAction = {
   type: 'startEpidemic';
 };
@@ -21,7 +27,11 @@ type NextGameplayStateAction = {
   type: 'nextGameplayState';
 };
 
-type GamePlayQueueActions = StartPlayerTurnAction | EpidemicAction | NextGameplayStateAction;
+type GamePlayQueueActions =
+  | StartPlayerTurnAction
+  | EpidemicAction
+  | NextGameplayStateAction
+  | RequirePlayerDiscardAction;
 
 function queuePlayerTurn(queue: GamePlay[], playerName: string): GamePlay[] {
   return [
@@ -63,6 +73,13 @@ function gamePlayQueueReducer(
     case 'nextGameplayState':
       return {
         queue: state.queue.slice(1),
+      };
+    case 'requirePlayerDiscard':
+      return {
+        queue: [
+          { type: 'waitingForPlayerDiscard', playerName: action.payload.playerName },
+          ...state.queue,
+        ],
       };
     default:
       return state;

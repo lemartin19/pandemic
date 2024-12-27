@@ -1,7 +1,7 @@
 import { useGamePlayQueueDispatch, useGamePlayQueueState } from '../../app/store/GamePlayQueue';
 import { usePlayerState } from '../../app/store/Players';
 
-export function useDispatchNextGameplayState() {
+export function useAdvanceGameplayState() {
   const dispatch = useGamePlayQueueDispatch();
   const { queue } = useGamePlayQueueState();
   const { players } = usePlayerState();

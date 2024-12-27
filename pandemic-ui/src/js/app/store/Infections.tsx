@@ -4,6 +4,8 @@ import { Infections } from '../../types/Infections';
 import { Location } from '../../types/Map';
 import { Color } from '../../types/Disease';
 
+export const OUTBREAK_LIMIT = 3;
+
 type InfectionsState = {
   infections: Infections;
   infectionSaturation: InfectionSaturation;
@@ -32,11 +34,22 @@ type CureDiseaseAction = {
   payload: { color: Color };
 };
 
+type InfectAction = {
+  type: 'infect';
+  payload: { location: Location; color: Color; isEpidemic?: boolean };
+};
+
+type OutbreakAction = {
+  type: 'outbreak';
+};
+
 type InfectionsActions =
   | InitInfectionsAction
   | IncreaseInfectionRateAction
   | TreatDiseaseAction
-  | CureDiseaseAction;
+  | CureDiseaseAction
+  | InfectAction
+  | OutbreakAction;
 
 function calculateEradicated(infections: Infections, color: Color) {
   return Object.values(infections).every((cityInfections) => cityInfections[color] === 0);
@@ -78,6 +91,36 @@ function reducer(state: InfectionsState, action: InfectionsActions): InfectionsS
       const isEradicated = calculateEradicated(state.infections, color);
       const newEradicated = { ...state.eradicated, [color]: isEradicated };
       return { ...state, cured: newCured, eradicated: newEradicated };
+    }
+    case 'outbreak': {
+      return {
+        ...state,
+        outbreaksLeft: state.outbreaksLeft - 1,
+      };
+    }
+    case 'infect': {
+      const { location, color, isEpidemic } = action.payload;
+
+      const isEradicated = state.eradicated[color];
+      if (isEradicated) {
+        return state;
+      }
+
+      const newInfectionsInCity = { ...state.infections[location] };
+      const newInfectionSaturation = { ...state.infectionSaturation };
+      if (isEpidemic) {
+        newInfectionSaturation[color] += OUTBREAK_LIMIT - newInfectionsInCity[color];
+        newInfectionsInCity[color] = OUTBREAK_LIMIT;
+      } else if (newInfectionsInCity[color] < OUTBREAK_LIMIT) {
+        newInfectionSaturation[color] += 1;
+        newInfectionsInCity[color] += 1;
+      }
+
+      return {
+        ...state,
+        infections: { ...state.infections, [location]: newInfectionsInCity },
+        infectionSaturation: newInfectionSaturation,
+      };
     }
     default:
       return state;

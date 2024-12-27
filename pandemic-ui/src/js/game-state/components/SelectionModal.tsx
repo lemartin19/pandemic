@@ -1,15 +1,15 @@
 import { ActionModal } from '../../actions/components/ActionModal';
 import { useCurrentGameplayState } from '../../app/store/GamePlayQueue';
-import { useDispatchNextGameplayState } from '../hooks/useDispatchNextGameplayState';
+import { useAdvanceGameplayState } from '../hooks/useAdvanceGameplayState';
 import { DiscardModal } from './DiscardModal';
 
 export function SelectionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const currentGameplayState = useCurrentGameplayState();
-  const dispatchNextGameplayState = useDispatchNextGameplayState();
+  const advanceGameplayState = useAdvanceGameplayState();
 
   const onSubmit = () => {
     onClose();
-    dispatchNextGameplayState();
+    advanceGameplayState();
   };
 
   switch (currentGameplayState?.type) {

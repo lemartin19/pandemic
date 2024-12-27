@@ -5,10 +5,6 @@ export interface EpidemicCard {
   type: 'epidemic';
 }
 
-export interface InfectionCard {
-  type: 'infection';
-}
-
 export interface CityCard {
   type: 'city';
   name: string;
@@ -22,7 +18,7 @@ export interface EventCard {
   allowedIn: readonly GamePlay['type'][];
 }
 
-export type Card = EpidemicCard | InfectionCard | CityCard | EventCard;
+export type Card = EpidemicCard | CityCard | EventCard;
 
 export function isEventCard(card: Card): card is EventCard {
   return card.type === 'event';
