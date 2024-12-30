@@ -23,12 +23,15 @@ export const SHARE_KNOWLEDGE: Action = {
     const [playerToShareWith, setPlayerToShareWith] = useState<Player | null>(null);
     const currentPlayer = useCurrentPlayer();
     const playersInCity = usePlayersInCity(currentPlayer!.currentLocation);
+    const otherPlayersInCity = playersInCity.filter(
+      (player) => player.name !== currentPlayer!.name
+    );
     return (
       <>
         <PlayerSelect
           value={playerToShareWith}
           onChange={setPlayerToShareWith}
-          players={playersInCity}
+          players={otherPlayersInCity}
         />
         <SubmitButton disabled={!playerToShareWith} onClick={onSubmit} />
       </>
@@ -42,11 +45,15 @@ export const SHARE_KNOWLEDGE: Action = {
     onSelect: (newType: Action['name']) => void;
   }) => {
     const currentPlayer = useCurrentPlayer();
+    if (!currentPlayer) {
+      throw new Error('Current player not found');
+    }
+
     const playersInCity = usePlayersInCity(currentPlayer!.currentLocation);
-    const hasCurrentCityCard =
-      isLocationInHand(currentPlayer!, currentPlayer!.currentLocation) ||
-      playersInCity.some((player) => isLocationInHand(player, currentPlayer!.currentLocation));
-    const disabled = !playersInCity.length || !hasCurrentCityCard;
+    const hasCurrentCityCard = playersInCity.some((player) =>
+      isLocationInHand(player, currentPlayer!.currentLocation)
+    );
+    const disabled = playersInCity.length <= 1 || !hasCurrentCityCard;
 
     return (
       <DefaultActionButton
