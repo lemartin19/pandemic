@@ -48,11 +48,7 @@ export const TEST_GAME_2: SavedGame = {
           name: 'Istanbul',
           color: 'black',
         },
-        {
-          type: 'city',
-          name: 'Kolkata',
-          color: 'black',
-        },
+        BASIC_EVENT_CARDS.find((card) => card.name === 'Resilient Population')!,
       ],
       currentLocation: 'Atlanta',
       role: BASIC_ROLES.find((role) => role.name === 'Scientist')!,
@@ -387,42 +383,12 @@ export const TEST_GAME_2: SavedGame = {
         name: 'Chennai',
         color: 'black',
       },
-      {
-        type: 'city',
-        name: 'Mumbai',
-        color: 'black',
-      },
-      {
-        type: 'city',
-        name: 'Shanghai',
-        color: 'red',
-      },
-      {
-        type: 'city',
-        name: 'Washington',
-        color: 'blue',
-      },
-      {
-        type: 'city',
-        name: 'Riyadh',
-        color: 'black',
-      },
-      {
-        type: 'city',
-        name: 'Delhi',
-        color: 'black',
-      },
-      {
-        type: 'city',
-        name: 'Sydney',
-        color: 'red',
-      },
     ],
     infectionDeck: [
       {
         type: 'city',
-        name: 'Mumbai',
-        color: 'black',
+        name: 'Atlanta',
+        color: 'blue',
       },
     ],
     drawPile: [
@@ -679,55 +645,8 @@ export const TEST_GAME_2: SavedGame = {
   },
   gamePlayQueue: [
     {
-      type: 'waitingForPlayerAction',
-      playerName: 'Player 1',
-    },
-    {
-      type: 'waitingForPlayerAction',
-      playerName: 'Player 1',
-    },
-    {
-      type: 'waitingForPlayerAction',
-      playerName: 'Player 1',
-    },
-    {
-      type: 'waitingForPlayerAction',
-      playerName: 'Player 1',
-    },
-    {
       type: 'waitingForPlayerDraw',
       playerName: 'Player 1',
-    },
-    {
-      type: 'waitingForPlayerDraw',
-      playerName: 'Player 1',
-    },
-    {
-      type: 'infectCities',
-    },
-    {
-      type: 'waitingForPlayerAction',
-      playerName: 'Player 2',
-    },
-    {
-      type: 'waitingForPlayerAction',
-      playerName: 'Player 2',
-    },
-    {
-      type: 'waitingForPlayerAction',
-      playerName: 'Player 2',
-    },
-    {
-      type: 'waitingForPlayerAction',
-      playerName: 'Player 2',
-    },
-    {
-      type: 'waitingForPlayerDraw',
-      playerName: 'Player 2',
-    },
-    {
-      type: 'waitingForPlayerDraw',
-      playerName: 'Player 2',
     },
     {
       type: 'infectCities',
