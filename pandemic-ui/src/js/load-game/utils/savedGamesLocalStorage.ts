@@ -1,6 +1,7 @@
 import { Deck } from '../../types/Deck';
 import { Player } from '../../types/Player';
 import { TEST_GAME_1 } from '../constants/testGame1';
+import { TEST_GAME_2 } from '../constants/testGame2';
 import { SavedGame } from '../types/SavedGame';
 
 const SAVED_GAMES_KEY = 'Pandemic:SaveGames';
@@ -125,6 +126,7 @@ export const getSavedGames = (includeTestGames?: boolean) => {
 
     if (includeTestGames) {
       parsedGames[TEST_GAME_1.name] = TEST_GAME_1;
+      parsedGames[TEST_GAME_2.name] = TEST_GAME_2;
     }
 
     return parsedGames;
