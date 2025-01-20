@@ -28,7 +28,7 @@ function getEpidemicCardsForDifficulty(difficulty: 'easy' | 'medium' | 'hard'): 
 const getInitialPlayerHandSize = (players: Player[]): number => {
   switch (players.length) {
     case 2:
-      return 2;
+      return 4;
     case 3:
       return 3;
     case 4:
