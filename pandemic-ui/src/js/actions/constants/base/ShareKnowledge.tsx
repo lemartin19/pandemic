@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { usePlayersInCity } from '../../app/store/Players';
-import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
-import { Action } from '../../types/Action';
-import { Location } from '../../types/Map';
-import { Player } from '../../types/Player';
-import { DefaultActionButton } from '../components/DefaultActionButton';
-import { PlayerSelect } from '../components/PlayerSelect';
-import { SubmitButton } from '../components/SubmitButton';
+import { usePlayersInCity } from '../../../app/store/Players';
+import { useCurrentPlayer } from '../../../players/hooks/useCurrentPlayer';
+import { Action } from '../../../types/Action';
+import { Location } from '../../../types/Map';
+import { Player } from '../../../types/Player';
+import { DefaultActionButton } from '../../components/DefaultActionButton';
+import { PlayerSelect } from '../../components/PlayerSelect';
+import { SubmitButton } from '../../components/SubmitButton';
 
 const SHARE_KNOWLEDGE_NAME = 'Share Knowledge';
 const SHARE_KNOWLEDGE_DESCRIPTION =

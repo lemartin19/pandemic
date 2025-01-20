@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { usePlayerDispatch } from '../../app/store/Players';
-import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
-import { Action } from '../../types/Action';
-import { DefaultActionButton } from '../components/DefaultActionButton';
-import { SubmitButton } from '../components/SubmitButton';
-import { HandLocationForm } from '../components/HandLocationForm';
-import { CityCard, isEventCard } from '../../types/Card';
-import { useDecksDispatch } from '../../app/store/Decks';
+import { useDecksDispatch } from '../../../app/store/Decks';
+import { usePlayerDispatch } from '../../../app/store/Players';
+import { useCurrentPlayer } from '../../../players/hooks/useCurrentPlayer';
+import { Action } from '../../../types/Action';
+import { CityCard, isEventCard } from '../../../types/Card';
+import { DefaultActionButton } from '../../components/DefaultActionButton';
+import { HandLocationForm } from '../../components/HandLocationForm';
+import { SubmitButton } from '../../components/SubmitButton';
 
 const FLY_NAME = 'Fly';
 const FLY_DESCRIPTION = 'Fly to a city by discarding its city card.';

@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { useInfectionsDispatch, useInfectionsState } from '../../app/store/Infections';
-import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
-import { Action } from '../../types/Action';
-import { ColorSelect } from '../components/ColorSelect';
-import { DefaultActionButton } from '../components/DefaultActionButton';
-import { SubmitButton } from '../components/SubmitButton';
-import { Color } from '../../types/Disease';
+import { useInfectionsDispatch, useInfectionsState } from '../../../app/store/Infections';
+import { useCurrentPlayer } from '../../../players/hooks/useCurrentPlayer';
+import { Action } from '../../../types/Action';
+import { Color } from '../../../types/Disease';
+import { ColorSelect } from '../../components/ColorSelect';
+import { DefaultActionButton } from '../../components/DefaultActionButton';
+import { SubmitButton } from '../../components/SubmitButton';
 
 const TREAT_DISEASE_NAME = 'Treat';
 const TREAT_DISEASE_DESCRIPTION = 'Treat a disease in a city';

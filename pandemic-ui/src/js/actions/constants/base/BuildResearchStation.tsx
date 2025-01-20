@@ -1,19 +1,21 @@
-import { usePlayerDispatch } from '../../app/store/Players';
-import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
-import { Action } from '../../types/Action';
-import { DefaultActionButton } from '../components/DefaultActionButton';
-import { SubmitButton } from '../components/SubmitButton';
-import { useDecksDispatch } from '../../app/store/Decks';
+import { useDecksDispatch } from '../../../app/store/Decks';
+import { useMapDispatch } from '../../../app/store/Map';
+import { usePlayerDispatch } from '../../../app/store/Players';
+import { useCurrentPlayer } from '../../../players/hooks/useCurrentPlayer';
+import { Action } from '../../../types/Action';
+import { DefaultActionButton } from '../../components/DefaultActionButton';
+import { SubmitButton } from '../../components/SubmitButton';
 
-const CHARTER_NAME = 'Charter';
-const CHARTER_DESCRIPTION =
-  'Charter a flight to any city by discarding the city card for your current location.';
+const BUILD_RESEARCH_STATION_NAME = 'Build Research Station';
+const BUILD_RESEARCH_STATION_DESCRIPTION =
+  'Build a research station in your current city by discarding its city card.';
 
-export const CHARTER: Action = {
-  name: CHARTER_NAME,
-  description: CHARTER_DESCRIPTION,
+export const BUILD_RESEARCH_STATION: Action = {
+  name: BUILD_RESEARCH_STATION_NAME,
+  description: BUILD_RESEARCH_STATION_DESCRIPTION,
   ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {
     const currentPlayer = useCurrentPlayer();
+    const mapDispatch = useMapDispatch();
     const playerDispatch = usePlayerDispatch();
     const decksDispatch = useDecksDispatch();
     const handleSubmit = () => {
@@ -24,9 +26,9 @@ export const CHARTER: Action = {
         return;
       }
 
-      playerDispatch({
-        type: 'movePlayer',
-        payload: { playerName: currentPlayer!.name, location: cityCard!.name },
+      mapDispatch({
+        type: 'buildResearchStation',
+        payload: { location: currentPlayer!.currentLocation },
       });
       playerDispatch({
         type: 'removeFromHand',
@@ -54,8 +56,8 @@ export const CHARTER: Action = {
     const disabled = !hasCurrentCityCard;
     return (
       <DefaultActionButton
-        name={CHARTER_NAME}
-        description={CHARTER_DESCRIPTION}
+        name={BUILD_RESEARCH_STATION_NAME}
+        description={BUILD_RESEARCH_STATION_DESCRIPTION}
         isSelected={isSelected}
         onSelect={onSelect}
         disabled={disabled}

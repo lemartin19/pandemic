@@ -1,14 +1,14 @@
-import { usePlayerDispatch } from '../../app/store/Players';
-import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
-import { Action } from '../../types/Action';
-import { DefaultActionButton } from '../components/DefaultActionButton';
-import { SubmitButton } from '../components/SubmitButton';
-import { useDecksDispatch } from '../../app/store/Decks';
-import { CityCard, isEventCard } from '../../types/Card';
 import { useState } from 'react';
-import { useMapState } from '../../app/store/Map';
-import { useInfectionsDispatch } from '../../app/store/Infections';
-import { HandCureForm } from '../components/HandCureForm';
+import { useDecksDispatch } from '../../../app/store/Decks';
+import { useInfectionsDispatch } from '../../../app/store/Infections';
+import { useMapState } from '../../../app/store/Map';
+import { usePlayerDispatch } from '../../../app/store/Players';
+import { useCurrentPlayer } from '../../../players/hooks/useCurrentPlayer';
+import { Action } from '../../../types/Action';
+import { CityCard, isEventCard } from '../../../types/Card';
+import { DefaultActionButton } from '../../components/DefaultActionButton';
+import { HandCureForm } from '../../components/HandCureForm';
+import { SubmitButton } from '../../components/SubmitButton';
 
 const CURE_NAME = 'Cure';
 const CURE_DESCRIPTION = 'Cure a disease by discarding 5 city cards of the same color.';

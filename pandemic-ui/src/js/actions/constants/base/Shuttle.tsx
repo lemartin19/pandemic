@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { Action } from '../../types/Action';
-import { SubmitButton } from '../components/SubmitButton';
-import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
-import { usePlayerDispatch } from '../../app/store/Players';
-import { ResearchStationForm } from '../components/ResearchStationForm';
-import { Location } from '../../types/Map';
-import { DefaultActionButton } from '../components/DefaultActionButton';
-import { useMapState } from '../../app/store/Map';
+import { useMapState } from '../../../app/store/Map';
+import { usePlayerDispatch } from '../../../app/store/Players';
+import { useCurrentPlayer } from '../../../players/hooks/useCurrentPlayer';
+import { Action } from '../../../types/Action';
+import { Location } from '../../../types/Map';
+import { DefaultActionButton } from '../../components/DefaultActionButton';
+import { ResearchStationForm } from '../../components/ResearchStationForm';
+import { SubmitButton } from '../../components/SubmitButton';
 
 const SHUTTLE_NAME = 'Shuttle';
 const SHUTTLE_DESCRIPTION = 'Move your player between research stations.';

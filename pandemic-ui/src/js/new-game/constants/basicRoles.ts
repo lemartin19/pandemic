@@ -1,11 +1,13 @@
-import { BUILD_RESEARCH_STATION } from '../../actions/constants/BuildResearchStation';
-import { CHARTER } from '../../actions/constants/Charter';
-import { CURE } from '../../actions/constants/Cure';
-import { DRIVE_FERRY } from '../../actions/constants/DriveFerry';
-import { FLY } from '../../actions/constants/Fly';
-import { SHARE_KNOWLEDGE } from '../../actions/constants/ShareKnowledge';
-import { SHUTTLE } from '../../actions/constants/Shuttle';
-import { TREAT_DISEASE } from '../../actions/constants/Treat';
+import { BUILD_RESEARCH_STATION } from '../../actions/constants/base/BuildResearchStation';
+import { CHARTER } from '../../actions/constants/base/Charter';
+import { CURE } from '../../actions/constants/base/Cure';
+import { DRIVE_FERRY } from '../../actions/constants/base/DriveFerry';
+import { FLY } from '../../actions/constants/base/Fly';
+import { SHARE_KNOWLEDGE } from '../../actions/constants/base/ShareKnowledge';
+import { SHUTTLE } from '../../actions/constants/base/Shuttle';
+import { TREAT_DISEASE } from '../../actions/constants/base/Treat';
+import { MEDIC_TREAT_DISEASE } from '../../actions/constants/medic/MedicTreat';
+import { SCIENTIST_CURE } from '../../actions/constants/scientist/ScientistCure';
 import { Role } from '../../types/Role';
 
 export const BASIC_ROLES: Role[] = [
@@ -19,7 +21,7 @@ export const BASIC_ROLES: Role[] = [
       CHARTER,
       SHUTTLE,
       BUILD_RESEARCH_STATION,
-      TREAT_DISEASE,
+      MEDIC_TREAT_DISEASE,
       SHARE_KNOWLEDGE,
       CURE,
     ],
@@ -35,7 +37,7 @@ export const BASIC_ROLES: Role[] = [
       BUILD_RESEARCH_STATION,
       TREAT_DISEASE,
       SHARE_KNOWLEDGE,
-      CURE,
+      SCIENTIST_CURE,
     ],
   },
   {

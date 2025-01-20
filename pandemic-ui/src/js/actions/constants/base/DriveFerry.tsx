@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { usePlayerDispatch } from '../../app/store/Players';
-import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
-import { Action } from '../../types/Action';
-import { Location } from '../../types/Map';
-import { AdjacentLocationForm } from '../components/AdjacentLocationForm';
-import { DefaultActionButton } from '../components/DefaultActionButton';
-import { SubmitButton } from '../components/SubmitButton';
+import { usePlayerDispatch } from '../../../app/store/Players';
+import { useCurrentPlayer } from '../../../players/hooks/useCurrentPlayer';
+import { Action } from '../../../types/Action';
+import { Location } from '../../../types/Map';
+import { AdjacentLocationForm } from '../../components/AdjacentLocationForm';
+import { DefaultActionButton } from '../../components/DefaultActionButton';
+import { SubmitButton } from '../../components/SubmitButton';
 
 const DRIVE_FERRY_NAME = 'Drive/Ferry';
 const DRIVE_FERRY_DESCRIPTION = 'Drive or ferry to an adjacent city';
