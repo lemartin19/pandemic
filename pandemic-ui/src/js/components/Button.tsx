@@ -1,5 +1,3 @@
-import '../../css/Button.css';
-
 import { PropsWithChildren, ButtonHTMLAttributes } from 'react';
 import { calculateFontColor } from '../utils/calculateFontColor';
 

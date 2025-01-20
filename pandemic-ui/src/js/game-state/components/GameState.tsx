@@ -1,6 +1,4 @@
-import '../../../css/GameState.css';
 import { GamePlayQueue } from './GamePlayQueue';
-
 import { GameStateButton } from './GameStateButton';
 import { InfectionRate } from './InfectionRate';
 import { OutbreaksLeft } from './OutbreaksLeft';

@@ -1,5 +1,3 @@
-import '../../../css/NewGame.css';
-
 import { useNavigate } from 'react-router-dom';
 import { useInitGame } from '../hooks/useInitGame';
 import { createInitialDecks } from '../utils/createInitialDecks';

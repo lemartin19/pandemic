@@ -1,4 +1,3 @@
-import '../../css/Tooltip.css';
 import { PropsWithChildren, ReactNode } from 'react';
 
 type TooltipPosition = 'left' | 'right' | 'bottom' | 'top';

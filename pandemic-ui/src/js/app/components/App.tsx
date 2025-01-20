@@ -1,5 +1,3 @@
-import '../../../css/App.css';
-
 import { StrictMode } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { NewGame } from '../../new-game/components/NewGame';

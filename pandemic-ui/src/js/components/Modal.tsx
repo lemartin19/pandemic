@@ -1,4 +1,3 @@
-import '../../css/Modal.css';
 import { PropsWithChildren, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 

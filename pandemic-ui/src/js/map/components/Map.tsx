@@ -1,5 +1,3 @@
-import '../../../css/Map.css';
-
 import { useMapState } from '../../app/store/Map';
 import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
 import { City } from './City';

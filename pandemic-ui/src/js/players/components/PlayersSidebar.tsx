@@ -1,5 +1,3 @@
-import '../../../css/PlayersSidebar.css';
-
 import { usePlayerState } from '../../app/store/Players';
 import { PlayerControls } from './PlayerControls';
 import { PlayerHand } from './PlayerHand';

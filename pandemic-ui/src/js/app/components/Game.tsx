@@ -1,4 +1,3 @@
-import '../../../css/Game.css';
 import { GameState } from '../../game-state/components/GameState';
 import { Map } from '../../map/components/Map';
 import { PlayersSidebar } from '../../players/components/PlayersSidebar';

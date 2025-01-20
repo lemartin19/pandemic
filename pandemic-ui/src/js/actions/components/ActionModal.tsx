@@ -1,5 +1,3 @@
-import '../../../css/Actions.css';
-
 import { useState } from 'react';
 import { Modal } from '../../components/Modal';
 import { Action } from '../../types/Action';
