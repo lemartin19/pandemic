@@ -13,7 +13,7 @@ function NavItem({ href, children }: { href: string; children: ReactNode }) {
 
 export function Navigation() {
   return (
-    <nav aria-label="Main navigation">
+    <nav aria-label="Main navigation" className="Navigation">
       <header>
         <h1 className="Navigation-title">Pandemic</h1>
       </header>

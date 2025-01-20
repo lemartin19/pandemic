@@ -8,7 +8,7 @@ export function PlayersSelect({
   onChange: (__event: ChangeEvent<HTMLSelectElement>) => void;
 }) {
   return (
-    <div className="form-group">
+    <div className="PlayersSelect">
       <label htmlFor="numberOfPlayers">Number of Players</label>
       <select id="numberOfPlayers" name="numberOfPlayers" value={value} onChange={onChange}>
         <option value={2}>2 Players</option>

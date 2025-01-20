@@ -11,7 +11,7 @@ export function PlayerInput({
   onChange: (__event: ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
-    <div className="form-group">
+    <div className="PlayerInput">
       <label htmlFor={player.name}>{player.name}</label>
       <input type="text" id={player.name} name="name" value={player.name} onChange={onChange} />
       <input type="color" id={player.name} name="color" value={player.color} onChange={onChange} />

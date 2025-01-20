@@ -8,7 +8,7 @@ export function DifficultySelect({
   onChange: (__event: ChangeEvent<HTMLSelectElement>) => void;
 }) {
   return (
-    <div className="form-group">
+    <div className="DifficultySelect">
       <label htmlFor="difficulty">Difficulty</label>
       <select id="difficulty" name="difficulty" value={value} onChange={onChange}>
         <option value="easy">Easy</option>
