@@ -31,12 +31,18 @@ type SkipInfectionAction = {
   type: 'skipInfection';
 };
 
+type InitGameplayStateAction = {
+  type: 'initGameplayState';
+  payload: GamePlayQueueState;
+};
+
 type GamePlayQueueActions =
   | StartPlayerTurnAction
   | EpidemicAction
   | NextGameplayStateAction
   | RequirePlayerDiscardAction
-  | SkipInfectionAction;
+  | SkipInfectionAction
+  | InitGameplayStateAction;
 
 function queuePlayerTurn(queue: GamePlay[], playerName: string): GamePlay[] {
   return queue.concat(
@@ -93,6 +99,8 @@ function gamePlayQueueReducer(
         queue: [...state.queue.slice(0, nextInfection), ...state.queue.slice(nextInfection + 1)],
       };
     }
+    case 'initGameplayState':
+      return action.payload;
     default:
       return state;
   }

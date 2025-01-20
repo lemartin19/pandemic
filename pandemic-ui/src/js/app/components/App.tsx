@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { LoadGame } from '../../load-game/components/LoadGame';
 import { NewGame } from '../../new-game/components/NewGame';
 import { Provider } from '../store/Provider';
 import { Game } from './Game';
@@ -17,6 +18,7 @@ export function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/new-game" element={<NewGame />} />
+              <Route path="/load-game" element={<LoadGame />} />
               <Route path="/rules" element={<Rules />} />
               <Route path="/game" element={<Game />} />
             </Routes>

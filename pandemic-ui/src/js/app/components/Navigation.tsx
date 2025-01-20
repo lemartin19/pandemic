@@ -19,9 +19,9 @@ export function Navigation() {
       </header>
       <ul className="Navigation-list">
         <NavItem href="/">Home</NavItem>
-        <NavItem href="/new-game">Start New Game</NavItem>
         <NavItem href="/rules">Rules</NavItem>
-        <NavItem href="/game/:id">Existing Game</NavItem>
+        <NavItem href="/new-game">Start New Game</NavItem>
+        <NavItem href="/load-game">Existing Game</NavItem>
       </ul>
     </nav>
   );
