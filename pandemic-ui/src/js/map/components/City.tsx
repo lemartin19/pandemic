@@ -13,11 +13,11 @@ const getLabelPositionClass = (labelPosition: 'top' | 'bottom' | 'left' | 'right
     case 'top':
       return '-top-6 left-1/2 -translate-x-1/2';
     case 'bottom':
-      return '-bottom-8 left-1/2 -translate-x-1/2';
+      return '-bottom-6 left-1/2 -translate-x-1/2';
     case 'left':
       return 'top-1/2 -translate-y-1/2 -left-2 -translate-x-full';
     case 'right':
-      return 'top-1/2 -translate-y-1/2 -right-2 translate-x-full';
+      return 'top-1/2 -translate-y-1/2 -right-1 translate-x-full';
     default:
       return 'top-1/2 -translate-y-1/2 -translate-x-1/2';
   }

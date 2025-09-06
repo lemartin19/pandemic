@@ -235,6 +235,9 @@
   .top-1\/2 {
     top: calc(1/2 * 100%);
   }
+  .-right-1 {
+    right: calc(var(--spacing) * -1);
+  }
   .-right-2 {
     right: calc(var(--spacing) * -2);
   }

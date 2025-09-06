@@ -24,7 +24,7 @@ export const CITY_POSITIONS: Record<
   // South America
   Bogota: { x: 31, y: 60, labelPosition: 'right' },
   Lima: { x: 30, y: 69, labelPosition: 'left' },
-  Santiago: { x: 32, y: 78, labelPosition: 'bottom' },
+  Santiago: { x: 32, y: 78, labelPosition: 'left' },
   'Buenos Aires': { x: 37, y: 78, labelPosition: 'bottom' },
   'Sao Paulo': { x: 38, y: 68, labelPosition: 'right' },
 
@@ -57,8 +57,8 @@ export const CITY_POSITIONS: Record<
   Taipei: { x: 80, y: 48, labelPosition: 'right' },
   'Hong Kong': { x: 78, y: 49, labelPosition: 'left' },
   Manila: { x: 80, y: 53, labelPosition: 'right' },
-  Bangkok: { x: 75, y: 55, labelPosition: 'left' },
-  'Ho Chi Minh City': { x: 77, y: 56.5, labelPosition: 'bottom' },
+  Bangkok: { x: 75, y: 55, labelPosition: 'bottom' },
+  'Ho Chi Minh City': { x: 77, y: 56.5, labelPosition: 'right' },
   Jakarta: { x: 76, y: 65.5, labelPosition: 'bottom' },
-  Sydney: { x: 87, y: 85, labelPosition: 'top' },
+  Sydney: { x: 87, y: 85, labelPosition: 'right' },
 };
