@@ -13,8 +13,8 @@ export function App() {
     <StrictMode>
       <Provider>
         <Navigation />
-        <div className="App">
-          <main className="App-main">
+        <div className="flex flex-col items-center justify-center">
+          <main className="w-full h-full overflow-hidden">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/new-game" element={<NewGame />} />
