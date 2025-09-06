@@ -1,6 +1,8 @@
 import { useMapState } from '../../app/store/Map';
 import { useCurrentPlayer } from '../../players/hooks/useCurrentPlayer';
 import { City } from './City';
+// @ts-expect-error image is not typed
+import MapImage from '../../../images/map.png';
 
 export function Map() {
   const currentPlayer = useCurrentPlayer();
@@ -14,7 +16,7 @@ export function Map() {
         style={{
           aspectRatio: '2/1',
           backgroundSize: '100%',
-          backgroundImage: `url('/map.png')`,
+          backgroundImage: `url(${MapImage})`,
         }}
       >
         {map.map((city) => (
