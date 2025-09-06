@@ -4,7 +4,6 @@ export function GameOverview() {
   return (
     <>
       <section>
-        <SectionHeader>Game Overview</SectionHeader>
         <p>
           Pandemic is a cooperative board game where players work together as disease-fighting
           specialists to treat infections around the world and gather resources for cures. Players

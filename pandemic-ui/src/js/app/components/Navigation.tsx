@@ -7,7 +7,7 @@ function NavItem({ href, children }: { href: string; children: ReactNode }) {
     <li>
       <Link 
         to={href} 
-        className="text-white no-underline px-4 py-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+        className="text-white no-underline px-4 py-2 hover:text-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
       >
         {children}
       </Link>
