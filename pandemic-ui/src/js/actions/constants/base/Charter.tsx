@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { useDecksDispatch } from '../../../app/store/Decks';
+import { useMapState } from '../../../app/store/Map';
 import { usePlayerDispatch } from '../../../app/store/Players';
 import { useCurrentPlayer } from '../../../players/hooks/useCurrentPlayer';
 import { Action } from '../../../types/Action';
+import { Location } from '../../../types/Map';
 import { DefaultActionButton } from '../../components/DefaultActionButton';
+import { LocationSelect } from '../../components/LocationSelect';
 import { SubmitButton } from '../../components/SubmitButton';
 
 const CHARTER_NAME = 'Charter';
@@ -14,19 +18,22 @@ export const CHARTER: Action = {
   description: CHARTER_DESCRIPTION,
   ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {
     const currentPlayer = useCurrentPlayer();
+    const [location, setLocation] = useState<Location | null>(null);
+    const { map } = useMapState();
     const playerDispatch = usePlayerDispatch();
     const decksDispatch = useDecksDispatch();
+
     const handleSubmit = () => {
       const cityCard = currentPlayer?.hand.find(
         (card) => card.name === currentPlayer?.currentLocation
       );
-      if (!cityCard) {
+      if (!cityCard || !location) {
         return;
       }
 
       playerDispatch({
         type: 'movePlayer',
-        payload: { playerName: currentPlayer!.name, location: cityCard!.name },
+        payload: { playerName: currentPlayer!.name, location },
       });
       playerDispatch({
         type: 'removeFromHand',
@@ -38,7 +45,16 @@ export const CHARTER: Action = {
       });
       onSubmit();
     };
-    return <SubmitButton onClick={handleSubmit} />;
+    return (
+      <>
+        <LocationSelect
+          value={location}
+          onChange={setLocation}
+          availableLocations={map.map((city) => city.name)}
+        />
+        <SubmitButton disabled={!location} onClick={handleSubmit} />
+      </>
+    );
   },
   ActionButton: ({
     isSelected,
