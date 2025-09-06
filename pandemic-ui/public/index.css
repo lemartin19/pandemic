@@ -11,6 +11,7 @@
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-red-700: oklch(50.5% 0.213 27.518);
     --color-yellow-400: oklch(85.2% 0.199 91.936);
+    --color-cyan-300: oklch(86.5% 0.127 207.078);
     --color-blue-100: oklch(93.2% 0.032 255.585);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-300: oklch(80.9% 0.105 251.813);
@@ -279,6 +280,9 @@
   .m-5 {
     margin: calc(var(--spacing) * 5);
   }
+  .mx-4 {
+    margin-inline: calc(var(--spacing) * 4);
+  }
   .mx-auto {
     margin-inline: auto;
   }
@@ -357,6 +361,9 @@
   .max-h-\[calc\(100vh-120px\)\] {
     max-height: calc(100vh - 120px);
   }
+  .min-h-40 {
+    min-height: calc(var(--spacing) * 40);
+  }
   .min-h-96 {
     min-height: calc(var(--spacing) * 96);
   }
@@ -368,6 +375,9 @@
   }
   .w-5 {
     width: calc(var(--spacing) * 5);
+  }
+  .w-40 {
+    width: calc(var(--spacing) * 40);
   }
   .w-\[90\%\] {
     width: 90%;
@@ -459,11 +469,17 @@
   .items-center {
     align-items: center;
   }
+  .justify-around {
+    justify-content: space-around;
+  }
   .justify-between {
     justify-content: space-between;
   }
   .justify-center {
     justify-content: center;
+  }
+  .justify-evenly {
+    justify-content: space-evenly;
   }
   .gap-1 {
     gap: calc(var(--spacing) * 1);
@@ -486,6 +502,9 @@
       margin-block-start: calc(calc(var(--spacing) * 1) * var(--tw-space-y-reverse));
       margin-block-end: calc(calc(var(--spacing) * 1) * calc(1 - var(--tw-space-y-reverse)));
     }
+  }
+  .self-end {
+    align-self: flex-end;
   }
   .overflow-hidden {
     overflow: hidden;
@@ -510,6 +529,10 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-2 {
+    border-style: var(--tw-border-style);
+    border-width: 2px;
+  }
   .border-4 {
     border-style: var(--tw-border-style);
     border-width: 4px;
@@ -529,6 +552,9 @@
   .border-none {
     --tw-border-style: none;
     border-style: none;
+  }
+  .border-cyan-300 {
+    border-color: var(--color-cyan-300);
   }
   .border-gray-200 {
     border-color: var(--color-gray-200);
@@ -629,6 +655,9 @@
   .px-6 {
     padding-inline: calc(var(--spacing) * 6);
   }
+  .px-10 {
+    padding-inline: calc(var(--spacing) * 10);
+  }
   .py-0 {
     padding-block: calc(var(--spacing) * 0);
   }
@@ -680,6 +709,9 @@
   .text-xs {
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+  .text-\[10px\] {
+    font-size: 10px;
   }
   .leading-none {
     --tw-leading: 1;

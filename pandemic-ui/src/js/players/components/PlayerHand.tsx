@@ -13,8 +13,8 @@ function Card({
   const backgroundColor = isEventCard(card) ? 'green' : card.color;
   return (
     <div
-      className="PlayerHand-card"
-      style={{ backgroundColor, border: selected ? '2px solid #59e9ff' : 'none' }}
+      className={`p-2 rounded ${selected ? 'border-2 border-cyan-300' : ''}`}
+      style={{ backgroundColor }}
       onClick={() => onSelect?.(card)}
     >
       {card.name}
@@ -33,7 +33,7 @@ export function PlayerHand({
   onSelect?: (card: CityCard | EventCard) => void;
 }) {
   return (
-    <div className="PlayerHand">
+    <div className="flex flex-col items-center gap-2 text-xs">
       {hand.map((card) => (
         <Card key={card.name} card={card} selected={selected?.includes(card)} onSelect={onSelect} />
       ))}

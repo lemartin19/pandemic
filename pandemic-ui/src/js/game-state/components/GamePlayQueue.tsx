@@ -58,15 +58,13 @@ export function GamePlayQueue() {
   const nextItems = queue.slice(1, QUEUE_PREVIEW_LENGTH + 1);
 
   return (
-    <div className="">
-      <ul className="list-none space-y-1">
-        {nextItems.map((item: GamePlay, index: number) => (
-          <li className="text-sm" key={index}>
-            <GamePlayQueueItem gamePlay={item} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="flex items-center gap-2 list-none">
+      {nextItems.map((item: GamePlay, index: number) => (
+        <li className="text-sm" key={index}>
+          <GamePlayQueueItem gamePlay={item} />
+        </li>
+      ))}
+    </ul>
   );
 }
 

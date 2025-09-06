@@ -14,16 +14,16 @@ export function PlayerControls({ player, children }: PropsWithChildren<{ player:
   ) as Deck<EventCard>;
   return (
     <div
-      className="PlayerControls"
+      className="flex flex-col items-center justify-evenly min-h-40 w-40 rounded-lg"
       style={{ backgroundColor: player.color, color: calculateFontColor(player.color) }}
     >
-      <div className="PlayerControls-info">
+      <div className="flex flex-col items-center justify-center">
         <div className="PlayerControls-nameRole">
           <Tooltip text={player.role.description} position="left">
             {player.name} ({player.role.name})
           </Tooltip>
         </div>
-        <div className="PlayerControls-location">{player.currentLocation}</div>
+        <div className="text-[10px]">{player.currentLocation}</div>
       </div>
       {children}
       {allowedEventCards.length ? (
