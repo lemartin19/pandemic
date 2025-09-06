@@ -10,8 +10,10 @@ import { DefaultActionButton } from '../../components/DefaultActionButton';
 import { HandCureForm } from '../../components/HandCureForm';
 import { SubmitButton } from '../../components/SubmitButton';
 
+const REQUIRED_CARDS = 5;
+
 const CURE_NAME = 'Cure';
-const CURE_DESCRIPTION = 'Cure a disease by discarding 5 city cards of the same color.';
+const CURE_DESCRIPTION = `Cure a disease by discarding ${REQUIRED_CARDS} city cards of the same color.`;
 
 export const CURE: Action = {
   name: CURE_NAME,
@@ -24,7 +26,8 @@ export const CURE: Action = {
     const infectionsDispatch = useInfectionsDispatch();
 
     const disabled =
-      cards.length !== 5 || !cards.every((card: CityCard) => cards[0].color === card.color);
+      cards.length !== REQUIRED_CARDS ||
+      !cards.every((card: CityCard) => cards[0].color === card.color);
     const handleSubmit = () => {
       playerDispatch({
         type: 'removeFromHand',
@@ -71,7 +74,7 @@ export const CURE: Action = {
       },
       { red: 0, blue: 0, yellow: 0, black: 0 }
     );
-    const hasCure = Object.values(colorCount).some((count) => count >= 5);
+    const hasCure = Object.values(colorCount).some((count) => count >= REQUIRED_CARDS);
     const disabled = !hasCure || !isInResearchStation;
     return (
       <DefaultActionButton
