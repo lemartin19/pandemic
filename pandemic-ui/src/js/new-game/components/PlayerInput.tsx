@@ -11,10 +11,23 @@ export function PlayerInput({
   onChange: (__event: ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
-    <div className="PlayerInput">
-      <label htmlFor={player.name}>{player.name}</label>
-      <input type="text" id={player.name} name="name" value={player.name} onChange={onChange} />
-      <input type="color" id={player.name} name="color" value={player.color} onChange={onChange} />
+    <div className="flex flex-col gap-2">
+      <input
+        type="text"
+        id={player.name}
+        name="name"
+        value={player.name}
+        onChange={onChange}
+        className={`p-2 border ${!player.name ? 'border-red-500' : 'border-gray-300'} rounded text-base`}
+      />
+      <input
+        type="color"
+        id={player.name}
+        name="color"
+        value={player.color}
+        onChange={onChange}
+        className="rounded text-base"
+      />
     </div>
   );
 }

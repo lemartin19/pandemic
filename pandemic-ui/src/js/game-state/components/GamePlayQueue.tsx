@@ -14,7 +14,7 @@ function StyledPlayerColor({ children, playerName }: PropsWithChildren<{ playerN
   return (
     <span
       style={{ backgroundColor: playerColor, color: calculateFontColor(playerColor) }}
-      className="GamePlayQueue-playerItem"
+      className="px-2 py-1 rounded text-sm"
     >
       {children}
     </span>
@@ -58,15 +58,13 @@ export function GamePlayQueue() {
   const nextItems = queue.slice(1, QUEUE_PREVIEW_LENGTH + 1);
 
   return (
-    <div className="GamePlayQueue">
-      <ul className="GamePlayQueue-list">
-        {nextItems.map((item: GamePlay, index: number) => (
-          <li className="GamePlayQueue-item" key={index}>
-            <GamePlayQueueItem gamePlay={item} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="flex items-center gap-2 list-none">
+      {nextItems.map((item: GamePlay, index: number) => (
+        <li className="text-sm" key={index}>
+          <GamePlayQueueItem gamePlay={item} />
+        </li>
+      ))}
+    </ul>
   );
 }
 

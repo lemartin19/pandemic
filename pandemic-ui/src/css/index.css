@@ -1,13 +1,5 @@
-@import './actions.css';
-@import './app.css';
-@import './components.css';
-@import './game-state.css';
-@import './load-game.css';
-@import './map.css';
-@import './navigation.css';
-@import './new-game.css';
-@import './players.css';
-@import './rules.css';
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 body {
   margin: 0;

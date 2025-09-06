@@ -14,13 +14,16 @@ export function ExistingGameSelect() {
   const selectedGame = selectedGameName && savedGames[selectedGameName];
 
   return (
-    <div className="ExistingGameSelect">
-      <label htmlFor="gameName">Game Name</label>
+    <div className="flex flex-col gap-2">
+      <label htmlFor="gameName" className="font-bold">
+        Game Name
+      </label>
       <select
         id="gameName"
         name="gameName"
         value={selectedGameName}
         onChange={(e) => setSelectedGameName(e.target.value)}
+        className="p-2 border border-gray-300 rounded text-base"
       >
         {gameNames.map((gameName) => (
           <option key={gameName} value={gameName}>

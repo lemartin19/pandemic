@@ -32,7 +32,7 @@ export function OutbreaksLeft() {
   const { outbreaksLeft } = useInfectionsState();
   return (
     <Tooltip text={`Outbreaks Left: ${outbreaksLeft}`} position="bottom">
-      <div className="OutbreaksLeft">
+      <div className="flex gap-1">
         {Array.from({ length: outbreaksLeft }).map((_, index) => (
           <OutbreaksLeftIcon key={index} />
         ))}

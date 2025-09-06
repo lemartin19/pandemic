@@ -8,9 +8,17 @@ export function PlayersSelect({
   onChange: (__event: ChangeEvent<HTMLSelectElement>) => void;
 }) {
   return (
-    <div className="PlayersSelect">
-      <label htmlFor="numberOfPlayers">Number of Players</label>
-      <select id="numberOfPlayers" name="numberOfPlayers" value={value} onChange={onChange}>
+    <div className="flex flex-col gap-2">
+      <label htmlFor="numberOfPlayers" className="font-bold">
+        Number of Players
+      </label>
+      <select
+        id="numberOfPlayers"
+        name="numberOfPlayers"
+        value={value}
+        onChange={onChange}
+        className="p-2 border border-gray-300 rounded text-base"
+      >
         <option value={2}>2 Players</option>
         <option value={3}>3 Players</option>
         <option value={4}>4 Players</option>

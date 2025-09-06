@@ -46,7 +46,7 @@ export function InitialSetup({ onSubmit }: { onSubmit: (__settings: InitialSetti
   }
 
   return (
-    <form className="InitialSetup" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
       <PlayersSelect value={gameSettings.numberOfPlayers} onChange={handleInputChange} />
       <DifficultySelect value={gameSettings.difficulty} onChange={handleInputChange} />
       <Button type="submit">Setup Players</Button>

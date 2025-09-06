@@ -8,8 +8,15 @@ export function Map() {
   const { map } = useMapState();
 
   return (
-    <div className="Map" style={{ border }}>
-      <div className="Map-image">
+    <div className="relative" style={{ border }}>
+      <div
+        className="relative w-full bg-center bg-no-repeat"
+        style={{
+          aspectRatio: '2/1',
+          backgroundSize: '100%',
+          backgroundImage: `url('/map.png')`,
+        }}
+      >
         {map.map((city) => (
           <City key={city.name} city={city} />
         ))}

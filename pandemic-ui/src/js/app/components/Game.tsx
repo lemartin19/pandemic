@@ -4,8 +4,8 @@ import { PlayersSidebar } from '../../players/components/PlayersSidebar';
 
 export function Game() {
   return (
-    <div className="Game">
-      <div className="Game-vertical">
+    <div className="flex w-full h-full overflow-hidden">
+      <div className="flex flex-col flex-grow">
         <GameState />
         <Map />
       </div>

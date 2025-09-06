@@ -1,8 +1,9 @@
+import { SectionHeader } from './SectionHeader';
+
 export function GameOverview() {
   return (
     <>
       <section>
-        <h2>Game Overview</h2>
         <p>
           Pandemic is a cooperative board game where players work together as disease-fighting
           specialists to treat infections around the world and gather resources for cures. Players
@@ -11,20 +12,29 @@ export function GameOverview() {
       </section>
 
       <section>
-        <h2>Objective</h2>
+        <SectionHeader>Objective</SectionHeader>
         <p>
-          Players win immediately when cures have been found for all 4 diseases. The players don't
-          actually have to eradicate all diseases, just find the cures.
+          Players win immediately when cures have been found for all{' '}
+          <strong className="text-yellow-400">4 diseases</strong>. The players don't actually have
+          to eradicate all diseases, just find the cures.
         </p>
       </section>
 
       <section>
-        <h2>Losing Conditions</h2>
+        <SectionHeader>Losing Conditions</SectionHeader>
         <p>The players lose if any of the following happens:</p>
-        <ul>
-          <li>8 outbreaks occur (outbreaks tracker reaches the skull)</li>
-          <li>The player deck runs out of cards</li>
-          <li>Disease cubes run out when needed for infection</li>
+        <ul className="ml-5 list-disc">
+          <li>
+            <strong className="text-yellow-400">8 outbreaks</strong> occur (outbreaks tracker
+            reaches the skull)
+          </li>
+          <li>
+            The <strong className="text-yellow-400">player deck runs out</strong> of cards
+          </li>
+          <li>
+            <strong className="text-yellow-400">Disease cubes run out</strong> when needed for
+            infection
+          </li>
         </ul>
       </section>
     </>

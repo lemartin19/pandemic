@@ -2,51 +2,35 @@ import { useState } from 'react';
 import { Diseases } from '../../rules/components/Diseases';
 import { GameOverview } from '../../rules/components/GameOverview';
 import { Players } from '../../rules/components/Players';
+import { Tabs, TabItem } from '../../components/Tabs';
 
-type TabType = 'overview' | 'players' | 'diseases';
+type RulesTabs = 'overview' | 'players' | 'diseases';
+
+const TABS: TabItem<RulesTabs>[] = [
+  {
+    id: 'overview',
+    label: 'Game Overview',
+    renderContent: () => <GameOverview />,
+  },
+  {
+    id: 'players',
+    label: 'Players',
+    renderContent: () => <Players />,
+  },
+  {
+    id: 'diseases',
+    label: 'Diseases',
+    renderContent: () => <Diseases />,
+  },
+];
 
 export function Rules() {
-  const [activeTab, setActiveTab] = useState<TabType>('overview');
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'overview':
-        return <GameOverview />;
-      case 'players':
-        return <Players />;
-      case 'diseases':
-        return <Diseases />;
-      default:
-        return <GameOverview />;
-    }
-  };
+  const [activeTab, setActiveTab] = useState<RulesTabs>('overview');
 
   return (
-    <div className="Rules">
-      <h1>Pandemic Rules</h1>
-
-      <div className="Rules-tabs">
-        <button
-          className={`Rules-tab ${activeTab === 'overview' ? 'active' : ''}`}
-          onClick={() => setActiveTab('overview')}
-        >
-          Game Overview
-        </button>
-        <button
-          className={`Rules-tab ${activeTab === 'players' ? 'active' : ''}`}
-          onClick={() => setActiveTab('players')}
-        >
-          Players
-        </button>
-        <button
-          className={`Rules-tab ${activeTab === 'diseases' ? 'active' : ''}`}
-          onClick={() => setActiveTab('diseases')}
-        >
-          Diseases
-        </button>
-      </div>
-
-      <div className="Rules-content">{renderContent()}</div>
+    <div className="max-h-[calc(100vh-120px)] overflow-y-auto p-5">
+      <h1 className="text-center text-3xl font-bold mb-6">Pandemic Rules</h1>
+      <Tabs<RulesTabs> tabs={TABS} activeTab={activeTab} onTabChange={setActiveTab} />
     </div>
   );
 }
