@@ -33,7 +33,7 @@ export function PlayerSetup({
   }
 
   return (
-    <form className="PlayerSetup" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
       {playerSettings.map((player, index) => (
         <PlayerInput
           key={index}
@@ -42,7 +42,11 @@ export function PlayerSetup({
         />
       ))}
 
-      <Button type="submit" className="start-button">
+      <Button
+        type="submit"
+        className="start-button"
+        disabled={playerSettings.some((player) => !player.name)}
+      >
         Start Game
       </Button>
     </form>
