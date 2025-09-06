@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.js": "/pandemic/static/js/main.0a5bf98a.js",
+    "main.js": "/pandemic/static/js/main.39a66df5.js",
     "static/js/453.87f434ea.chunk.js": "/pandemic/static/js/453.87f434ea.chunk.js",
+    "static/media/map.png": "/pandemic/static/media/map.5e572c9929d08c908548.png",
     "index.html": "/pandemic/index.html",
-    "main.0a5bf98a.js.map": "/pandemic/static/js/main.0a5bf98a.js.map",
+    "main.39a66df5.js.map": "/pandemic/static/js/main.39a66df5.js.map",
     "453.87f434ea.chunk.js.map": "/pandemic/static/js/453.87f434ea.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.0a5bf98a.js"
+    "static/js/main.39a66df5.js"
   ]
 }
