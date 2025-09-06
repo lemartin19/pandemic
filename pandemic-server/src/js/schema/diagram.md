@@ -1,172 +1,228 @@
 ```mermaid
-classDiagram
-  class Location
-  Location : +string name
-  Location : +Color regionColor
-  Location : +equals(location)
+erDiagram
+  %% Core Domain Entities
+  LOCATION {
+    string name
+  }
 
-  class Disease
-  Disease : +Color color
-  Disease : +boolean isCured
-  Disease : +boolean isEradicated
-  Disease : +cure()
-  Disease : +eradicate()
+  COLOR {
+    string value "blue|yellow|black|red"
+  }
 
-  class City
-  City : +Location location
-  City : +Record<Disease, number> infections
-  City : +boolean researchStation
-  City : +infect(disease)
-  City : +treat(disease)
+  CITY {
+    string name
+    string color
+    string[] connectedCities
+  }
 
-  class Map
-  Map : +Set<City> cities
+  DISEASE {
+    string color
+  }
 
-  class Action
-  Action : +string name
-  Action : +string description
-  Action : +Optional<Action> next
-  Action : +execute(game)
-  Action : +interrupt(action)
-  Action : +doAfter(action)
+  RESEARCH_STATION {
+    string location
+  }
 
-  Action <|-- Move
-  Move : +Player player
-  Move : +City to
+  %% Card Entities
+  CARD {
+    string type "epidemic|city|event"
+  }
 
-  Move <|-- DriveFerry
+  EPIDEMIC_CARD {
+    string type "epidemic"
+  }
 
-  Move <|-- Fly
-  Fly : +CityCard cityCard
+  CITY_CARD {
+    string type "city"
+    string name
+    string color
+  }
 
-  Move <|-- Charter
-  Charter : +CityCard cityCard
+  EVENT_CARD {
+    string type "event"
+    string name
+    string description
+    string[] allowedIn
+  }
 
-  Move <|-- Shuttle
+  %% Player and Role Entities
+  ROLE {
+    string name
+    string description
+    string[] actions
+  }
 
-  Action <|-- Build
-  Build : +Player player
-  Build : +CityCard cityCard
+  PLAYER {
+    string name
+    string color
+    string currentLocation
+    string roleName
+  }
 
-  Build <|-- DestroyAndBuild
-  DestroyAndBuild : +City destroyCity
+  PLAYER_HAND {
+    string playerName
+    string cardId
+  }
 
-  Action <|-- Treat
-  Treat : +Disease disease
-  Treat : +City city
+  %% GamePlay State Machine
+  GAMEPLAY_STATE {
+    string type "waitingForPlayerAction|waitingForPlayerDraw|waitingForPlayerDiscard|startEpidemic|increaseInfectionRate|intensifyEpidemic|infectCities"
+    string playerName "nullable"
+    int queuePosition
+  }
 
-  Action <|-- Discard
-  Discard : +Card card
+  %% Store State Entities
+  PLAYER_STATE {
+    string id
+    json playersData
+  }
 
-  Action <|-- Draw
-  Draw : +DrawPile drawPile
-  Draw : +PlayerHand playerHand
+  INFECTIONS_STATE {
+    string id
+    json infectionsData
+    json infectionSaturation
+    int outbreaksLeft
+    int[] infectionRates
+    json curedDiseases
+    json eradicatedDiseases
+  }
 
-  Action <|-- Cure
-  Cure : +Disease disease
-  Cure : +Set<Card> cards
+  CITY_INFECTIONS {
+    string cityName
+    string color
+    int infectionCount
+  }
 
-  Action <|-- ShareKnowledge
-  ShareKnowledge : +City city
-  ShareKnowledge : +Player player
-  ShareKnowledge : +Card card
+  INFECTION_SATURATION {
+    string color
+    int saturation
+  }
 
-  Action <|-- InfectCity
-  InfectCity : +City city
-  InfectCity : +boolean isEpidemic
-  InfectCity : +Optional<Color> color
+  DECKS_STATE {
+    string id
+    json drawPile
+    json discardPile
+    json infectionDeck
+    json infectionDiscard
+  }
 
-  Action <|-- Outbreak
-  Outbreak : +City[] cities
-  Outbreak : +City[] seenCities
-  Outbreak : +Color color
+  MAP_STATE {
+    string id
+    json mapData
+    json researchStations
+  }
 
-  class GameplayState
-  GameplayState <|-- PlayerAction
-  GameplayState <|-- PlayerDraw
-  GameplayState <|-- PlayerDiscard
-  GameplayState <|-- Increase
-  GameplayState <|-- Intensify
-  GameplayState <|-- Infect
+  GAMEPLAY_QUEUE_STATE {
+    string id
+    json queueData
+  }
 
-  class Card
-  Card <|-- EventCard
-  EventCard : +string name
-  EventCard : +string description
-  EventCard : +Action action
+  %% Action Entities
+  PLAYER_ACTION {
+    string type "initPlayers|addToHand|removeFromHand|movePlayer"
+    json payload
+    timestamp createdAt
+  }
 
-  Card <|-- EpidemicCard
+  INFECTIONS_ACTION {
+    string type "initInfections|treatDisease|increaseInfectionRate|cureDisease|infect|outbreak"
+    json payload
+    timestamp createdAt
+  }
 
-  Card <|-- CityCard
-  CityCard : +Location location
-  CityCard : +Color color
-  CityCard : +matchesCity(city)
-  CityCard : +sameColor(disease)
-  CityCard : +equals(card)
+  DECKS_ACTION {
+    string type "initDecks|playerDraw|infectionDraw|discard|intensify|removeCardFromDeck"
+    json payload
+    timestamp createdAt
+  }
 
-  class Deck~C extends Card~
-  Deck : +Array<C> cards
-  Deck : +draw()
-  Deck : +add(cards)
-  Deck : +remove(card)
-  Deck : +isEmpty()
+  MAP_ACTION {
+    string type "initMap|buildResearchStation"
+    json payload
+    timestamp createdAt
+  }
 
-  Deck <|-- InfectionDeck~CityCard~
-  InfectionDeck : +draw(fromBottom)
+  GAMEPLAY_QUEUE_ACTION {
+    string type "queuePlayerTurns|requirePlayerDiscard|startEpidemic|nextGameplayState|skipInfection|initGameplayState"
+    json payload
+    timestamp createdAt
+  }
 
-  Deck <|-- InfectedDeck~CityCard~
-  InfectedDeck : +intensify(infectionDeck)
+  %% React Context Provider Entities
+  STORE_PROVIDER {
+    string id
+    string contextType
+  }
 
-  Deck <|-- DrawPile~Card~
-  Deck <|-- DiscardPile~Card~
+  PLAYER_PROVIDER {
+    string id
+    string stateId
+    json hooks
+  }
 
-  Deck <|-- PlayerHand~Card~
-  PlayerHand : +getCards()
-  PlayerHand : +isHandFull()
+  INFECTIONS_PROVIDER {
+    string id
+    string stateId
+    json hooks
+  }
 
-  class Player
-  Player : +City city
-  Player : +PlayerHand hand
-  Player : +Role role
-  Player : +isHandFull()
-  Player : +discardFromHand(card)
-  Player : +addToHand(card)
-  Player : +getCurrentCity()
-  Player : +move(to)
+  DECKS_PROVIDER {
+    string id
+    string stateId
+    json hooks
+  }
 
-  class Role
-  Role : +string name
-  Role : +string description
-  Role : +Set<Action> powers
+  MAP_PROVIDER {
+    string id
+    string stateId
+    json hooks
+  }
 
-  class GameplayState
-  GameplayState : +execute(game)
+  GAMEPLAY_QUEUE_PROVIDER {
+    string id
+    string stateId
+    json hooks
+  }
 
-  GameplayState <|-- PlayerAction
-  PlayerAction : +player Player
-  PlayerAction : +action Optional<Action>
-  PlayerAction : +isPlayerTurn(player)
-  PlayerAction : +setAction(action)
+  %% Relationships
+  CITY ||--|| COLOR : "has"
+  CITY ||--o{ LOCATION : "connects_to"
+  CITY ||--o{ RESEARCH_STATION : "may_have"
 
-  GameplayState <|-- PlayerDraw
-  PlayerDraw : +player Player
-  PlayerDraw : +count number
+  CARD ||--|| EPIDEMIC_CARD : "is_a"
+  CARD ||--|| CITY_CARD : "is_a"
+  CARD ||--|| EVENT_CARD : "is_a"
+  CITY_CARD ||--|| COLOR : "belongs_to"
 
-  GameplayState <|-- PlayerDiscard
-  PlayerDiscard : +player Player
-  PlayerDiscard : +card Optional<Card>
+  PLAYER ||--|| ROLE : "has"
+  PLAYER ||--|| LOCATION : "located_at"
+  PLAYER ||--o{ PLAYER_HAND : "holds"
+  PLAYER_HAND ||--|| CARD : "contains"
 
-  GameplayState <|-- Increase
-  GameplayState <|-- Intensify
-  GameplayState <|-- Infect
+  INFECTIONS_STATE ||--o{ CITY_INFECTIONS : "tracks"
+  INFECTIONS_STATE ||--o{ INFECTION_SATURATION : "manages"
+  CITY_INFECTIONS ||--|| CITY : "affects"
+  CITY_INFECTIONS ||--|| COLOR : "of_type"
+  INFECTION_SATURATION ||--|| COLOR : "tracks"
 
-  class Game
-  Game : +Map map
-  Game : +Deck playerDrawDeck
-  Game : +Deck discardPile
-  Game : +Deck infectionDeck
-  Game : +Array<GameplayState> gameplay
-  Game : +Set<Player> players
-  Game : +number infectionRate
-  Game : +number outbreakCount
+  GAMEPLAY_QUEUE_STATE ||--o{ GAMEPLAY_STATE : "queues"
+  GAMEPLAY_STATE ||--o| PLAYER : "involves"
+
+  STORE_PROVIDER ||--|| PLAYER_PROVIDER : "contains"
+  STORE_PROVIDER ||--|| INFECTIONS_PROVIDER : "contains"
+  STORE_PROVIDER ||--|| DECKS_PROVIDER : "contains"
+  STORE_PROVIDER ||--|| MAP_PROVIDER : "contains"
+  STORE_PROVIDER ||--|| GAMEPLAY_QUEUE_PROVIDER : "contains"
+
+  PLAYER_PROVIDER ||--|| PLAYER_STATE : "manages"
+  INFECTIONS_PROVIDER ||--|| INFECTIONS_STATE : "manages"
+  DECKS_PROVIDER ||--|| DECKS_STATE : "manages"
+  MAP_PROVIDER ||--|| MAP_STATE : "manages"
+  GAMEPLAY_QUEUE_PROVIDER ||--|| GAMEPLAY_QUEUE_STATE : "manages"
+
+  PLAYER_STATE ||--o{ PLAYER_ACTION : "modified_by"
+  INFECTIONS_STATE ||--o{ INFECTIONS_ACTION : "modified_by"
+  DECKS_STATE ||--o{ DECKS_ACTION : "modified_by"
+  MAP_STATE ||--o{ MAP_ACTION : "modified_by"
+  GAMEPLAY_QUEUE_STATE ||--o{ GAMEPLAY_QUEUE_ACTION : "modified_by"
 ```
