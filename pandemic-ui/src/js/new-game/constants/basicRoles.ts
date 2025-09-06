@@ -11,6 +11,7 @@ import { DISPATCHER_DRIVE_FERRY } from '../../actions/constants/dispatcher/Dispa
 import { DISPATCHER_FLY } from '../../actions/constants/dispatcher/DispatcherFly';
 import { DISPATCHER_SHUTTLE } from '../../actions/constants/dispatcher/DispatcherShuttle';
 import { MEDIC_TREAT_DISEASE } from '../../actions/constants/medic/MedicTreat';
+import { RESEARCHER_SHARE_KNOWLEDGE } from '../../actions/constants/researcher/ResearcherShareKnowledge';
 import { SCIENTIST_CURE } from '../../actions/constants/scientist/ScientistCure';
 import { Role } from '../../types/Role';
 
@@ -55,7 +56,7 @@ export const BASIC_ROLES: Role[] = [
       SHUTTLE,
       BUILD_RESEARCH_STATION,
       TREAT_DISEASE,
-      SHARE_KNOWLEDGE,
+      RESEARCHER_SHARE_KNOWLEDGE,
       CURE,
     ],
   },
