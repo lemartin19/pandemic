@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 
 type TooltipPosition = 'left' | 'right' | 'bottom' | 'top';
 
-
 const calculateStyles = (el: HTMLElement | null, position: TooltipPosition) => {
   if (!el) return;
 
@@ -51,12 +50,10 @@ export const Tooltip = ({
   const [isVisible, setIsVisible] = useState(false);
   const [tooltipStyle, setTooltipStyle] = useState<CSSProperties>({});
 
-
   useEffect(() => {
     if (isVisible) {
       const style = calculateStyles(containerRef.current, position);
-      if (style)  setTooltipStyle(style);
-
+      if (style) setTooltipStyle(style);
 
       const handleScroll = () => {
         const scrolledStyles = calculateStyles(containerRef.current, position);
@@ -95,16 +92,13 @@ export const Tooltip = ({
       >
         {children}
       </div>
-      {isVisible && createPortal(
-        <div
-          className={`Tooltip-text Tooltip-${position}`}
-          role="tooltip"
-          style={tooltipStyle}
-        >
-          {text}
-        </div>,
-        document.body
-      )}
+      {isVisible &&
+        createPortal(
+          <div className={`Tooltip-text Tooltip-${position}`} role="tooltip" style={tooltipStyle}>
+            {text}
+          </div>,
+          document.body
+        )}
     </>
   );
 };

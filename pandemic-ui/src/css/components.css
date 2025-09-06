@@ -7,7 +7,9 @@
   font-weight: 600;
   cursor: pointer;
   border: none;
-  transition: background-color 0.2s, transform 0.1s;
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
 }
 
 .Button:hover {
@@ -156,7 +158,9 @@ body.modal-open {
   display: block;
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.2s, visibility 0.2s;
+  transition:
+    opacity 0.2s,
+    visibility 0.2s;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 8px 12px;

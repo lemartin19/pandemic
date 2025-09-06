@@ -1,58 +1,64 @@
 import { useState } from 'react';
 import { useDecksDispatch } from '../../../app/store/Decks';
-import { useMapState } from '../../../app/store/Map';
-import { usePlayerDispatch } from '../../../app/store/Players';
+import { usePlayerDispatch, usePlayerState } from '../../../app/store/Players';
 import { useCurrentPlayer } from '../../../players/hooks/useCurrentPlayer';
 import { Action } from '../../../types/Action';
+import { isEventCard } from '../../../types/Card';
 import { Location } from '../../../types/Map';
+import { Player } from '../../../types/Player';
 import { DefaultActionButton } from '../../components/DefaultActionButton';
 import { LocationSelect } from '../../components/LocationSelect';
+import { PlayerSelect } from '../../components/PlayerSelect';
 import { SubmitButton } from '../../components/SubmitButton';
 
-const CHARTER_NAME = 'Charter';
-const CHARTER_DESCRIPTION =
-  'Charter a flight to any city by discarding the city card for your current location.';
+const FLY_NAME = 'Fly';
+const FLY_DESCRIPTION = 'Move a player to a city by discarding its city card from their hand.';
 
-export const CHARTER: Action = {
-  name: CHARTER_NAME,
-  description: CHARTER_DESCRIPTION,
+export const DISPATCHER_FLY: Action = {
+  name: FLY_NAME,
+  description: FLY_DESCRIPTION,
   ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {
-    const currentPlayer = useCurrentPlayer();
     const [location, setLocation] = useState<Location | null>(null);
-    const { map } = useMapState();
+    const currentPlayer = useCurrentPlayer();
+    const { players } = usePlayerState();
+    const [player, setPlayer] = useState<Player | null>(currentPlayer);
     const playerDispatch = usePlayerDispatch();
     const decksDispatch = useDecksDispatch();
 
     const handleSubmit = () => {
       const cityCard = currentPlayer?.hand.find(
-        (card) => card.name === currentPlayer?.currentLocation
+        (card) => !isEventCard(card) && card.name === location
       );
-      if (!cityCard || !location) {
-        return;
-      }
+      if (!cityCard || !player) return;
 
       playerDispatch({
         type: 'movePlayer',
-        payload: { playerName: currentPlayer!.name, location },
+        payload: { playerName: player.name, location: cityCard.name },
       });
       playerDispatch({
         type: 'removeFromHand',
-        payload: { playerName: currentPlayer!.name, cards: [cityCard!] },
+        payload: { playerName: currentPlayer!.name, cards: [cityCard] },
       });
       decksDispatch({
         type: 'discard',
-        payload: [cityCard!],
+        payload: [cityCard],
       });
       onSubmit();
     };
+
+    const availableLocations =
+      currentPlayer?.hand.filter((card) => !isEventCard(card)).map((card) => card.name) || [];
+
     return (
       <>
+        <PlayerSelect value={player} onChange={setPlayer} players={players} />
         <LocationSelect
           value={location}
+          label="To"
           onChange={setLocation}
-          availableLocations={map.map((city) => city.name)}
+          availableLocations={availableLocations}
         />
-        <SubmitButton disabled={!location} onClick={handleSubmit} />
+        <SubmitButton disabled={!player || !location} onClick={handleSubmit} />
       </>
     );
   },
@@ -64,17 +70,14 @@ export const CHARTER: Action = {
     onSelect: (newType: Action['name']) => void;
   }) => {
     const currentPlayer = useCurrentPlayer();
-    const hasCurrentCityCard = currentPlayer?.hand.some(
-      (card) => card.name === currentPlayer?.currentLocation
-    );
-    const disabled = !hasCurrentCityCard;
+    const hasCityCards = currentPlayer?.hand.some((card) => !isEventCard(card));
     return (
       <DefaultActionButton
-        name={CHARTER_NAME}
-        description={CHARTER_DESCRIPTION}
+        name={FLY_NAME}
+        description={FLY_DESCRIPTION}
         isSelected={isSelected}
         onSelect={onSelect}
-        disabled={disabled}
+        disabled={!hasCityCards}
       />
     );
   },

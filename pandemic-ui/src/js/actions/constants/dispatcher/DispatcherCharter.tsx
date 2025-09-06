@@ -1,39 +1,42 @@
 import { useState } from 'react';
 import { useDecksDispatch } from '../../../app/store/Decks';
-import { useMapState } from '../../../app/store/Map';
-import { usePlayerDispatch } from '../../../app/store/Players';
+import { usePlayerDispatch, usePlayerState } from '../../../app/store/Players';
 import { useCurrentPlayer } from '../../../players/hooks/useCurrentPlayer';
 import { Action } from '../../../types/Action';
-import { Location } from '../../../types/Map';
 import { DefaultActionButton } from '../../components/DefaultActionButton';
-import { LocationSelect } from '../../components/LocationSelect';
+import { PlayerSelect } from '../../components/PlayerSelect';
 import { SubmitButton } from '../../components/SubmitButton';
+import { Player } from '../../../types/Player';
+import { LocationSelect } from '../../components/LocationSelect';
+import { useMapState } from '../../../app/store/Map';
+import { Location } from '../../../types/Map';
 
 const CHARTER_NAME = 'Charter';
 const CHARTER_DESCRIPTION =
-  'Charter a flight to any city by discarding the city card for your current location.';
+  'Charter a flight to any city for a player on the board by discarding the city card for their current location.';
 
-export const CHARTER: Action = {
+export const DISPATCHER_CHARTER: Action = {
   name: CHARTER_NAME,
   description: CHARTER_DESCRIPTION,
   ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {
     const currentPlayer = useCurrentPlayer();
-    const [location, setLocation] = useState<Location | null>(null);
+    const { players } = usePlayerState();
     const { map } = useMapState();
+    const [player, setPlayer] = useState<Player | null>(currentPlayer);
+    const [location, setLocation] = useState<Location | null>(null);
+
     const playerDispatch = usePlayerDispatch();
     const decksDispatch = useDecksDispatch();
 
     const handleSubmit = () => {
-      const cityCard = currentPlayer?.hand.find(
-        (card) => card.name === currentPlayer?.currentLocation
-      );
+      const cityCard = currentPlayer?.hand.find((card) => card.name === player?.currentLocation);
       if (!cityCard || !location) {
         return;
       }
 
       playerDispatch({
         type: 'movePlayer',
-        payload: { playerName: currentPlayer!.name, location },
+        payload: { playerName: player!.name, location },
       });
       playerDispatch({
         type: 'removeFromHand',
@@ -47,12 +50,13 @@ export const CHARTER: Action = {
     };
     return (
       <>
+        <PlayerSelect value={player} onChange={setPlayer} players={players} />
         <LocationSelect
           value={location}
           onChange={setLocation}
           availableLocations={map.map((city) => city.name)}
         />
-        <SubmitButton disabled={!location} onClick={handleSubmit} />
+        <SubmitButton disabled={!player || !location} onClick={handleSubmit} />
       </>
     );
   },
