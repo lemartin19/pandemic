@@ -29,7 +29,7 @@ export function Rules() {
 
   return (
     <div className="max-h-[calc(100vh-120px)] overflow-y-auto p-5">
-      <h1 className="text-center text-3xl font-bold">Pandemic Rules</h1>
+      <h1 className="text-center text-3xl font-bold mb-6">Pandemic Rules</h1>
       <Tabs<RulesTabs> tabs={TABS} activeTab={activeTab} onTabChange={setActiveTab} />
     </div>
   );

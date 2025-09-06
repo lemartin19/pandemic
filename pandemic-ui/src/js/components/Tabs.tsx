@@ -13,8 +13,8 @@ interface TabsProps<TabId extends string = string> {
   className?: string;
 }
 
-const ACTIVE_TAB_CLASS = 'bg-gray-800 border-b-2 border-gray-800 -mb-0.5 text-blue-400';
-const INACTIVE_TAB_CLASS = 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white';
+const ACTIVE_TAB_CLASS = 'bg-white dark:bg-gray-800 text-blue-400';
+const INACTIVE_TAB_CLASS = 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600';
 
 export function Tabs<TabIds extends string = string>({
   tabs,
