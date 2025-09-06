@@ -8,6 +8,21 @@ import { Connections } from './Connections';
 import { Infection } from './Infection';
 import { Player } from './Player';
 
+const getLabelPositionClass = (labelPosition: 'top' | 'bottom' | 'left' | 'right') => {
+  switch (labelPosition) {
+    case 'top':
+      return '-top-6 left-1/2 -translate-x-1/2';
+    case 'bottom':
+      return '-bottom-8 left-1/2 -translate-x-1/2';
+    case 'left':
+      return 'top-1/2 -translate-y-1/2 -left-2 -translate-x-full';
+    case 'right':
+      return 'top-1/2 -translate-y-1/2 -right-2 translate-x-full';
+    default:
+      return 'top-1/2 -translate-y-1/2 -translate-x-1/2';
+  }
+};
+
 export function City({ city }: { city: CityType }) {
   const [isHovered, setIsHovered] = useState(false);
   const hasResearchStation = useHasResearchStation(city.name);
@@ -18,43 +33,44 @@ export function City({ city }: { city: CityType }) {
     throw new Error(`City position not found for ${city.name}`);
   }
 
-  const cityStyling = hasResearchStation
-    ? {
-        backgroundColor: 'white',
-        border: `4px solid ${city.color}`,
-        boxSizing: 'border-box' as const,
-      }
-    : {
-        backgroundColor: city.color,
-      };
+  const cityClasses = hasResearchStation ? 'bg-white border-4 box-border' : '';
+
+  const cityStyle = hasResearchStation
+    ? { borderColor: city.color }
+    : { backgroundColor: city.color };
 
   return (
     <>
+      <Connections city={city} highlight={isHovered} />
       <div
-        className="City"
+        className={`absolute w-4 h-4 rounded-full cursor-pointer ${cityClasses} -translate-y-1/2 -translate-x-1/2`}
         style={{
           left: `${cityPosition.x}%`,
           top: `${cityPosition.y}%`,
-          ...cityStyling,
+          zIndex: 1,
+          ...cityStyle,
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className={`City-label ${cityPosition.labelPosition}`}>
+        <div
+          className={`flex flex-col items-center absolute text-xs font-semibold px-1 py-0.5 rounded whitespace-nowrap ${getLabelPositionClass(
+            cityPosition.labelPosition
+          )}`}
+        >
           <div>{city.name}</div>
           <div>
             {Object.entries(infections).map(([color, count]) => (
               <Infection key={color} color={color} count={count} />
             ))}
           </div>
-          <div className="City-players">
+          <div className="flex gap-1">
             {players.map((player) => (
               <Player key={player.name} player={player} />
             ))}
           </div>
         </div>
       </div>
-      <Connections city={city} highlight={isHovered} />
     </>
   );
 }
