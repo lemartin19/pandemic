@@ -6,6 +6,10 @@ import { FLY } from '../../actions/constants/base/Fly';
 import { SHARE_KNOWLEDGE } from '../../actions/constants/base/ShareKnowledge';
 import { SHUTTLE } from '../../actions/constants/base/Shuttle';
 import { TREAT_DISEASE } from '../../actions/constants/base/Treat';
+import { DISPATCHER_CHARTER } from '../../actions/constants/dispatcher/DispatcherCharter';
+import { DISPATCHER_DRIVE_FERRY } from '../../actions/constants/dispatcher/DispatcherDriveFerry';
+import { DISPATCHER_FLY } from '../../actions/constants/dispatcher/DispatcherFly';
+import { DISPATCHER_SHUTTLE } from '../../actions/constants/dispatcher/DispatcherShuttle';
 import { MEDIC_TREAT_DISEASE } from '../../actions/constants/medic/MedicTreat';
 import { SCIENTIST_CURE } from '../../actions/constants/scientist/ScientistCure';
 import { Role } from '../../types/Role';
@@ -59,10 +63,10 @@ export const BASIC_ROLES: Role[] = [
     name: 'Dispatcher',
     description: 'Can move other players pieces as if they are your own.',
     actions: [
-      DRIVE_FERRY,
-      FLY,
-      CHARTER,
-      SHUTTLE,
+      DISPATCHER_DRIVE_FERRY,
+      DISPATCHER_FLY,
+      DISPATCHER_CHARTER,
+      DISPATCHER_SHUTTLE,
       BUILD_RESEARCH_STATION,
       TREAT_DISEASE,
       SHARE_KNOWLEDGE,
