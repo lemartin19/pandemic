@@ -9,7 +9,6 @@ export function IncreaseInfectionRateButton() {
   const advanceGameplayState = useAdvanceGameplayState();
   return (
     <Button
-      className="DoTurnButton"
       variant="player"
       playerColor={player?.color}
       onClick={() => {

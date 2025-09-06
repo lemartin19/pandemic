@@ -5,12 +5,12 @@ import { OutbreaksLeft } from './OutbreaksLeft';
 
 export function GameState() {
   return (
-    <div className="GameState">
-      <div className="GameState-status">
+    <div className="flex flex-row gap-4">
+      <div className="flex gap-4">
         <InfectionRate />
         <OutbreaksLeft />
       </div>
-      <div className="GameState-queue">
+      <div className="flex flex-col gap-2">
         <GameStateButton />
         <GamePlayQueue />
       </div>

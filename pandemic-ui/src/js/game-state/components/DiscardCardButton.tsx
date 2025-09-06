@@ -11,7 +11,6 @@ export function DiscardCardButton({ playerName }: { playerName: string }) {
   return (
     <>
       <Button
-        className="DoTurnButton"
         variant="player"
         playerColor={player?.color}
         onClick={() => setIsDiscardModalOpen(true)}

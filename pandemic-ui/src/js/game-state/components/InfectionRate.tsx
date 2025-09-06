@@ -89,7 +89,7 @@ export function InfectionRate() {
   const [infectionRate] = infectionRates;
   return (
     <Tooltip text={`Infection Rate: ${infectionRate}`} position="bottom">
-      <div className="InfectionRate">
+      <div className="flex gap-1">
         {Array.from({ length: infectionRate }).map((_, index) => (
           <InfectionRateIcon key={index} />
         ))}
