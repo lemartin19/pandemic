@@ -66,3 +66,10 @@ body,
 .Home {
   padding: 4em;
 }
+
+/* --- Rules --- */
+.Rules {
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 0 100px;
+}
