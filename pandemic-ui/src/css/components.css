@@ -149,16 +149,14 @@ body.modal-open {
 
 /* --- Tooltip --- */
 .Tooltip-container {
-  position: relative;
+  display: inline-block;
 }
 
 .Tooltip-text {
-  position: absolute;
   display: block;
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   transition: opacity 0.2s, visibility 0.2s;
-  z-index: 1000;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 8px 12px;
@@ -167,35 +165,7 @@ body.modal-open {
   min-width: fit-content;
   width: max-content;
   max-width: 200px;
-}
-
-/* Position-specific styles */
-.Tooltip-top {
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 8px;
-}
-
-.Tooltip-bottom {
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 8px;
-}
-
-.Tooltip-left {
-  top: 50%;
-  right: 100%;
-  transform: translateY(-50%);
-  margin-right: 8px;
-}
-
-.Tooltip-right {
-  top: 50%;
-  left: 100%;
-  transform: translateY(-50%);
-  margin-left: 8px;
+  pointer-events: none;
 }
 
 /* Position-specific arrows */
@@ -241,9 +211,4 @@ body.modal-open {
   border-width: 5px;
   border-style: solid;
   border-color: transparent rgba(0, 0, 0, 0.8) transparent transparent;
-}
-
-.Tooltip-container:hover .Tooltip-text {
-  opacity: 1;
-  visibility: visible;
 }
