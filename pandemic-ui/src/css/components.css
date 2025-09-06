@@ -216,3 +216,66 @@ body.modal-open {
   border-style: solid;
   border-color: transparent rgba(0, 0, 0, 0.8) transparent transparent;
 }
+
+/* --- RadioGroup --- */
+.RadioGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.RadioGroup--vertical {
+  flex-direction: column;
+}
+
+.RadioGroup--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.RadioGroup-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  user-select: none;
+}
+
+.RadioGroup-option:hover:not(.RadioGroup-option--disabled) {
+  background-color: #f3f4f6;
+}
+
+.RadioGroup-option--checked {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.RadioGroup-option--checked:hover {
+  background-color: #bfdbfe;
+}
+
+.RadioGroup-option--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.RadioGroup-input {
+  margin: 0;
+  cursor: pointer;
+}
+
+.RadioGroup-input:disabled {
+  cursor: not-allowed;
+}
+
+.RadioGroup-label {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.RadioGroup-option--disabled .RadioGroup-label,
+.RadioGroup-option--disabled .RadioGroup-input {
+  cursor: not-allowed;
+}
