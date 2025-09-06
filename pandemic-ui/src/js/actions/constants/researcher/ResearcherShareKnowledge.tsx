@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import { usePlayerDispatch, usePlayersInCity } from '../../../app/store/Players';
+import { usePlayersInCity } from '../../../app/store/Players';
+import { RadioGroup } from '../../../components/RadioGroup';
 import { useCurrentPlayer } from '../../../players/hooks/useCurrentPlayer';
 import { Action } from '../../../types/Action';
-import { CityCard, isEventCard } from '../../../types/Card';
-import { Player } from '../../../types/Player';
+import { isEventCard } from '../../../types/Card';
 import { DefaultActionButton } from '../../components/DefaultActionButton';
-import { HandLocationForm } from '../../components/HandLocationForm';
-import { PlayerSelect } from '../../components/PlayerSelect';
-import { RadioGroup } from '../../../components/RadioGroup';
-import { SubmitButton } from '../../components/SubmitButton';
+import { ResearchGiveForm } from './ResearchGiveForm';
+import { TakeForm } from './TakeForm';
 
 const RESEARCHER_SHARE_KNOWLEDGE_NAME = 'Share Knowledge';
 const RESEARCHER_SHARE_KNOWLEDGE_DESCRIPTION =
@@ -18,12 +16,9 @@ export const RESEARCHER_SHARE_KNOWLEDGE: Action = {
   name: RESEARCHER_SHARE_KNOWLEDGE_NAME,
   description: RESEARCHER_SHARE_KNOWLEDGE_DESCRIPTION,
   ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {
-    const [playerToShareWith, setPlayerToShareWith] = useState<Player | null>(null);
-    const [card, setCard] = useState<CityCard | null>(null);
     const [actionType, setActionType] = useState<'give' | 'take'>('give');
     const currentPlayer = useCurrentPlayer();
     const playersInCity = usePlayersInCity(currentPlayer!.currentLocation);
-    const playerDispatch = usePlayerDispatch();
 
     const otherPlayersInCity = playersInCity.filter(
       (player) => player.name !== currentPlayer!.name
@@ -34,37 +29,6 @@ export const RESEARCHER_SHARE_KNOWLEDGE: Action = {
     );
 
     const hasCityCardsToGive = currentPlayer!.hand.some((card) => !isEventCard(card));
-
-    const handleSubmit = () => {
-      if (actionType === 'give' && card && playerToShareWith) {
-        playerDispatch({
-          type: 'removeFromHand',
-          payload: { playerName: currentPlayer!.name, cards: [card] },
-        });
-        playerDispatch({
-          type: 'addToHand',
-          payload: { playerName: playerToShareWith.name, cards: [card] },
-        });
-      } else if (actionType === 'take' && playerToShareWith) {
-        const currentCityCard = playerToShareWith.hand.find(
-          (card) => !isEventCard(card) && card.name === currentPlayer!.currentLocation
-        );
-
-        if (currentCityCard) {
-          playerDispatch({
-            type: 'removeFromHand',
-            payload: { playerName: playerToShareWith.name, cards: [currentCityCard] },
-          });
-          playerDispatch({
-            type: 'addToHand',
-            payload: { playerName: currentPlayer!.name, cards: [currentCityCard] },
-          });
-        }
-      }
-      onSubmit();
-    };
-
-    const isSubmitDisabled = !playerToShareWith || (actionType === 'give' && !card);
 
     const radioOptions = [
       {
@@ -88,13 +52,13 @@ export const RESEARCHER_SHARE_KNOWLEDGE: Action = {
           options={radioOptions}
           orientation="horizontal"
         />
-        <PlayerSelect
-          value={playerToShareWith}
-          onChange={setPlayerToShareWith}
-          players={otherPlayersInCity}
-        />
-        {actionType === 'give' && <HandLocationForm value={card} onChange={setCard} />}
-        <SubmitButton disabled={isSubmitDisabled} onClick={handleSubmit} />
+        {actionType === 'give' && (
+          <ResearchGiveForm otherPlayersInCity={otherPlayersInCity} onSubmit={onSubmit} />
+        )}
+
+        {actionType === 'take' && (
+          <TakeForm otherPlayersInCity={otherPlayersInCity} onSubmit={onSubmit} />
+        )}
       </>
     );
   },
