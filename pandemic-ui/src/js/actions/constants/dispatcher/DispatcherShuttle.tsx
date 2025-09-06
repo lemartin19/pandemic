@@ -13,7 +13,7 @@ import { SubmitButton } from '../../components/SubmitButton';
 const SHUTTLE_NAME = 'Shuttle';
 const SHUTTLE_DESCRIPTION = 'Move a player between research stations.';
 
-export const SHUTTLE: Action = {
+export const DISPATCHER_SHUTTLE: Action = {
   name: SHUTTLE_NAME,
   description: SHUTTLE_DESCRIPTION,
   ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {

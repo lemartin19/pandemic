@@ -14,7 +14,7 @@ import { SubmitButton } from '../../components/SubmitButton';
 const FLY_NAME = 'Fly';
 const FLY_DESCRIPTION = 'Move a player to a city by discarding its city card from their hand.';
 
-export const FLY: Action = {
+export const DISPATCHER_FLY: Action = {
   name: FLY_NAME,
   description: FLY_DESCRIPTION,
   ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {

@@ -13,7 +13,7 @@ import { SubmitButton } from '../../components/SubmitButton';
 const DRIVE_FERRY_NAME = 'Drive/Ferry';
 const DRIVE_FERRY_DESCRIPTION = 'Move a player to an adjacent city by driving or ferry.';
 
-export const DRIVE_FERRY: Action = {
+export const DISPATCHER_DRIVE_FERRY: Action = {
   name: DRIVE_FERRY_NAME,
   description: DRIVE_FERRY_DESCRIPTION,
   ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {

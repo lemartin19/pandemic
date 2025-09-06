@@ -15,7 +15,7 @@ const CHARTER_NAME = 'Charter';
 const CHARTER_DESCRIPTION =
   'Charter a flight to any city for a player on the board by discarding the city card for their current location.';
 
-export const CHARTER: Action = {
+export const DISPATCHER_CHARTER: Action = {
   name: CHARTER_NAME,
   description: CHARTER_DESCRIPTION,
   ActionForm: ({ onSubmit }: { onSubmit: () => void }) => {
